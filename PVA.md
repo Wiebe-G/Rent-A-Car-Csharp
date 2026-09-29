@@ -25,6 +25,8 @@ Gemaakt door: Wiebe
 blah blah blah zet hier wat nuttigs in 
 
 ## Rolverdeling
+Gemaakt door: Wiebe
+
 Wiebe: Beheerder  
 Marc: Medewerker  
 Stijn: Klant  
@@ -36,7 +38,33 @@ blah blah blah doe maar wat
 blah blah blah 
 
 ## Technisch ontwerp
-blah blah blah
+Gemaakt door: Wiebe 
+
+### Tech stack
+	- C#
+	- MySQL 
+	- Git en github
+### Omschrijving
+Het moet een C# winforms applicatie worden die data ophaalt uit een mysql database.  
+De frontend moet informatie over auto's ophalen uit die mysql database, 
+en dan in de forms laten zien.  
+### Rollen
+	- Klant: 
+		- Een klant moet auto's alleen kunnen bekijken.
+	- Medewerker:
+		- Medewerkers en beheerders moeten CRUD-operaties kunnen uitvoeren op auto's.
+	- Beheerder:
+		- Beheerder moet openingstijden kunnen instellen per dag.
+		- Beheerder moet alles kunnen doen wat medewerkers kunnen
+### Factuur
+Factuur moet aangemaakt worden en een pdf invoice maken met QuestPDF library.  
+Factuur moet dan in mysql worden opgeslagen.  
+Factuur moet een ID krijgen, willekeurige reeks van 8 karakters (a-z, A-Z, 0-9, en '!' etc)
+
+### Beveiliging
+Gebruikers moeten alleen bij hun eigen data kunnen.
+Wachtwoorden hashen met bcrypt
+Bevestiging bij aanpassen of verwijderen gegevens.
 
 ## Doelen 
 tekst
