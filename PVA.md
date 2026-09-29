@@ -84,7 +84,7 @@ tekst
 Gemaakt door: Wiebe
 | Risico | Gevolg | Maatregel |
 |:--:|:--:|:--:|
-| Merge conflict | Programma stopt met werken | Aparte branches voor iedereen|
+| Merge conflict | Programma stopt met werken | Aparte branches voor iedereen
 |
 | Afwezigheid vanwege ziekte | Persoon kan werk mogelijk niet doen | Persoon toch het werk laten doen
 |
