@@ -143,7 +143,25 @@ Gemaakt door: Wiebe
 ## Wiebe erd
 
 ### User Stories
-Zet hier user stories in een tabel
+| Titel | User story | Prioriteit
+|:--:|:--:|:--:|
+| Registreren | Als beheerder wil ik accounts kunnen registreren, zodat medewerkers een account hebben met de juiste toegang | M
+| Inloggen | Als beheerder wil ik kunnen inloggen, zodat ik veilig bij de nodige informatie kan | M
+| Auto aanmaken | Als beheerder wil ik een auto kunnen aanmaken, zodat ik deze kan verkopen | M 
+| Auto bekijken | Als beheerder wil ik een auto kunnen bekijken, zodat ik foutieve informatie kan zien en fixen | M 
+| Auto bewerken | Als beheerder wil ik een auto kunnen aanpassen, zodat ik foutieve informatie kan verbeteren | M 
+| AUto buiten gebruik zetten | Als beheerder wil ik auto's buiten gebruik kunnen zetten, zodat we geen kapotte auto's verhuren | M
+| Auto verwijderen | Als beheerder wil ik een auto kunnen verwijderen, zodat ik oude modellen niet meer verkoop | maakt
+| Factuur maken | Als beheerder wil ik een factuur kunnen maken, zodat ik de klant kan laten betalen | M 
+| Factuur bekijken | Als beheerder wil ik facturen kunnen bekijken, zodat ik weet wie wel of niet betaald heeft | M 
+| Factuur bewerken | Als beheerder wil ik facturen kunnen aanpassen, zodat ik mensen meer kan laten betalen | C
+| Factuur verwijderen | Als beheerder wil ik facturen kunnen verwijderen, zodat ik belastingsfraude kan plegen | C
+| Klanten bekijken | Als beheerder wil ik alle klanten kunnen zien, zodat ik weet wie bij ons koopt | M 
+| Medewerkers bekijken | Als beheerder wil ik medewerkers kunnen inzien, zodat ik weet wie voor ons werkt | M 
+| Voorraad inzien | Als beheerder wil ik zien welke auto's wel en niet zijn uitgeleend, zodat ik weet wat onze voorraad is | M
+| Reserveringen/planning inzien | Als beheerder wil ik reserveringen inzien, zodat ik weet welke auto's we op voorraad hebben | M
+| Prestatie dashboard | Als beheerder wil ik een prestatie dashboard, zodat ik kan zien welke medewerkers goed werken | M
+| Openingstijden | Als beheerder wil ik openingstijden kunnen maken en aanpassen, zodat ik weet wanneer auto's opgehaald en ingeleverd mogen worden | M 
 
 ### Acceptance Criteria
 Acceptence criteria, ook in een tabel 
