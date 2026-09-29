@@ -176,13 +176,13 @@ Gemaakt door: Wiebe
 ### Acceptance Criteria
 | User story | Prio | Acceptence criteria 
 |:--:|:--:|:--:|
-| Registreren | M | Beheerder kan account aanmaken\ Beheerder kan rol zetten voor dat account \n Wachtwoord voldoet aan standaardeisen
-| Inloggen | M | Beheerder kan inloggen\ (optioneel) Beheerder wordt om mfa gevraagd
-| Auto aanmaken | M | Beheerder kan auto aanmaken \n Auto moet foto, naam, bouwjaar, etc hebben
-| Auto bekijken | M | Beheerder kan auto bekijken
-| Auto bewerken | M | Beheerder kan gegevens van auto aanpassen
-| Auto verwijderen | M | Beheerder kan auto verwijderen \n Bevestiging popup als gebruiker auto verwijdert
-| Auto buiten gebruik zetten | M | Beheerder kan auto buiten gebruik zetten \n Die auto's kunnen dan niet worden verhuurd
+| Registreren | M | Beheerder kan account aanmaken. Beheerder kan rol zetten voor dat account. Wachtwoord voldoet aan standaardeisen
+| Inloggen | M | Beheerder kan inloggen. (optioneel) Beheerder wordt om mfa gevraagd
+| Auto aanmaken | M | Beheerder kan auto aanmaken. Auto moet foto, naam, bouwjaar, etc hebben
+| Auto bekijken | M | Beheerder kan auto bekijken.
+| Auto bewerken | M | Beheerder kan gegevens van auto aanpassen.
+| Auto verwijderen | M | Beheerder kan auto verwijderen. Bevestiging popup als gebruiker auto verwijdert
+| Auto buiten gebruik zetten | M | Beheerder kan auto buiten gebruik zetten. Die auto's kunnen dan niet worden verhuurd
 
 
 
