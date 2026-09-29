@@ -174,8 +174,9 @@ Gemaakt door: Wiebe
 | Openingstijden | Als beheerder wil ik openingstijden kunnen maken en aanpassen, zodat ik weet wanneer auto's opgehaald en ingeleverd mogen worden | M 
 
 ### Acceptance Criteria
-Acceptence criteria, ook in een tabel 
-
+| User story | Prio | Acceptence criteria 
+|:--:|:--:|:--:|
+| Registreren | M | - Beheerder kan account aanmaken - Beheerder kan rol zetten voor dat account - Wachtwoord voldoet aan standaardeisen
 ### Definition of Done 
 Zet hier je definition of done, in een lijst
 
