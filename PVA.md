@@ -38,6 +38,9 @@ blah blah blah
 ## Technisch ontwerp
 blah blah blah
 
+## Doelen 
+tekst
+
 ## risico 
 blah blah blah
 
