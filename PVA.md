@@ -183,8 +183,10 @@ Gemaakt door: Wiebe
 | Auto bewerken | M | Beheerder kan gegevens van auto aanpassen.
 | Auto verwijderen | M | Beheerder kan auto verwijderen. Bevestiging popup als gebruiker auto verwijdert
 | Auto buiten gebruik zetten | M | Beheerder kan auto buiten gebruik zetten. Die auto's kunnen dan niet worden verhuurd
-
-
+| Factuur maken | M | Beheerder kan factuur maken. Factuur wordt naar juiste klant gestuurd via e-mail 
+| Factuur bekijken | M | Beheerder kan facturen inzien. 
+| Factuur bewerken | C | Beheerder kan facturen bewerken.
+| Factuur verwijderen | C | Beheerder kan facturen verwijderen.
 
 ### Definition of Done 
 Zet hier je definition of done, in een lijst
