@@ -168,25 +168,40 @@ Gemaakt door: Wiebe
 | Factuur verwijderen | Als beheerder wil ik facturen kunnen verwijderen, zodat ik verkeerde facturen kan verwijderen | C
 | Klanten bekijken | Als beheerder wil ik alle klanten kunnen zien, zodat ik weet wie bij ons koopt | M 
 | Medewerkers bekijken | Als beheerder wil ik medewerkers kunnen inzien, zodat ik weet wie voor ons werkt | M 
+| Medewerkers aanpassen | Als beheerder wil ik medewerkers kunnen aanpassen, zodat ik foutieve informatie kan aanpassen | M
+| Medewerkers verwijderen | Als beheerder wil ik medewerkers kunnen verwijderen, zodat ik ontslagen medewerkers kan weghalen | M
 | Voorraad inzien | Als beheerder wil ik zien welke auto's wel en niet zijn uitgeleend, zodat ik weet wat onze voorraad is | M
-| Reserveringen/planning inzien | Als beheerder wil ik reserveringen inzien, zodat ik weet welke auto's we op voorraad hebben | M
+| Reserveringen inzien | Als beheerder wil ik reserveringen inzien, zodat ik weet welke auto's we op voorraad hebben | M
+| Planning inzien | Als beheerder wil ik de planning kunnen inzien, zodat ik weet wie wanneer werkt | M 
 | Prestatie dashboard | Als beheerder wil ik een prestatie dashboard, zodat ik kan zien welke medewerkers goed werken | M
 | Openingstijden | Als beheerder wil ik openingstijden kunnen maken en aanpassen, zodat ik weet wanneer auto's opgehaald en ingeleverd mogen worden | M 
+| Logs | Als beheerder wil ik logs hebben van wat er gebeurd, zodat ik kan zien wie wat heeft aangepast | M
 
 ### Acceptance Criteria
 | User story | Prio | Acceptence criteria 
 |:--:|:--:|:--:|
-| Registreren | M | Beheerder kan account aanmaken. Beheerder kan rol zetten voor dat account. Wachtwoord voldoet aan standaardeisen
-| Inloggen | M | Beheerder kan inloggen. (optioneel) Beheerder wordt om mfa gevraagd
-| Auto aanmaken | M | Beheerder kan auto aanmaken. Auto moet foto, naam, bouwjaar, etc hebben
+| Registreren | M | Beheerder kan account aanmaken. Beheerder kan rol zetten voor dat account. Wachtwoord voldoet aan standaardeisen.
+| Inloggen | M | Beheerder kan inloggen. (optioneel) Beheerder wordt om mfa gevraagd.
+| Auto aanmaken | M | Beheerder kan auto aanmaken. Auto moet foto, naam, bouwjaar, etc hebben.
 | Auto bekijken | M | Beheerder kan auto bekijken.
 | Auto bewerken | M | Beheerder kan gegevens van auto aanpassen.
-| Auto verwijderen | M | Beheerder kan auto verwijderen. Bevestiging popup als gebruiker auto verwijdert
-| Auto buiten gebruik zetten | M | Beheerder kan auto buiten gebruik zetten. Die auto's kunnen dan niet worden verhuurd
-| Factuur maken | M | Beheerder kan factuur maken. Factuur wordt naar juiste klant gestuurd via e-mail 
+| Auto verwijderen | M | Beheerder kan auto verwijderen. Bevestiging popup als gebruiker auto verwijdert.
+| Auto buiten gebruik zetten | M | Beheerder kan auto buiten gebruik zetten. Die auto's kunnen dan niet worden verhuurd.
+| Factuur maken | M | Beheerder kan factuur maken. Factuur wordt naar juiste klant gestuurd via e-mail .
 | Factuur bekijken | M | Beheerder kan facturen inzien. 
-| Factuur bewerken | C | Beheerder kan facturen bewerken.
-| Factuur verwijderen | C | Beheerder kan facturen verwijderen.
+| Factuur bewerken | C | Beheerder kan facturen bewerken. Confirmatie popup als dat gebeurt.
+| Factuur verwijderen | C | Beheerder kan facturen verwijderen. Confirmatie popup als dat gebeurt.
+| Klanten bekijken | M | Beheerder moet klantgegevens kunnen inzien.
+| Medewerkers inzien | M | Beheerder moet gegevens van medewerkers kunnen inzien.
+| Medewerkers aanpassen | M | Beheerder kan gegevens van medewerker aanpassen. Confirmatie popup als dat gebeurt.
+| Medewerkers verwijderen | M | Beheerder kan medewerkers verwijderen. Confirmatie popup als dit gebeurt.
+| Voorraad inzien | M | Beheerder moet een duidelijk overzicht hebben van de voorradige auto's. 
+| Reserveringen inzien | M | Beheerder moet kunnen zien wat gereserveerd is. 
+| Planning inzien | M | Beheerder moet planning van medewerkers kunnen zien.
+| Prestatie dashboard | M | Beheerder moet een dashboard hebben met gegevens over prestaties van medewerkers. 
+| Openingstijden | M | Beheerder moet openingstijden kunnen instellen. Auto's kunnen alleen binnen die tijden ingeleverd worden.
+| Logs | M | Als iemand iets verandert, log entry aanmaken. Beheerder moet alle logs kunnen zien. Logs sorteren en filteren op datum, medewerker, actie, etc
+
 
 ### Definition of Done 
 Zet hier je definition of done, in een lijst
