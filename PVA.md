@@ -22,7 +22,12 @@ Gemaakt door: Wiebe
 ## [Stijn's User Stories en ERD](#stijn-erd)
 
 ## Inleiding
-blah blah blah zet hier wat nuttigs in 
+Gemaakt door: Marc
+
+Rent a Car is een autoverhuurbedrijf met twee nieuwe eigenaren: Laura Beekman en Mark van Tessel.
+Ze willen het bedrijf moderniseren en een premium autoverhuurder worden. Nu gaat veel nog op papier,
+maar dat willen ze veranderen. Hierin staat wat de applicatie moet kunnen, de user stories, het ERD
+en het bouwen van de applicatie.
 
 ## Rolverdeling
 Gemaakt door: Wiebe
@@ -34,8 +39,12 @@ Stijn: Klant
 ## Opdrachts beschrijving
 blah blah blah doe maar wat
 
-## Functioneel ontwerp
-blah blah blah 
+## func-ontwerp
+ Gemaakt door: Marc
+
+ **Gebruikers**
+- klant: registreert, reserveert, beheert eigen reserveringen en facturen
+- Medewerkers: kan klanten invoeren en werkt het dagoverzicht
 
 ## Technisch ontwerp
 Gemaakt door: Wiebe 
