@@ -176,9 +176,7 @@ Gemaakt door: Wiebe
 ### Acceptance Criteria
 | User story | Prio | Acceptence criteria 
 |:--:|:--:|:--:|
-| Registreren | M | <ul>
-<li>Beheerder kan account aanmaken </li>
-<li>Beheerder kan rol zetten voor dat account</li><li>Wachtwoord voldoet aan standaardeisen</li></ul>
+| Registreren | M | <ul><li>Beheerder kan account aanmaken </li><li>Beheerder kan rol zetten voor dat account</li><li>Wachtwoord voldoet aan standaardeisen</li></ul>
 
 ### Definition of Done 
 Zet hier je definition of done, in een lijst
