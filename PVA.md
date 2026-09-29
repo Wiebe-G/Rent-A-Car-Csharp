@@ -37,9 +37,10 @@ Marc: Medewerker
 Stijn: Klant  
 
 ## Opdrachts beschrijving
+Gemaakt door: Stijn
 blah blah blah doe maar wat
 
-## func-ontwerp
+## Functioneel ontwerp
  Gemaakt door: Marc
 
  **Gebruikers**
@@ -76,9 +77,11 @@ Wachtwoorden hashen met bcrypt
 Bevestiging bij aanpassen of verwijderen gegevens.
 
 ## Doelen 
+Gemaakt door: Stijn
 tekst
 
 ## risico 
+Gemaakt door: Wiebe
 blah blah blah
 
 ## Wiebe erd
