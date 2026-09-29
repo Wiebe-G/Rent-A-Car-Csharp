@@ -21,6 +21,7 @@ Gemaakt door: Wiebe
 ## [Marc's User Stories en ERD](#marc-erd)
 ## [Stijn's User Stories en ERD](#stijn-erd)
 
+
 ## Inleiding
 Gemaakt door: Marc
 
@@ -29,6 +30,7 @@ Ze willen het bedrijf moderniseren en een premium autoverhuurder worden. Nu gaat
 maar dat willen ze veranderen. Hierin staat wat de applicatie moet kunnen, de user stories, het ERD
 en het bouwen van de applicatie.
 
+
 ## Rolverdeling
 Gemaakt door: Wiebe
 
@@ -36,9 +38,11 @@ Wiebe: Beheerder
 Marc: Medewerker  
 Stijn: Klant  
 
+
 ## Opdrachts beschrijving
 Gemaakt door: Stijn
 blah blah blah doe maar wat
+
 
 ## Functioneel ontwerp
  Gemaakt door: Marc
@@ -46,6 +50,7 @@ blah blah blah doe maar wat
  **Gebruikers**
 - klant: registreert, reserveert, beheert eigen reserveringen en facturen
 - Medewerkers: kan klanten invoeren en werkt het dagoverzicht
+
 
 ## Technisch ontwerp
 Gemaakt door: Wiebe 
@@ -76,9 +81,11 @@ Gebruikers moeten alleen bij hun eigen data kunnen.
 Wachtwoorden hashen met bcrypt
 Bevestiging bij aanpassen of verwijderen gegevens.
 
+
 ## Doelen 
 Gemaakt door: Stijn
 tekst
+
 
 ## Risico 
 Gemaakt door: Wiebe
@@ -90,11 +97,55 @@ Gemaakt door: Wiebe
 | Onvoldoende tijd besteed aan testen | Programma werkt niet | Automatische tests maken in github en in c# met bijv. xunit
 | Achterlopen op de planning | Het project is mogelijk niet op tijd af | Samen kijken waarom we achterlopen en het oplossen
 
+
 ## Wiebe erd
-ik doe hier wel wat
 
-## Marc erd
-hier moet Marc wat doen
+### User Stories
+Zet hier user stories in een tabel
 
-## Stijn erd 
-hier moet Stijn wat doen
+### Acceptance Criteria
+Acceptence criteria, ook in een tabel 
+
+### Definition of Done 
+Zet hier je definition of done, in een lijst
+
+### Normalisatie
+Normaalvormen
+
+### ERD
+ERD maken in [iets als dit](https://draw.io) en dan screenshot maken
+
+
+## Marc ERD
+
+### User Stories
+Zet hier user stories in een tabel
+
+### Acceptance Criteria
+Acceptence criteria, ook in een tabel 
+
+### Definition of Done 
+Zet hier je definition of done, in een lijst
+
+### Normalisatie
+Normaalvormen
+
+### ERD
+ERD maken in [iets als dit](https://draw.io) en dan screenshot maken
+
+
+## Stijn ERD 
+### User Stories
+Zet hier user stories in een tabel
+
+### Acceptance Criteria
+Acceptence criteria, ook in een tabel 
+
+### Definition of Done 
+Zet hier je definition of done, in een lijst
+
+### Normalisatie
+Normaalvormen
+
+### ERD
+ERD maken in [iets als dit](https://draw.io) en dan screenshot maken
