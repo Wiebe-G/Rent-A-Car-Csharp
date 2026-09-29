@@ -9,7 +9,9 @@
 # Inhoud
 Gemaakt door: Wiebe
 
+
 ## [Inleiding](#inleiding)
+## [Rolverdeling](#rolverdeling)
 ## [Opdrachtsbeschrijving](#opdrachtsbeschrijving)
 ## [Functioneel ontwerp](#func-ontwerp)
 ## [Technisch ontwerp](#tech-ontwerp)
@@ -21,6 +23,11 @@ Gemaakt door: Wiebe
 
 ## Inleiding
 blah blah blah zet hier wat nuttigs in 
+
+## Rolverdeling
+Wiebe: Beheerder
+Marc: Medewerker
+Stijn: Klant
 
 ## opdrachtsbeschrijving
 blah blah blah doe maar wat
