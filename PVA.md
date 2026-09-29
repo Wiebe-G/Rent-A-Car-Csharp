@@ -101,10 +101,18 @@ Gemaakt door: Wiebe
 	- C#
 	- MySQL 
 	- Git en github
+	
 ### Omschrijving
 Het moet een C# winforms applicatie worden die data ophaalt uit een mysql database.  
-De frontend moet informatie over auto's ophalen uit die mysql database, 
-en dan in de forms laten zien.  
+De frontend moet informatie over auto's ophalen uit die mysql database,  en dan in de forms laten zien. 
+
+### Verwijderen 
+Verwijderen van dingen moet net zoals Laravel's "SoftDelete" werken, oftewel:
+- Iets verwijderen moet i.p.v. verwijderen een "DeletedAt" timestamp van 'null' naar momentele tijd zetten 
+- Standaard moeten die genegeerd worden door een where-clause te gebruiken
+- Beheerder moet optie hebben om verwijderde dingen te bekijken, en terug te draaien of permanent te verwijderen
+- Voor permanent verwijderen moet gebruiker eerst wachtwoord (of passkey/mfa code als we heel veel tijd daarvoor hebben) invoeren
+
 ### Rollen
 	- Klant: 
 		- Een klant moet auto's alleen kunnen bekijken.
@@ -113,10 +121,12 @@ en dan in de forms laten zien.
 	- Beheerder:
 		- Beheerder moet openingstijden kunnen instellen per dag.
 		- Beheerder moet alles kunnen doen wat medewerkers kunnen
+
 ### Factuur
-Factuur moet aangemaakt worden en een pdf invoice maken met QuestPDF library.  
-Factuur moet dan in mysql worden opgeslagen.  
-Factuur moet een ID krijgen, willekeurige reeks van 8 karakters (a-z, A-Z, 0-9, en '!' etc)
+- Factuur moet aangemaakt worden en een pdf invoice maken met QuestPDF library.  
+- Factuur moet dan in mysql worden opgeslagen.  
+- Factuur moet een unieke ID krijgen, willekeurige reeks van 8 karakters (a-z, A-Z, 0-9, en '!' etc)
+resultaat daarvan is 8^72=1.0531229166855719e+65 combinaties
 
 ### Beveiliging
 Gebruikers moeten alleen bij hun eigen data kunnen.
@@ -151,11 +161,11 @@ Gemaakt door: Wiebe
 | Auto bekijken | Als beheerder wil ik een auto kunnen bekijken, zodat ik foutieve informatie kan zien en fixen | M 
 | Auto bewerken | Als beheerder wil ik een auto kunnen aanpassen, zodat ik foutieve informatie kan verbeteren | M 
 | AUto buiten gebruik zetten | Als beheerder wil ik auto's buiten gebruik kunnen zetten, zodat we geen kapotte auto's verhuren | M
-| Auto verwijderen | Als beheerder wil ik een auto kunnen verwijderen, zodat ik oude modellen niet meer verkoop | maakt
+| Auto verwijderen | Als beheerder wil ik een auto kunnen verwijderen, zodat ik oude modellen niet meer verkoop | M
 | Factuur maken | Als beheerder wil ik een factuur kunnen maken, zodat ik de klant kan laten betalen | M 
 | Factuur bekijken | Als beheerder wil ik facturen kunnen bekijken, zodat ik weet wie wel of niet betaald heeft | M 
-| Factuur bewerken | Als beheerder wil ik facturen kunnen aanpassen, zodat ik mensen meer kan laten betalen | C
-| Factuur verwijderen | Als beheerder wil ik facturen kunnen verwijderen, zodat ik belastingsfraude kan plegen | C
+| Factuur bewerken | Als beheerder wil ik facturen kunnen aanpassen, zodat ik fouten kan verbeteren | C
+| Factuur verwijderen | Als beheerder wil ik facturen kunnen verwijderen, zodat ik verkeerde facturen kan verwijderen | C
 | Klanten bekijken | Als beheerder wil ik alle klanten kunnen zien, zodat ik weet wie bij ons koopt | M 
 | Medewerkers bekijken | Als beheerder wil ik medewerkers kunnen inzien, zodat ik weet wie voor ons werkt | M 
 | Voorraad inzien | Als beheerder wil ik zien welke auto's wel en niet zijn uitgeleend, zodat ik weet wat onze voorraad is | M
