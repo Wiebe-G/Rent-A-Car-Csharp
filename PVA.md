@@ -11,7 +11,7 @@ Gemaakt door: Wiebe
 
 ## [Inleiding](#inleiding)
 ## [Opdrachtsbeschrijving](#opdrachtsbeschrijving)
-## [Functioneel ontwerp[(#func-ontwerp)
+## [Functioneel ontwerp](#func-ontwerp)
 ## [Technisch ontwerp](#tech-ontwerp)
 ## [Doelen](#doelen)
 ## [Risico's en maatregelen](#risico)
