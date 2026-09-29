@@ -160,8 +160,8 @@ Gemaakt door: Wiebe
 | Auto aanmaken | Als beheerder wil ik een auto kunnen aanmaken, zodat ik deze kan verkopen | M 
 | Auto bekijken | Als beheerder wil ik een auto kunnen bekijken, zodat ik foutieve informatie kan zien en fixen | M 
 | Auto bewerken | Als beheerder wil ik een auto kunnen aanpassen, zodat ik foutieve informatie kan verbeteren | M 
-| AUto buiten gebruik zetten | Als beheerder wil ik auto's buiten gebruik kunnen zetten, zodat we geen kapotte auto's verhuren | M
 | Auto verwijderen | Als beheerder wil ik een auto kunnen verwijderen, zodat ik oude modellen niet meer verkoop | M
+| AUto buiten gebruik zetten | Als beheerder wil ik auto's buiten gebruik kunnen zetten, zodat we geen kapotte auto's verhuren | M
 | Factuur maken | Als beheerder wil ik een factuur kunnen maken, zodat ik de klant kan laten betalen | M 
 | Factuur bekijken | Als beheerder wil ik facturen kunnen bekijken, zodat ik weet wie wel of niet betaald heeft | M 
 | Factuur bewerken | Als beheerder wil ik facturen kunnen aanpassen, zodat ik fouten kan verbeteren | C
@@ -176,7 +176,15 @@ Gemaakt door: Wiebe
 ### Acceptance Criteria
 | User story | Prio | Acceptence criteria 
 |:--:|:--:|:--:|
-| Registreren | M | <ul><li>Beheerder kan account aanmaken </li><li>Beheerder kan rol zetten voor dat account</li><li>Wachtwoord voldoet aan standaardeisen</li></ul>
+| Registreren | M | Beheerder kan account aanmaken \n Beheerder kan rol zetten voor dat account \n Wachtwoord voldoet aan standaardeisen
+| Inloggen | M | Beheerder kan inloggen \n (optioneel) Beheerder wordt om mfa gevraagd
+| Auto aanmaken | M | Beheerder kan auto aanmaken \n Auto moet foto, naam, bouwjaar, etc hebben
+| Auto bekijken | M | Beheerder kan auto bekijken
+| Auto bewerken | M | Beheerder kan gegevens van auto aanpassen
+| Auto verwijderen | M | Beheerder kan auto verwijderen \n Bevestiging popup als gebruiker auto verwijdert
+| Auto buiten gebruik zetten | M | Beheerder kan auto buiten gebruik zetten \n Die auto's kunnen dan niet worden verhuurd
+
+
 
 ### Definition of Done 
 Zet hier je definition of done, in een lijst
