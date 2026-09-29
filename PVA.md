@@ -47,9 +47,51 @@ blah blah blah doe maar wat
 ## Functioneel ontwerp
  Gemaakt door: Marc
 
- **Gebruikers**
+**Gebruikers**
 - klant: registreert, reserveert, beheert eigen reserveringen en facturen
-- Medewerkers: kan klanten invoeren en werkt het dagoverzicht
+- Medewerkers: kan klanten invoeren en werkt met het dagoverzicht
+- Beheerder: beheert alles en ziet de rapportages
+
+**Klanten**
+- Registreren met NAW-gegevens, een uniek e-mailadres en een wachtwoord
+- Inloggen
+- Status: Actief ( mag reserveren), Gepauzeerd (mag inloggen, niet reserveren), 
+  Beëindigd (mag niet meer inloggen)
+- Beheerders zien en wijzigen alle klantgegevens
+
+**Wagenpark** 
+- Overzicht met merk, model, kenteken, type, dagprijs en status 
+  (beschikbaar, verhuurd, in onderhoud, buiten gebruik)
+- Auto's toevoegen, bewerken en buiten gebruik zetten
+- Een auto verwijderen mag niet als er nog toekomstige reserveringen zijn
+
+**Instellingen** 
+- Openingstijden per dag instellen
+- Ophalen en terugbrengen alleen binnen die tijden
+- Extra's beheren (navigatie, kinderstoeltje, luxe-pakket)
+- Nieuwe prijzen gelden alleen voor nieuwe reserveringen
+
+**Reserveren**
+- Klant kiest auto, startdatum en einddatum
+- Systeem toont welke auto's beschikbaar zijn en controleert dit
+- Niet toegestaan: in het verleden, auto al verhuurd, buiten openingstijden,
+  meer dan één jaar vooruit
+- Klant kan reserveringen bekijken, wijzigen (met nieuwe controle) en annuleren tot 24 uur vooraf
+- Automatisch dagoverzicht van reserveringen voor beheerder en de medewerkers
+
+**Facturatie** 
+- Na een reservering maakt het systeem automatisch een factuur en toont die
+- Op de factuur: naam klant, uniek factuurnummer, periode, alle reserveringen in die periode,
+  kosten per reservering en totaalbedrag
+- Factuur opslaan als PDF of printen
+- Klanten kunnen alleen hun eigen facturen openen en downloaden
+
+**Dashboard**
+- Aantal reserveringen per maand
+- Omzet per maand
+- Meest verhuurde auto's
+- Bezettingsgraad
+- Overzicht van terugkerende klanten
 
 
 ## Technisch ontwerp
