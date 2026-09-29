@@ -2,6 +2,6 @@
 
 # Gemaakt door:
 
-## Wiebe
-## Marc
-## Stijn 
+## [Wiebe](https://github.com/Wiebe-G)
+## [Marc](https://github.com/Witzy0)
+## [Stijn]
