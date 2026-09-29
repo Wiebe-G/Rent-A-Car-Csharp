@@ -12,9 +12,9 @@ Gemaakt door: Wiebe
 
 ## [Inleiding](#inleiding)
 ## [Rolverdeling](#rolverdeling)
-## [Opdrachtsbeschrijving](#opdrachtsbeschrijving)
-## [Functioneel ontwerp](#func-ontwerp)
-## [Technisch ontwerp](#tech-ontwerp)
+## [Opdrachtsbeschrijving](#opdrachts-beschrijving)
+## [Functioneel ontwerp](#functioneel-ontwerp)
+## [Technisch ontwerp](#technisch-ontwerp)
 ## [Doelen](#doelen)
 ## [Risico's en maatregelen](#risico)
 ## [Wiebe's User Stories en ERD](#wiebe-erd)
@@ -25,27 +25,27 @@ Gemaakt door: Wiebe
 blah blah blah zet hier wat nuttigs in 
 
 ## Rolverdeling
-Wiebe: Beheerder
-Marc: Medewerker
-Stijn: Klant
+Wiebe: Beheerder  
+Marc: Medewerker  
+Stijn: Klant  
 
-## opdrachtsbeschrijving
+## Opdrachts beschrijving
 blah blah blah doe maar wat
 
-## func-ontwerp
+## Functioneel ontwerp
 blah blah blah 
 
-## tech-ontwerp
+## Technisch ontwerp
 blah blah blah
 
 ## risico 
 blah blah blah
 
-## wiebe-erd 
+## Wiebe erd
 ik doe hier wel wat
 
-## marc-erd
+## Marc erd
 hier moet Marc wat doen
 
-## stijn-erd 
+## Stijn erd 
 hier moet Stijn wat doen
