@@ -85,13 +85,9 @@ Gemaakt door: Wiebe
 | Risico | Gevolg | Maatregel |
 |:--:|:--:|:--:|
 | Merge conflict | Programma stopt met werken | Aparte branches voor iedereen
-|
 | Afwezigheid vanwege ziekte | Persoon kan werk mogelijk niet doen | Persoon toch het werk laten doen
-|
 | Gebrek aan communicatie in het team | Mensen werken niet aan de juiste taak | Stand-up op dinsdag en vrijdag 's ochtens
-|
 | Onvoldoende tijd besteed aan testen | Programma werkt niet | Automatische tests maken in github en in c# met bijv. xunit
-|
 | Achterlopen op de planning | Het project is mogelijk niet op tijd af | Samen kijken waarom we achterlopen en het oplossen
 
 ## Wiebe erd
