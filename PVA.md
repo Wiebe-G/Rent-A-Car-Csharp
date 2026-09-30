@@ -202,9 +202,14 @@ Gemaakt door: Wiebe
 | Openingstijden | M | Beheerder moet openingstijden kunnen instellen. Auto's kunnen alleen binnen die tijden ingeleverd worden.
 | Logs | M | Als iemand iets verandert, log entry aanmaken. Beheerder moet alle logs kunnen zien. Logs sorteren en filteren op datum, medewerker, actie, etc
 
-
 ### Definition of Done 
-Zet hier je definition of done, in een lijst
+Het werkt zoals afgesproken (alle punten van de user story zijn gedaan).
+Het is getest door mijzelf en anderen.
+Bij verwijderen of aanpassen komt er eerst een "weet je het zeker?".
+Alleen de een ingelogde admin kan erbij
+De code is nagekeken door iemand anders (of samen bekeken).
+Er staan geen bekende fouten meer open.
+Het staat klaar op de testomgeving en is even getoond aan de rest.
 
 ### Normalisatie
 Normaalvormen
