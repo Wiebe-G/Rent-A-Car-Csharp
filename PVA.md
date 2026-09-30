@@ -203,16 +203,25 @@ Gemaakt door: Wiebe
 | Logs | M | Als iemand iets verandert, log entry aanmaken. Beheerder moet alle logs kunnen zien. Logs sorteren en filteren op datum, medewerker, actie, etc
 
 ### Definition of Done 
-Het werkt zoals afgesproken (alle punten van de user story zijn gedaan).
-Het is getest door mijzelf en anderen.
-Bij verwijderen of aanpassen komt er eerst een "weet je het zeker?".
-Alleen de een ingelogde admin kan erbij
-De code is nagekeken door iemand anders (of samen bekeken).
-Er staan geen bekende fouten meer open.
-Het staat klaar op de testomgeving en is even getoond aan de rest.
+- Het werkt zoals afgesproken (alle punten van de user story zijn gedaan).
+- Het is getest door mijzelf en anderen.
+- Bij verwijderen of aanpassen komt er eerst een "weet je het zeker?".
+- Alleen de een ingelogde admin kan erbij
+- De code is nagekeken door iemand anders (of samen bekeken).
+- Er staan geen bekende fouten meer open.
+- Het staat klaar op de testomgeving en is even getoond aan de rest.
 
 ### Normalisatie
-Normaalvormen
+0nf
+blah blah blah 
+
+1nf 
+blah blah blah
+
+2nf blah blah blah 
+
+3nf 
+blah blah blah
 
 ### ERD
 ERD maken in [iets als dit](https://draw.io) en dan screenshot maken
