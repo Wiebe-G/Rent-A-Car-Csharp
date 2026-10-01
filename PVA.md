@@ -215,27 +215,32 @@ Gemaakt door: Wiebe
 - 0nf 
 	- User: user_id, fname, lname, address, woonplaats, email, password, status, role  
 	- Car: car_id, merk, model, kenteken, type, dagprijs, status  
-	- Reserverering: reservering_id, user_id, car_id, price  
+	- Reserverering: reservering_id, customer_id (user_id), employee_id (user_id) car_id, price 
 	- Invoice: invoice_id, user_id, car_id  
 
 - 1nf 
 	- User: user_id, role_id, fname, lname, address, woonplaats, email, password, status 
 	- Role: role_id, name 
-	- Reserverering: reservering_id, customer_id (user_id), employee_id (user_id) car_id, price 
-	- Invoice: invoice_id, customer_id (user_id), employee_id (user_id), car_id
+	- Car: car_id, merk, model, kenteken, type, dagprijs, status  
+	- Reserverering: reservering_id, customer_id (user_id), employee_id (user_id) car_id 
+	- Invoice: invoice_id, customer_id (user_id), employee_id (user_id), car_id, price
 
 - 2nf 
-	- User: user_id, role_id, fname, lname, address, woonplaats, email, password, status 
+	- User: user_id, role_id, fname, lname, user_address_id, password, status 
+	- User_address: user_id, streetname, postcode, woonplaats
 	- Role: role_id, name 
-	- Reserverering: reservering_id, customer_id (user_id), employee_id (user_id) car_id, price 
-	- Invoice: invoice_id, customer_id (user_id), employee_id (user_id), car_id 
+	- Car: car_id, merk, model, kenteken, type, dagprijs, status  
+	- Reserverering: reservering_id, customer_id (user_id), employee_id (user_id) car_id 
+	- Invoice: invoice_id, customer_id (user_id), employee_id (user_id), car_id, price
 
 - 3nf 
-	- User: user_id, role_id, fname, lname, address, woonplaats, email, password, status 
+	- User: user_id, role_id, fname, lname, user_address_id, email, password, status 
+	- User_address: user_id, streetname, postcode, woonplaats
 	- Role: role_id, name 
-	- Reserverering: reservering_id, customer_id (user_id), employee_id (user_id), price 
+	- Car: car_id, merk, model, kenteken, type, dagprijs, status  
 	- Reservering_car: reservering_id, car_id 
-	- Invoice: invoice_id, customer_id (user_id), employee_id (user_id), car_id 
+	- Reserverering: reservering_id, customer_id (user_id), employee_id (user_id) 
+	- Invoice: invoice_id, customer_id (user_id), employee_id (user_id), car_id, price
 
 ### ERD
 ERD maken in [iets als dit](https://draw.io) en dan screenshot maken
