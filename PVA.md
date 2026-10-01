@@ -212,30 +212,30 @@ Gemaakt door: Wiebe
 - Het staat klaar op de testomgeving en is even getoond aan de rest.
 
 ### Normalisatie
-- 0nf
-User: user_id, fname, lname, address, woonplaats, email, password, status, role
-Car: car_id, merk, model, kenteken, type, dagprijs, status
-Reserverering: reservering_id, user_id, car_id, price
-Invoice: invoice_id, user_id, car_id
+- 0nf 
+	- User: user_id, fname, lname, address, woonplaats, email, password, status, role  
+	- Car: car_id, merk, model, kenteken, type, dagprijs, status  
+	- Reserverering: reservering_id, user_id, car_id, price  
+	- Invoice: invoice_id, user_id, car_id  
 
 - 1nf 
-User: user_id, role_id, fname, lname, address, woonplaats, email, password, status
-Role: role_id, name
-Reserverering: reservering_id, customer_id (user_id), employee_id (user_id) car_id, price
-Invoice: invoice_id, customer_id (user_id), employee_id (user_id), car_id
+	- User: user_id, role_id, fname, lname, address, woonplaats, email, password, status 
+	- Role: role_id, name 
+	- Reserverering: reservering_id, customer_id (user_id), employee_id (user_id) car_id, price 
+	- Invoice: invoice_id, customer_id (user_id), employee_id (user_id), car_id
 
-- 2nf
-User: user_id, role_id, fname, lname, address, woonplaats, email, password, status
-Role: role_id, name
-Reserverering: reservering_id, customer_id (user_id), employee_id (user_id) car_id, price
-Invoice: invoice_id, customer_id (user_id), employee_id (user_id), car_id
+- 2nf 
+	- User: user_id, role_id, fname, lname, address, woonplaats, email, password, status 
+	- Role: role_id, name 
+	- Reserverering: reservering_id, customer_id (user_id), employee_id (user_id) car_id, price 
+	- Invoice: invoice_id, customer_id (user_id), employee_id (user_id), car_id 
 
 - 3nf 
-User: user_id, role_id, fname, lname, address, woonplaats, email, password, status
-Role: role_id, name
-Reserverering: reservering_id, customer_id (user_id), employee_id (user_id), price
-Reservering_car: reservering_id, car_id
-Invoice: invoice_id, customer_id (user_id), employee_id (user_id), car_id
+	- User: user_id, role_id, fname, lname, address, woonplaats, email, password, status 
+	- Role: role_id, name 
+	- Reserverering: reservering_id, customer_id (user_id), employee_id (user_id), price 
+	- Reservering_car: reservering_id, car_id 
+	- Invoice: invoice_id, customer_id (user_id), employee_id (user_id), car_id 
 
 ### ERD
 ERD maken in [iets als dit](https://draw.io) en dan screenshot maken
