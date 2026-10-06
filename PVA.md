@@ -101,10 +101,18 @@ Gemaakt door: Wiebe
 	- C#
 	- MySQL 
 	- Git en github
+	
 ### Omschrijving
 Het moet een C# winforms applicatie worden die data ophaalt uit een mysql database.  
-De frontend moet informatie over auto's ophalen uit die mysql database, 
-en dan in de forms laten zien.  
+De frontend moet informatie over auto's ophalen uit die mysql database,  en dan in de forms laten zien. 
+
+### Verwijderen 
+Verwijderen van dingen moet net zoals Laravel's "SoftDelete" werken, oftewel:
+- Iets verwijderen moet i.p.v. verwijderen een "DeletedAt" timestamp van 'null' naar momentele tijd zetten 
+- Standaard moeten die genegeerd worden door een where-clause te gebruiken
+- Beheerder moet optie hebben om verwijderde dingen te bekijken, en terug te draaien of permanent te verwijderen
+- Voor permanent verwijderen moet gebruiker eerst wachtwoord (of passkey/mfa code als we heel veel tijd daarvoor hebben) invoeren
+
 ### Rollen
 	- Klant: 
 		- Een klant moet auto's alleen kunnen bekijken.
@@ -113,10 +121,12 @@ en dan in de forms laten zien.
 	- Beheerder:
 		- Beheerder moet openingstijden kunnen instellen per dag.
 		- Beheerder moet alles kunnen doen wat medewerkers kunnen
+
 ### Factuur
-Factuur moet aangemaakt worden en een pdf invoice maken met QuestPDF library.  
-Factuur moet dan in mysql worden opgeslagen.  
-Factuur moet een ID krijgen, willekeurige reeks van 8 karakters (a-z, A-Z, 0-9, en '!' etc)
+- Factuur moet aangemaakt worden en een pdf invoice maken met QuestPDF library.  
+- Factuur moet dan in mysql worden opgeslagen.  
+- Factuur moet een unieke ID krijgen, willekeurige reeks van 8 karakters (a-z, A-Z, 0-9, en '!' etc)
+resultaat daarvan is 8^72=1.0531229166855719e+65 combinaties
 
 ### Beveiliging
 Gebruikers moeten alleen bij hun eigen data kunnen.
@@ -143,19 +153,98 @@ Gemaakt door: Wiebe
 ## Wiebe erd
 
 ### User Stories
-Zet hier user stories in een tabel
+| Titel | User story | Prioriteit
+|:--:|:--:|:--:|
+| Registreren | Als beheerder wil ik accounts kunnen registreren, zodat medewerkers een account hebben met de juiste toegang | M
+| Inloggen | Als beheerder wil ik kunnen inloggen, zodat ik veilig bij de nodige informatie kan | M
+| Auto aanmaken | Als beheerder wil ik een auto kunnen aanmaken, zodat ik deze kan verkopen | M 
+| Auto bekijken | Als beheerder wil ik een auto kunnen bekijken, zodat ik foutieve informatie kan zien en fixen | M 
+| Auto bewerken | Als beheerder wil ik een auto kunnen aanpassen, zodat ik foutieve informatie kan verbeteren | M 
+| Auto verwijderen | Als beheerder wil ik een auto kunnen verwijderen, zodat ik oude modellen niet meer verkoop | M
+| AUto buiten gebruik zetten | Als beheerder wil ik auto's buiten gebruik kunnen zetten, zodat we geen kapotte auto's verhuren | M
+| Factuur maken | Als beheerder wil ik een factuur kunnen maken, zodat ik de klant kan laten betalen | M 
+| Factuur bekijken | Als beheerder wil ik facturen kunnen bekijken, zodat ik weet wie wel of niet betaald heeft | M 
+| Factuur bewerken | Als beheerder wil ik facturen kunnen aanpassen, zodat ik fouten kan verbeteren | C
+| Factuur verwijderen | Als beheerder wil ik facturen kunnen verwijderen, zodat ik verkeerde facturen kan verwijderen | C
+| Klanten bekijken | Als beheerder wil ik alle klanten kunnen zien, zodat ik weet wie bij ons koopt | M 
+| Medewerkers bekijken | Als beheerder wil ik medewerkers kunnen inzien, zodat ik weet wie voor ons werkt | M 
+| Medewerkers aanpassen | Als beheerder wil ik medewerkers kunnen aanpassen, zodat ik foutieve informatie kan aanpassen | M
+| Medewerkers verwijderen | Als beheerder wil ik medewerkers kunnen verwijderen, zodat ik ontslagen medewerkers kan weghalen | M
+| Voorraad inzien | Als beheerder wil ik zien welke auto's wel en niet zijn uitgeleend, zodat ik weet wat onze voorraad is | M
+| Reserveringen inzien | Als beheerder wil ik reserveringen inzien, zodat ik weet welke auto's we op voorraad hebben | M
+| Planning inzien | Als beheerder wil ik de planning kunnen inzien, zodat ik weet wie wanneer werkt | M 
+| Prestatie dashboard | Als beheerder wil ik een prestatie dashboard, zodat ik kan zien welke medewerkers goed werken | M
+| Openingstijden | Als beheerder wil ik openingstijden kunnen maken en aanpassen, zodat ik weet wanneer auto's opgehaald en ingeleverd mogen worden | M 
+| Logs | Als beheerder wil ik logs hebben van wat er gebeurd, zodat ik kan zien wie wat heeft aangepast | M
 
 ### Acceptance Criteria
-Acceptence criteria, ook in een tabel 
+| User story | Prio | Acceptence criteria 
+|:--:|:--:|:--:|
+| Registreren | M | Beheerder kan account aanmaken. Beheerder kan rol zetten voor dat account. Wachtwoord voldoet aan standaardeisen.
+| Inloggen | M | Beheerder kan inloggen. (optioneel) Beheerder wordt om mfa gevraagd.
+| Auto aanmaken | M | Beheerder kan auto aanmaken. Auto moet foto, naam, bouwjaar, etc hebben.
+| Auto bekijken | M | Beheerder kan auto bekijken.
+| Auto bewerken | M | Beheerder kan gegevens van auto aanpassen.
+| Auto verwijderen | M | Beheerder kan auto verwijderen. Bevestiging popup als gebruiker auto verwijdert.
+| Auto buiten gebruik zetten | M | Beheerder kan auto buiten gebruik zetten. Die auto's kunnen dan niet worden verhuurd.
+| Factuur maken | M | Beheerder kan factuur maken. Factuur wordt naar juiste klant gestuurd via e-mail .
+| Factuur bekijken | M | Beheerder kan facturen inzien. 
+| Factuur bewerken | C | Beheerder kan facturen bewerken. Confirmatie popup als dat gebeurt.
+| Factuur verwijderen | C | Beheerder kan facturen verwijderen. Confirmatie popup als dat gebeurt.
+| Klanten bekijken | M | Beheerder moet klantgegevens kunnen inzien.
+| Medewerkers inzien | M | Beheerder moet gegevens van medewerkers kunnen inzien.
+| Medewerkers aanpassen | M | Beheerder kan gegevens van medewerker aanpassen. Confirmatie popup als dat gebeurt.
+| Medewerkers verwijderen | M | Beheerder kan medewerkers verwijderen. Confirmatie popup als dit gebeurt.
+| Voorraad inzien | M | Beheerder moet een duidelijk overzicht hebben van de voorradige auto's. 
+| Reserveringen inzien | M | Beheerder moet kunnen zien wat gereserveerd is. 
+| Planning inzien | M | Beheerder moet planning van medewerkers kunnen zien.
+| Prestatie dashboard | M | Beheerder moet een dashboard hebben met gegevens over prestaties van medewerkers. 
+| Openingstijden | M | Beheerder moet openingstijden kunnen instellen. Auto's kunnen alleen binnen die tijden ingeleverd worden.
+| Logs | M | Als iemand iets verandert, log entry aanmaken. Beheerder moet alle logs kunnen zien. Logs sorteren en filteren op datum, medewerker, actie, etc
 
 ### Definition of Done 
-Zet hier je definition of done, in een lijst
+- Het werkt zoals afgesproken (alle punten van de user story zijn gedaan).
+- Het is getest door mijzelf en anderen.
+- Bij verwijderen of aanpassen komt er eerst een "weet je het zeker?".
+- Alleen de een ingelogde admin kan erbij
+- De code is nagekeken door iemand anders (of samen bekeken).
+- Er staan geen bekende fouten meer open.
+- Het staat klaar op de testomgeving en is even getoond aan de rest.
 
 ### Normalisatie
-Normaalvormen
+- 0nf 
+	- User: user_id, fname, lname, address, woonplaats, email, password, status, role  
+	- Car: car_id, merk, model, kenteken, type, dagprijs, status  
+	- Reserverering: reservering_id, customer_id (user_id), employee_id (user_id) car_id, price 
+	- Invoice: invoice_id, user_id, car_id  
+
+- 1nf 
+	- User: user_id, role_id, fname, lname, address, woonplaats, email, password, status 
+	- Role: role_id, name 
+	- Car: car_id, merk, model, kenteken, type, dagprijs, status  
+	- Reserverering: reservering_id, customer_id (user_id), employee_id (user_id) car_id 
+	- Invoice: invoice_id, customer_id (user_id), employee_id (user_id), car_id, price
+
+- 2nf 
+	- User: user_id, role_id, fname, lname, user_address_id, password, status 
+	- User_address: user_id, streetname, postcode, woonplaats
+	- Role: role_id, name 
+	- Car: car_id, merk, model, kenteken, type, dagprijs, status  
+	- Reserverering: reservering_id, customer_id (user_id), employee_id (user_id) car_id 
+	- Invoice: invoice_id, customer_id (user_id), employee_id (user_id), car_id, price
+
+- 3nf 
+	- User: user_id, role_id, fname, lname, user_address_id, email, password, status 
+	- User_address: user_address_id, user_id, streetname, postcode, woonplaats
+	- Role: role_id, name 
+	- Car: car_id, merk, model, kenteken, type, dagprijs, status  
+	- Reservering_car: reservering_id, car_id 
+	- Reserverering: reservering_id, customer_id (user_id), employee_id (user_id), invoice_id, startdate, enddate
+	- Reservering_Invoice: reservering_invoice_id, invoice_id
+	- Invoice: invoice_id, car_id, price
 
 ### ERD
-ERD maken in [iets als dit](https://draw.io) en dan screenshot maken
+![Wiebe's erd](/images/wiebe-erd.png)
 
 
 ## Marc ERD
