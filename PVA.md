@@ -41,7 +41,8 @@ Stijn: Klant
 
 ## Opdrachts beschrijving
 Gemaakt door: Stijn
-Voor de casus die van meneer Asbreuk hebben gekregen is het de bedoeling dat wij een werkende C# applicatie opleveren gebouwd in Windows Forms, deze applicatie moet connected zijn met een SQL-database. De applicatie moet ontwikkeld worden vanuit het perspectief van 3 kanten, klant, medewerker, beheerder. Hierbij heeft elke kant zijn eigen onderdelen en obstakels.
+
+Voor de casus die we van meneer Asbreuk hebben gekregen is het de bedoeling dat wij een werkende C# applicatie opleveren gebouwd in Windows Forms, deze applicatie moet connected zijn met een SQL-database. De applicatie moet ontwikkeld worden vanuit het perspectief van 3 kanten; klant, medewerker, beheerder. Hierbij heeft elke kant zijn eigen onderdelen en obstakels.
 
 
 ## Functioneel ontwerp
@@ -297,10 +298,16 @@ ERD maken in [iets als dit](https://draw.io) en dan screenshot maken
 
 ## Stijn ERD 
 ### User Stories
-Zet hier user stories in een tabel
-| titel | user story | prioriteit |
+| Titel | User Story | Prioriteit |
 |:--:|:--:|:--:|
-| Registreren | Als klant wil ik kunnen registreren, zodat ik auto's kan huren | M|
+| Registreren | Als klant wil ik kunnen registreren, zodat ik auto's kan huren en mijn facturen kan inzien/betalen | M|
+| Inloggen | Als klant wil ik kunnen inloggen op mijn account en kunnen zien welke auto's onder mij verhuurd zijn | M |
+| Wagenpark bekijken | Als klant wil ik een overzicht zien waarin alle beschikbare auto's staan met alle specificaties van de auto | M |
+| Auto huren | Als klant wil ik een auto kunnen huren, ook wil ik hier van zien wat de specificaties van de auto zijn (merk, model, bouwjaar, kilometerstand(, algemene beoordeling van voorgangers)) | M |
+| Auto beoordelen | Als klant wil ik een auto kunnen beoordelen na mijn afronding van het verhuur | C |
+| Facturen inzien | Als klant wil ik inzien welke facturen er gebonden zijn aan mijn account, en welke afgesloten zijn en welke nog open staan | M |
+| Facturen betalen | Als klant wil ik via de applicatie mogelijkheden zien voor de betaling van de facturen | S |
+| Openingstijden bekijken | Als klant wil ik zien wanneer ik de gehuurde auto kan ophalen en terugbrengen | M |
 
 ### Acceptance Criteria
 Acceptence criteria, ook in een tabel 
