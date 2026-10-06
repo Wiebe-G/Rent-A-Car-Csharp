@@ -41,7 +41,7 @@ Stijn: Klant
 
 ## Opdrachts beschrijving
 Gemaakt door: Stijn
-blah blah blah doe maar wat
+Voor de casus die van meneer Asbreuk hebben gekregen is het de bedoeling dat wij een werkende C# applicatie opleveren gebouwd in Windows Forms, deze applicatie moet connected zijn met een SQL-database. De applicatie moet ontwikkeld worden vanuit het perspectief van 3 kanten, klant, medewerker, beheerder. Hierbij heeft elke kant zijn eigen onderdelen en obstakels.
 
 
 ## Functioneel ontwerp
@@ -136,7 +136,6 @@ Bevestiging bij aanpassen of verwijderen gegevens.
 
 ## Doelen 
 Gemaakt door: Stijn
-tekst
 
 
 ## Risico 
