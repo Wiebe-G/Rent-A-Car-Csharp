@@ -235,11 +235,12 @@ Gemaakt door: Wiebe
 
 - 3nf 
 	- User: user_id, role_id, fname, lname, user_address_id, email, password, status 
-	- User_address: user_id, streetname, postcode, woonplaats
+	- User_address: user_address_id, user_id, streetname, postcode, woonplaats
 	- Role: role_id, name 
 	- Car: car_id, merk, model, kenteken, type, dagprijs, status  
 	- Reservering_car: reservering_id, car_id 
-	- Reserverering: reservering_id, customer_id (user_id), employee_id (user_id) 
+	- Reserverering: reservering_id, customer_id (user_id), employee_id (user_id), invoice_id
+	- Reservering_Invoice: reservering_id, invoice_id
 	- Invoice: invoice_id, customer_id (user_id), employee_id (user_id), car_id, price
 
 ### ERD
