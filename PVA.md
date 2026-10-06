@@ -210,6 +210,9 @@ ERD maken in [iets als dit](https://draw.io) en dan screenshot maken
 ## Stijn ERD 
 ### User Stories
 Zet hier user stories in een tabel
+| titel | user story | prioriteit |
+|:--:|:--:|:--:|
+| Registreren | Als klant wil ik kunnen registreren, zodat ik auto's kan huren | M|
 
 ### Acceptance Criteria
 Acceptence criteria, ook in een tabel 
