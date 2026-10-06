@@ -239,12 +239,12 @@ Gemaakt door: Wiebe
 	- Role: role_id, name 
 	- Car: car_id, merk, model, kenteken, type, dagprijs, status  
 	- Reservering_car: reservering_id, car_id 
-	- Reserverering: reservering_id, customer_id (user_id), employee_id (user_id), invoice_id
-	- Reservering_Invoice: reservering_id, invoice_id
-	- Invoice: invoice_id, customer_id (user_id), employee_id (user_id), car_id, price
+	- Reserverering: reservering_id, customer_id (user_id), employee_id (user_id), invoice_id, startdate, enddate
+	- Reservering_Invoice: reservering_invoice_id, invoice_id
+	- Invoice: invoice_id, car_id, price
 
 ### ERD
-ERD maken in [iets als dit](https://draw.io) en dan screenshot maken
+![Wiebe's erd](/images/wiebe-erd.png)
 
 
 ## Marc ERD
