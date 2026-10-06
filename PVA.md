@@ -161,13 +161,44 @@ ERD maken in [iets als dit](https://draw.io) en dan screenshot maken
 ## Marc ERD
 
 ### User Stories
-Zet hier user stories in een tabel
+
+| Titel | User story | Prio |
+|:--|:--|:--:|
+| Inloggen | Als medewerker wil ik kunnen inloggen met mijn e-mailadres en wachtwoord, zodat alleen ik bij de medewerkersfuncties kan | M |
+| Klant invoeren | Als medewerker wil ik een nieuwe klant kunnen invoeren met NAW-gegevens en e-mailadres, zodat klanten die niet zelf registreren toch een account hebben | M |
+| Klant zoeken | Als medewerker wil ik klantgegevens kunnen opzoeken en bekijken, zodat ik klanten snel kan helpen aan de balie | M |
+| Wagenpark bekijken | Als medewerker wil ik een overzicht van het wagenpark kunnen zien (merk, model, kenteken, type, dagprijs, status), zodat ik weet welke auto's beschikbaar zijn | M |
+| Auto toevoegen | Als medewerker wil ik een auto kunnen toevoegen, zodat nieuwe auto's in het systeem staan | M |
+| Auto bewerken | Als medewerker wil ik een auto kunnen bewerken, zodat de gegevens en de status kloppen | M |
+| Auto buiten gebruik zetten | Als medewerker wil ik een auto buiten gebruik kunnen zetten, zodat die niet meer gereserveerd kan worden | M |
+| Waarschuwing bij verwijderen | Als medewerker wil ik een waarschuwing krijgen als ik een auto met toekomstige reserveringen wil verwijderen, zodat er geen reserveringen verloren gaan | S |
+| Bevestiging | Als medewerker wil ik een bevestiging krijgen voordat ik gegevens wijzig of verwijder, zodat ik niet per ongeluk iets kwijtraak | S |
+| Dagoverzicht | Als medewerker wil ik het dagoverzicht van reserveringen kunnen zien, zodat ik weet welke auto's die dag worden opgehaald en teruggebracht | M |
+| Openingstijden bekijken | Als medewerker wil ik de openingstijden kunnen bekijken, zodat ik weet wanneer ophalen en terugbrengen kan | C |
 
 ### Acceptance Criteria
-Acceptence criteria, ook in een tabel 
+| User story | Prio | Acceptance criteria |
+|:--|:--:|:--|
+| Inloggen | M | Medewerker kan inloggen met e-mailadres en wachtwoord. Bij foute gegevens komt er een foutmelding. Medewerker ziet alleen medewerkersfuncties. |
+| Klant invoeren | M | Medewerker kan een klant aanmaken met NAW-gegevens en e-mailadres. Een e-mailadres dat al bestaat wordt geweigerd. Verplichte velden moeten ingevuld zijn. |
+| Klant zoeken | M | Medewerker kan klanten zoeken op naam of e-mailadres. Medewerker ziet de klantgegevens en de status. |
+| Wagenpark bekijken | M | Medewerker kan het wagenpark bekijken met merk, model, kenteken, type, dagprijs en status. |
+| Auto toevoegen | M | Medewerker kan een auto toevoegen. Een kenteken dat al bestaat wordt geweigerd. Auto staat daarna direct in het overzicht. |
+| Auto bewerken | M | Medewerker kan gegevens en status van een auto aanpassen. Bevestiging popup als de wijziging wordt opgeslagen. |
+| Auto buiten gebruik | M | Medewerker kan een auto buiten gebruik zetten. Die auto kan dan niet worden verhuurd. |
+| Waarschuwing verwijderen | S | Medewerker krijgt een waarschuwing bij een auto met toekomstige reserveringen. Die auto kan dan niet worden verwijderd. |
+| Bevestiging | S | Bij wijzigen of verwijderen komt een bevestiging popup. Bij "Nee" blijft alles hetzelfde. |
+| Dagoverzicht | M | Medewerker kan de reserveringen van vandaag zien. Per reservering staan klant, auto en ophaal of terugbrengmoment erbij. |
+| Openingstijden | C | Medewerker kan de openingstijden bekijken. Medewerker kan ze niet aanpassen. |
 
 ### Definition of Done 
-Zet hier je definition of done, in een lijst
+- Het werkt zoals afgesproken (alle punten van de user story zijn gedaan).
+- Het is getest door mijzelf en anderen.
+- Bij verwijderen of aanpassen komt er eerst een "weet je het zeker?".
+- Alleen de een ingelogde admin kan erbij
+- De code is nagekeken door iemand anders (of samen bekeken).
+- Er staan geen bekende fouten meer open.
+- Het staat klaar op de testomgeving en is even getoond aan de rest.
 
 ### Normalisatie
 Normaalvormen
