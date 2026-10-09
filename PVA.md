@@ -308,12 +308,32 @@ ERD maken in [iets als dit](https://draw.io) en dan screenshot maken
 | Facturen inzien | Als klant wil ik inzien welke facturen er gebonden zijn aan mijn account, en welke afgesloten zijn en welke nog open staan | M |
 | Facturen betalen | Als klant wil ik via de applicatie mogelijkheden zien voor de betaling van de facturen | S |
 | Openingstijden bekijken | Als klant wil ik zien wanneer ik de gehuurde auto kan ophalen en terugbrengen | M |
+| Huurperiode Kiezen | Als klant wil ik een begin- en einddatum voor mijn huur kunnen kiezen en de totaalprijs vooraf zien, zodat ik weet wat de huur gaat kosten | M |
+| Reservering annuleren | Als klant wil ik een reservering kunnen annuleren of wijzigen voordat de huurperiode begint, zodat ik flexibel ben als mijn plannen veranderen | S |
+| Huurgeschiedenis bekijken | Als klant wil ik een overzicht van mijn eerder afgeronde huurperiodes kunnen zien, zodat ik kan terugkijken welke auto’s ik heb gehuurd en wanneer | C |
 
 ### Acceptance Criteria
-Acceptence criteria, ook in een tabel 
+| Titel | Prioriteit | Acceptance criteria |
+|:--:|:--:|:--:|
+| Registreren | M | De klant kan een account aanmaken met zijn naam, e-mailadres en een wachtwoord. Het wachtwoord moet veilig genoeg zijn, bijvoorbeeld minimaal 8 tekens, en wordt versleuteld opgeslagen. Een e-mailadres kan maar een keer gebruikt worden. Als de klant iets fout of niet invult, ziet hij per veld wat er mis is. Zodra de registratie gelukt is, kan de klant meteen inloggen. |
+| Inloggen | M | De klant logt in met zijn e-mailadres en wachtwoord. Als de gegevens niet kloppen, krijgt hij een foutmelding, zonder dat er staat wat precies fout is. Na het inloggen ziet de klant welke auto’s er op zijn naam verhuurd zijn. Als hij uitlogt, kan hij de account pagina’s niet meer openen. | M |
+| Wagenpark bekijken | De klant ziet een overzicht van alle auto’s die beschikbaar zijn. Bij elke auto staan de specificaties, zoals merk, model, bouwjaar, kilometerstand, brandstoftype en aantal zitplaatsen. Auto’s die niet beschikbaar zijn, worden niet getoond of staan duidelijk als niet beschikbaar aangegeven. Is er geen enkele auto beschikbaar, dan krijgt de klant daar een melding van. |
+| Auto huren | M | De klant kan een auto huren vanuit het overzicht of vanaf de pagina van de auto. Voordat hij de huur bevestigt, ziet hij het merk, model, bouwjaar, de kilometerstand en wat eerdere huurders van de auto vonden. Alleen een ingelogde klant kan de huur afronden. Na de bevestiging staat de auto op naam van de klant en kan niemand anders de auto in die periode huren. De klant krijgt een bevestiging van zijn huur. |
+| Auto beoordelen | C | De klant kan een auto pas beoordelen als de verhuur is afgerond. Hij geeft een score, bijvoorbeeld van 1 tot 5 sterren, en kan er een toelichting bij zetten. Per huurperiode kan de klant een auto maar 1 keer beoordelen. De beoordeling telt mee in de algemene beoordeling van de auto. |
+| Facturen inzien | M | De klant ziet alle facturen die bij zijn account horen. Bij elke factuur staan het factuurnummer, de datum, het bedrag en de status. Hierbij is duidelijk of een factuur open of afgesloten is. Hij ziet nooit de facturen van andere klanten. |
+| Facturen betalen | S | Bij een open factuur ziet de klant welke manieren van betalen er zijn, zoals iDEAL of creditcard. |
+| Openingstijden bekijken | M | De klant ziet op welke tijden hij de auto kan ophalen en terugbrengen. Bij een gehuurde auto staan ook de datum en tijd van ophalen en inleveren. Zijn de openingstijden anders, bijvoorbeeld op feestdagen, dan wordt dat ook getoond. |
+| Huurperiode Kiezen | M | De klant kiest een begindatum en een einddatum voor de huur. De begindatum mag niet in het verleden liggen en de einddatum niet voor de begindatum. Hij kan alleen auto’s huren die in die periode beschikbaar zijn. |
+| Reservering annuleren | S | De klant kan een reservering annuleren of wijzigen zolang de huurperiode nog niet begonnen is. Eerst vraagt het systeem of hij het zeker weet. Na het annuleren is de auto weer beschikbaar voor andere klanten en krijgt de klant een bevestiging. |
+| Huurgeschiedenis bekijken | C | De klant ziet een overzicht van al zijn afgeronde huurperiodes, met de nieuwste bovenaan. Bij elke huur staan de auto (merk en model), de begin- en einddatum. Hij ziet alleen zijn eigen huurgeschiedenis. Vanuit dit overzicht kan hij een afgeronde huur beoordelen, als hij dat nog niet gedaan heeft. |
 
 ### Definition of Done 
-Zet hier je definition of done, in een lijst
+- Het werkt zoals afgesproken (alle punten van de user story zijn gedaan).
+- Het is getest door mijzelf en anderen.
+- Alleen een ingelogde klant kan erbij en ziet alleen zijn of haar eigen gegevens (zoals facturen en huurgeschiedenis).
+- De code is nagekeken door iemand anders (of samen bekeken).
+- Er staan geen bekende fouten meer open.
+- Het staat klaar op de testomgeving en is even getoond aan de rest.
 
 ### Normalisatie
 Normaalvormen
