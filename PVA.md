@@ -4,7 +4,7 @@
 
 ## [Wiebe](https://github.com/Wiebe-G)
 ## [Marc](https://github.com/Witzy0)
-## [Stijn]
+## [Stijn](https://github.com/baksteen-dev)
 
 # Inhoud
 Gemaakt door: Wiebe
