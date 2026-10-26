@@ -274,6 +274,7 @@ Gemaakt door: Wiebe
 | Openingstijden bekijken | Als medewerker wil ik de openingstijden kunnen bekijken, zodat ik weet wanneer ophalen en terugbrengen kan | C |
 
 ### Acceptance Criteria
+
 | User story | Prio | Acceptance criteria |
 |:--|:--:|:--|
 | Inloggen | M | Medewerker kan inloggen met e-mailadres en wachtwoord. Bij foute gegevens komt er een foutmelding. Medewerker ziet alleen medewerkersfuncties. |
@@ -298,10 +299,34 @@ Gemaakt door: Wiebe
 - Het staat klaar op de testomgeving en is even getoond aan de rest.
 
 ### Normalisatie
-Normaalvormen
+
+- 0nf
+	- Gebruiker: gebruiker_id, voornaam, achternaam, adres, emailadres, wachtwoord, status, rol
+	- Auto: auto_id, merk, model, kenteken, type, dagprijs, status
+	- Reservering: reservering_id, klant_naam, klant_emailadres, auto_merk, auto_model, auto_kenteken, startdatum, einddatum
+	- Openingstijden: weekdag, openingstijd, sluitingstijd
+
+- 1nf
+	- Gebruiker: gebruiker_id, voornaam, achternaam, straatnaam, huisnummer, postcode, woonplaats, emailadres, wachtwoord, status, rol
+	- Auto: auto_id, merk, model, kenteken, type, dagprijs, status
+	- Reservering: reservering_id, klant_voornaam, klant_achternaam, klant_emailadres, auto_merk, auto_model, auto_kenteken, startdatum, einddatum
+	- Openingstijden: openingstijden_id, weekdag, openingstijd, sluitingstijd
+
+- 2nf
+	- Gebruiker: gebruiker_id, voornaam, achternaam, straatnaam, huisnummer, postcode, woonplaats, emailadres, wachtwoord, status, rol
+	- Auto: auto_id, merk, model, kenteken, type, dagprijs, status
+	- Reservering: reservering_id, klant_voornaam, klant_achternaam, klant_emailadres, auto_merk, auto_model, auto_kenteken, startdatum, einddatum
+	- Openingstijden: openingstijden_id, weekdag, openingstijd, sluitingstijd
+
+- 3nf
+	- Gebruiker: gebruiker_id, rol_id, voornaam, achternaam, straatnaam, huisnummer, postcode, woonplaats, emailadres, wachtwoord, status
+	- Rol: rol_id, naam
+	- Auto: auto_id, merk, model, kenteken, type, dagprijs, status, verwijderd_op
+	- Reservering: reservering_id, klant_id (gebruiker_id), auto_id, startdatum, einddatum
+	- Openingstijden: openingstijden_id, weekdag, openingstijd, sluitingstijd
 
 ### ERD
-ERD maken in [iets als dit](https://draw.io) en dan screenshot maken
+![Marc's erd](/images/marc-erd.png)
 
 
 ## Stijn ERD 
