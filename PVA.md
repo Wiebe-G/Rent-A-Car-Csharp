@@ -384,4 +384,4 @@ ERD maken in [iets als dit](https://draw.io) en dan screenshot maken
 	- Openingstijden: openingstijden_id, dag, open_tijd, sluit_tijd
 
 ### ERD
-![Stijn's erd](/images/Stijn-erd.png)
+![Stijn's erd](/images/stijn-erd.png)
