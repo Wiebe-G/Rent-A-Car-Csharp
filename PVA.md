@@ -4,7 +4,7 @@
 
 ## [Wiebe](https://github.com/Wiebe-G)
 ## [Marc](https://github.com/Witzy0)
-## [Stijn]
+## [Stijn](https://github.com/baksteen-dev)
 
 # Inhoud
 Gemaakt door: Wiebe
@@ -136,17 +136,15 @@ Bevestiging bij aanpassen of verwijderen gegevens.
 
 
 ## Doelen
-
 Gemaakt door: Stijn
-
-Een werkende C# Windows Forms applicatie opleveren die verbonden is met een MySQL database.
-Klanten kunnen zelf registreren, inloggen en een auto reserveren zonder hulp van een medewerker.
-Klanten zien vooraf de totaalprijs en welke auto’s beschikbaar zijn in de gekozen periode.
-Klanten kunnen hun reserveringen bekijken, wijzigen en annuleren.
-Na een reservering wordt automatisch een factuur gemaakt, die de klant kan bekijken en opslaan als PDF.
-Klanten kunnen alleen hun eigen gegevens, reserveringen en facturen zien.
-Alle Must user stories van de klant zijn af voor de deadline, daarna de Should en Could.
-Elke user story voldoet aan de Definition of Done.
+- Een werkende C# Windows Forms applicatie opleveren die verbonden is met een MySQL database.
+- Klanten kunnen zelf registreren, inloggen en een auto reserveren zonder hulp van een medewerker.
+- Klanten zien vooraf de totaalprijs en welke auto's beschikbaar zijn in de gekozen periode.
+- Klanten kunnen hun reserveringen bekijken, wijzigen en annuleren.
+- Na een reservering wordt automatisch een factuur gemaakt, die de klant kan bekijken en opslaan als PDF.
+- Klanten kunnen alleen hun eigen gegevens, reserveringen en facturen zien.
+- Alle Must user stories van de klant zijn af voor de deadline, daarna de Should en Could.
+- Elke user story voldoet aan de Definition of Done.
 
 
 ## Risico 
