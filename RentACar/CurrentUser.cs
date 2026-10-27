@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace RentACar
+{
+    internal class CurrentUser
+    {
+        internal static User LoggedInUser { get; set; } = new User();
+    }
+}
