@@ -42,7 +42,10 @@ Stijn: Klant
 ## Opdrachts beschrijving
 Gemaakt door: Stijn
 
-Voor de casus die we van meneer Asbreuk hebben gekregen is het de bedoeling dat wij een werkende C# applicatie opleveren gebouwd in Windows Forms, deze applicatie moet connected zijn met een SQL-database. De applicatie moet ontwikkeld worden vanuit het perspectief van 3 kanten; klant, medewerker, beheerder. Hierbij heeft elke kant zijn eigen onderdelen en obstakels.
+Voor de casus die we van meneer Asbreuk hebben gekregen is het de bedoeling dat wij een werkende C# applicatie opleveren gebouwd in Windows Forms, deze applicatie moet connected zijn met een SQL-database. 
+De applicatie moet ontwikkeld worden vanuit het perspectief van 3 kanten: 
+klant, medewerker, beheerder. 
+Hierbij heeft elke kant zijn eigen onderdelen en obstakels.
 
 
 ## Functioneel ontwerp
@@ -102,6 +105,8 @@ Gemaakt door: Wiebe
 	- C#
 	- MySQL 
 	- Git en github
+	- Visual studio
+	- Laptop met ssd en internet
 	
 ### Omschrijving
 Het moet een C# winforms applicatie worden die data ophaalt uit een mysql database.  
@@ -127,7 +132,6 @@ Verwijderen van dingen moet net zoals Laravel's "SoftDelete" werken, oftewel:
 - Factuur moet aangemaakt worden en een pdf invoice maken met QuestPDF library.  
 - Factuur moet dan in mysql worden opgeslagen.  
 - Factuur moet een unieke ID krijgen, willekeurige reeks van 8 karakters (a-z, A-Z, 0-9, en '!' etc)
-resultaat daarvan is 8^72=1.0531229166855719e+65 combinaties
 
 ### Beveiliging
 Gebruikers moeten alleen bij hun eigen data kunnen.
@@ -152,10 +156,10 @@ Gemaakt door: Wiebe
 | Risico | Gevolg | Maatregel |
 |:--:|:--:|:--:|
 | Merge conflict | Programma stopt met werken | Aparte branches voor iedereen
-| Afwezigheid vanwege ziekte | Persoon kan werk mogelijk niet doen | Persoon toch het werk laten doen
+| Afwezigheid vanwege ziekte | Persoon kan werk mogelijk niet doen | Ander persoon doet het werk
 | Gebrek aan communicatie in het team | Mensen werken niet aan de juiste taak | Stand-up op dinsdag en vrijdag 's ochtens
 | Onvoldoende tijd besteed aan testen | Programma werkt niet | Automatische tests maken in github en in c# met bijv. xunit
-| Achterlopen op de planning | Het project is mogelijk niet op tijd af | Samen kijken waarom we achterlopen en het oplossen
+| Achterlopen op de planning | Het project is mogelijk niet op tijd af | Samen kijken waarom we achterlopen, bespreken met product owner, en het oplossen
 
 
 ## Wiebe erd
