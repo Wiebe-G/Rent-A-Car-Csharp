@@ -135,8 +135,16 @@ Wachtwoorden hashen met bcrypt
 Bevestiging bij aanpassen of verwijderen gegevens.
 
 
-## Doelen 
+## Doelen
 Gemaakt door: Stijn
+- Een werkende C# Windows Forms applicatie opleveren die verbonden is met een MySQL database.
+- Klanten kunnen zelf registreren, inloggen en een auto reserveren zonder hulp van een medewerker.
+- Klanten zien vooraf de totaalprijs en welke auto's beschikbaar zijn in de gekozen periode.
+- Klanten kunnen hun reserveringen bekijken, wijzigen en annuleren.
+- Na een reservering wordt automatisch een factuur gemaakt, die de klant kan bekijken en opslaan als PDF.
+- Klanten kunnen alleen hun eigen gegevens, reserveringen en facturen zien.
+- Alle Must user stories van de klant zijn af voor de deadline, daarna de Should en Could.
+- Elke user story voldoet aan de Definition of Done.
 
 
 ## Risico 
@@ -290,10 +298,34 @@ Gemaakt door: Wiebe
 - Het staat klaar op de testomgeving en is even getoond aan de rest.
 
 ### Normalisatie
-Normaalvormen
+
+- 0nf
+	- Gebruiker: gebruiker_id, voornaam, achternaam, adres, emailadres, wachtwoord, status, rol
+	- Auto: auto_id, merk, model, kenteken, type, dagprijs, status
+	- Reservering: reservering_id, klant_naam, klant_emailadres, auto_merk, auto_model, auto_kenteken, startdatum, einddatum
+	- Openingstijden: weekdag, openingstijd, sluitingstijd
+
+- 1nf
+	- Gebruiker: gebruiker_id, voornaam, achternaam, straatnaam, huisnummer, postcode, woonplaats, emailadres, wachtwoord, status, rol
+	- Auto: auto_id, merk, model, kenteken, type, dagprijs, status
+	- Reservering: reservering_id, klant_voornaam, klant_achternaam, klant_emailadres, auto_merk, auto_model, auto_kenteken, startdatum, einddatum
+	- Openingstijden: openingstijden_id, weekdag, openingstijd, sluitingstijd
+
+- 2nf
+	- Gebruiker: gebruiker_id, voornaam, achternaam, straatnaam, huisnummer, postcode, woonplaats, emailadres, wachtwoord, status, rol
+	- Auto: auto_id, merk, model, kenteken, type, dagprijs, status
+	- Reservering: reservering_id, klant_voornaam, klant_achternaam, klant_emailadres, auto_merk, auto_model, auto_kenteken, startdatum, einddatum
+	- Openingstijden: openingstijden_id, weekdag, openingstijd, sluitingstijd
+
+- 3nf
+	- Gebruiker: gebruiker_id, rol_id, voornaam, achternaam, straatnaam, huisnummer, postcode, woonplaats, emailadres, wachtwoord, status
+	- Rol: rol_id, naam
+	- Auto: auto_id, merk, model, kenteken, type, dagprijs, status, verwijderd_op
+	- Reservering: reservering_id, klant_id (gebruiker_id), auto_id, startdatum, einddatum
+	- Openingstijden: openingstijden_id, weekdag, openingstijd, sluitingstijd
 
 ### ERD
-ERD maken in [iets als dit](https://draw.io) en dan screenshot maken
+![Marc's erd](/images/marc-erd.png)
 
 
 ## Stijn ERD 
@@ -336,7 +368,44 @@ ERD maken in [iets als dit](https://draw.io) en dan screenshot maken
 - Het staat klaar op de testomgeving en is even getoond aan de rest.
 
 ### Normalisatie
-Normaalvormen
+- 0nf 
+	- User: user_id, fname, lname, straat, postcode, woonplaats, email, password, status, role  
+	- Car: car_id, merk, model, kenteken, bouwjaar, kilometerstand, brandstoftype, zitplaatsen, dagprijs, status  
+	- Reserverering: reservering_id, customer_id (user_id), car_id, startdate, enddate, price 
+	- Invoice: invoice_id, customer_id (user_id), reservering_id, factuurdatum, price, status, betaalmethode 
+	- Review: review_id, customer_id (user_id), car_id, score, toelichting 
+	- Openingstijden: dag, open_tijd, sluit_tijd 
+
+- 1nf 
+	- User: user_id, role_id, fname, lname, straat, postcode, woonplaats, email, password, status 
+	- Role: role_id, name 
+	- Car: car_id, merk, model, kenteken, bouwjaar, kilometerstand, brandstoftype, zitplaatsen, dagprijs, status  
+	- Reserverering: reservering_id, customer_id (user_id), car_id, startdate, enddate 
+	- Invoice: invoice_id, customer_id (user_id), reservering_id, factuurdatum, price, status, betaalmethode 
+	- Review: review_id, reservering_id, score, toelichting 
+	- Openingstijden: openingstijden_id, dag, open_tijd, sluit_tijd 
+
+- 2nf 
+	- User: user_id, role_id, fname, lname, user_address_id, email, password, status 
+	- User_address: user_id, streetname, postcode, woonplaats
+	- Role: role_id, name 
+	- Car: car_id, merk, model, kenteken, bouwjaar, kilometerstand, brandstoftype, zitplaatsen, dagprijs, status  
+	- Reserverering: reservering_id, customer_id (user_id), car_id, startdate, enddate 
+	- Invoice: invoice_id, customer_id (user_id), reservering_id, factuurdatum, price, status, betaalmethode 
+	- Review: review_id, reservering_id, score, toelichting 
+	- Openingstijden: openingstijden_id, dag, open_tijd, sluit_tijd 
+
+- 3nf 
+	- User: user_id, role_id, fname, lname, user_address_id, email, password, status 
+	- User_address: user_address_id, user_id, streetname, postcode, woonplaats
+	- Role: role_id, name 
+	- Car: car_id, merk, model, kenteken, bouwjaar, kilometerstand, brandstoftype, zitplaatsen, dagprijs, status  
+	- Reservering_car: reservering_id, car_id, dagprijs_bij_boeking 
+	- Reserverering: reservering_id, customer_id (user_id), startdate, enddate
+	- Reservering_Invoice: reservering_invoice_id, reservering_id, invoice_id
+	- Invoice: invoice_id, customer_id (user_id), factuurdatum, price, status, betaalmethode
+	- Review: review_id, reservering_id, score, toelichting 
+	- Openingstijden: openingstijden_id, dag, open_tijd, sluit_tijd
 
 ### ERD
-ERD maken in [iets als dit](https://draw.io) en dan screenshot maken
+![Stijn's erd](/images/stijn-erd.png)
