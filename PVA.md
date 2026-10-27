@@ -252,7 +252,7 @@ Gemaakt door: Wiebe
 	- Invoice: invoice_id, car_id, price
 
 ### ERD
-![Wiebe's erd](/images/wiebe-erd.png)
+![Wiebe's erd](/images/wiebe-erd-nieuw.png)
 
 
 ## Marc ERD
