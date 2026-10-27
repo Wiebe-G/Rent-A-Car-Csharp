@@ -274,7 +274,6 @@ Gemaakt door: Wiebe
 | Openingstijden bekijken | Als medewerker wil ik de openingstijden kunnen bekijken, zodat ik weet wanneer ophalen en terugbrengen kan | C |
 
 ### Acceptance Criteria
-
 | User story | Prio | Acceptance criteria |
 |:--|:--:|:--|
 | Inloggen | M | Medewerker kan inloggen met e-mailadres en wachtwoord. Bij foute gegevens komt er een foutmelding. Medewerker ziet alleen medewerkersfuncties. |
