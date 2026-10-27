@@ -21,6 +21,12 @@ namespace RentACar
             string Email = txtEmail.Text.Trim();
             string Password = txtPassword.Text.Trim();
 
+            if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
+            {
+                MessageBox.Show("Geen logingegevens ingevuld");
+                return;
+            }
+
             using (MySqlConnection conn = new(passwords.ConnStr))
             {
                 try

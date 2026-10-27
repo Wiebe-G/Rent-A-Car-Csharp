@@ -77,11 +77,13 @@
             // 
             txtEmail.BackColor = SystemColors.ControlLight;
             txtEmail.Dock = DockStyle.Fill;
-            txtEmail.Location = new Point(399, 108);
+            txtEmail.Location = new Point(406, 115);
+            txtEmail.Margin = new Padding(10);
             txtEmail.Multiline = true;
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(390, 99);
+            txtEmail.Size = new Size(376, 85);
             txtEmail.TabIndex = 2;
+            txtEmail.KeyDown += LoginWithEnter;
             // 
             // lblPassword
             // 
@@ -98,11 +100,13 @@
             // 
             txtPassword.BackColor = SystemColors.ControlLight;
             txtPassword.Dock = DockStyle.Fill;
-            txtPassword.Location = new Point(399, 318);
+            txtPassword.Location = new Point(406, 325);
+            txtPassword.Margin = new Padding(10);
             txtPassword.Multiline = true;
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(390, 99);
+            txtPassword.Size = new Size(376, 85);
             txtPassword.TabIndex = 3;
+            txtPassword.KeyDown += LoginWithEnter;
             // 
             // btnLogin
             // 
@@ -119,6 +123,7 @@
             // 
             // btnRegister
             // 
+            btnRegister.BackColor = Color.CadetBlue;
             btnRegister.Dock = DockStyle.Fill;
             btnRegister.Location = new Point(807, 435);
             btnRegister.Margin = new Padding(15);
@@ -126,7 +131,7 @@
             btnRegister.Size = new Size(368, 75);
             btnRegister.TabIndex = 5;
             btnRegister.Text = "Geen account? Registreer";
-            btnRegister.UseVisualStyleBackColor = true;
+            btnRegister.UseVisualStyleBackColor = false;
             btnRegister.Click += btnRegister_Click;
             // 
             // frmLogin
