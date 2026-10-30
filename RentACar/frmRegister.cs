@@ -41,6 +41,19 @@ namespace RentACar
 
         private static bool ValidateInputs(string Fname, string Lname, string City, string ZipCode, string StreetName, string Email, string Password, string PassConfirm)
         {
+            if (string.IsNullOrWhiteSpace(Fname)
+                || string.IsNullOrWhiteSpace(Lname)
+                || string.IsNullOrWhiteSpace(City)
+                || string.IsNullOrWhiteSpace(ZipCode)
+                || string.IsNullOrWhiteSpace(StreetName)
+                || string.IsNullOrWhiteSpace(Email)
+                || string.IsNullOrWhiteSpace(Password)
+                || string.IsNullOrWhiteSpace(PassConfirm)
+                )
+            {
+                MessageBox.Show("Niet alle gegevens zijn ingevuld");
+                return false;
+            }
             if (Fname.Length > 255 || Lname.Length > 255)
             {
                 MessageBox.Show("Naam mag niet langer dan 255 karakters zijn.");
