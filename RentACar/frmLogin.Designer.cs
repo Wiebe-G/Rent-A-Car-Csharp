@@ -104,6 +104,7 @@
             txtPassword.Margin = new Padding(10);
             txtPassword.Multiline = true;
             txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '*';
             txtPassword.Size = new Size(376, 85);
             txtPassword.TabIndex = 3;
             txtPassword.KeyDown += LoginWithEnter;

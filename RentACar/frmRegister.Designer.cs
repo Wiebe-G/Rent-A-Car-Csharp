@@ -245,6 +245,7 @@
             txtPassword.Margin = new Padding(10);
             txtPassword.Multiline = true;
             txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '*';
             txtPassword.PlaceholderText = "Wachtwoord";
             txtPassword.Size = new Size(426, 72);
             txtPassword.TabIndex = 11;
@@ -257,6 +258,7 @@
             txtPasswordConfirm.Margin = new Padding(10);
             txtPasswordConfirm.Multiline = true;
             txtPasswordConfirm.Name = "txtPasswordConfirm";
+            txtPasswordConfirm.PasswordChar = '*';
             txtPasswordConfirm.PlaceholderText = "Bevestig wachtwoord";
             txtPasswordConfirm.Size = new Size(427, 72);
             txtPasswordConfirm.TabIndex = 12;

@@ -31,6 +31,18 @@ namespace RentACar
                 return;
             }
 
+            if (!CreateUser(Fname, Lname, City, ZipCode, StreetName, Email, Password))
+            {
+                return;
+            }
+            MessageBox.Show("Account aangemaakt!");
+            frmLogin login = new();
+            this.Hide();
+            login.Show();
+        }
+
+        private bool CreateUser(string Fname, string Lname, string City, string ZipCode, string StreetName, string Email, string Password)
+        {
             string Hash = BC.HashPassword(Password, workFactor: 12);
 
             using MySqlConnection Conn = new(passwords.ConnStr);
@@ -49,7 +61,7 @@ namespace RentACar
             if (RowsAffectedForAddress <= 0)
             {
                 MessageBox.Show("Kon account niet aanmaken. Probeer het later opnieuw");
-                return;
+                return false;
             }
             long UserAddressId = Cmd.LastInsertedId;
             Cmd.CommandText = "INSERT INTO user (role_id, user_address_id, fname, lname, email, password, status, created_at, updated_at) " +
@@ -66,12 +78,10 @@ namespace RentACar
             if (RowsAffected <= 0)
             {
                 MessageBox.Show("Kon account niet aanmaken. Probeer het later opnieuw");
-                return;
+                return false;
             }
-            MessageBox.Show("Account aangemaakt!");
-            frmLogin login = new();
-            this.Hide();
-            login.Show();
+
+            return true;
         }
 
         private static bool ValidateInputs(string Fname, string Lname, string City, string ZipCode, string StreetName, string Email, string Password, string PassConfirm)

@@ -29,46 +29,50 @@ namespace RentACar
                 return;
             }
 
-            using (MySqlConnection conn = new(passwords.ConnStr))
+            using MySqlConnection conn = new(passwords.ConnStr);
+            try
             {
-                try
+                conn.Open();
+
+                string query = $"SELECT * from user WHERE email = @email";
+
+                MySqlCommand cmd = new(query, conn);
+                cmd.Parameters.AddWithValue("@email", Email);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    conn.Open();
-
-                    string query = $"SELECT * from user WHERE email = {Email}";
-
-                    MySqlCommand cmd = new(query, conn);
-
-                    cmd.Parameters.AddWithValue("@email", Email);
-
-                    MySqlDataReader reader = cmd.ExecuteReader();
-
-                    if (reader.Read())
+                    string PassFromDB = reader["password"].ToString() ?? "Niks";
+                    if (PassFromDB == "Niks")
                     {
-                        MessageBox.Show($"{reader}");
-                        string PassFromDB = reader["password"].ToString() ?? "Niks";
-                        if (PassFromDB == "Niks")
-                        {
-                            return;
-                        }
-
-                        bool CanLogin = IsValidPassword(Password, PassFromDB);
-                        if (!CanLogin)
-                        {
-                            MessageBox.Show("Inloggegevens kloppen niet");
-                            return;
-                        }
-
-                        CurrentUser.LoggedInUser = new User
-                        {
-                            email = Email,
-                        };
+                        return;
                     }
+
+                    bool CanLogin = IsValidPassword(Password, PassFromDB);
+                    if (!CanLogin)
+                    {
+                        MessageBox.Show("Inloggegevens kloppen niet");
+                        return;
+                    }
+
+                    MessageBox.Show($"Inloggevens kloppen. Welkom, {reader.GetString("Fname")} {reader.GetString("Lname")}");
+                    CurrentUser.LoggedInUser = new User
+                    {
+                        fname = reader.GetString("fname"),
+                        lname = reader.GetString("lname"),
+                        email = reader.GetString("email"),
+                        role = reader.GetOrdinal("role_id").ToString()
+                    };
+
+                    frmMain main = new(CurrentUser.LoggedInUser);
+                    this.Hide();
+                    main.Show();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error: {ex.Message}. Stacktrace: {ex.StackTrace}");
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}. Stacktrace: {ex.StackTrace}");
             }
         }
 
