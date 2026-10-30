@@ -31,15 +31,15 @@
             pnlTabRegister = new TableLayoutPanel();
             lblName = new Label();
             txtFname = new TextBox();
+            btnRegister = new Button();
+            btnLoginForm = new Button();
             txtLname = new TextBox();
             pnlTabAddress = new TableLayoutPanel();
+            txtCity = new TextBox();
+            txtZipCode = new TextBox();
             lblAddress = new Label();
             lblEmail = new Label();
             lblPassword = new Label();
-            btnLoginForm = new Button();
-            btnRegister = new Button();
-            txtCity = new TextBox();
-            txtZipCode = new TextBox();
             txtStreetname = new TextBox();
             txtEmail = new TextBox();
             txtPassword = new TextBox();
@@ -104,6 +104,31 @@
             txtFname.Size = new Size(426, 72);
             txtFname.TabIndex = 1;
             // 
+            // btnRegister
+            // 
+            btnRegister.BackColor = Color.DarkOrchid;
+            btnRegister.Dock = DockStyle.Fill;
+            btnRegister.Location = new Point(238, 383);
+            btnRegister.Margin = new Padding(15);
+            btnRegister.Name = "btnRegister";
+            btnRegister.Size = new Size(416, 63);
+            btnRegister.TabIndex = 2;
+            btnRegister.Text = "Registreer";
+            btnRegister.UseVisualStyleBackColor = false;
+            btnRegister.Click += btnRegister_Click;
+            // 
+            // btnLoginForm
+            // 
+            btnLoginForm.BackColor = Color.CadetBlue;
+            btnLoginForm.Dock = DockStyle.Fill;
+            btnLoginForm.Location = new Point(684, 383);
+            btnLoginForm.Margin = new Padding(15);
+            btnLoginForm.Name = "btnLoginForm";
+            btnLoginForm.Size = new Size(417, 63);
+            btnLoginForm.TabIndex = 3;
+            btnLoginForm.Text = "Al een account? Log in";
+            btnLoginForm.UseVisualStyleBackColor = false;
+            // 
             // txtLname
             // 
             txtLname.BackColor = SystemColors.ControlLight;
@@ -130,6 +155,30 @@
             pnlTabAddress.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             pnlTabAddress.Size = new Size(440, 86);
             pnlTabAddress.TabIndex = 5;
+            // 
+            // txtCity
+            // 
+            txtCity.BackColor = SystemColors.ControlLight;
+            txtCity.Dock = DockStyle.Fill;
+            txtCity.Location = new Point(10, 10);
+            txtCity.Margin = new Padding(10);
+            txtCity.Multiline = true;
+            txtCity.Name = "txtCity";
+            txtCity.PlaceholderText = "Stad";
+            txtCity.Size = new Size(200, 66);
+            txtCity.TabIndex = 0;
+            // 
+            // txtZipCode
+            // 
+            txtZipCode.BackColor = SystemColors.ControlLight;
+            txtZipCode.Dock = DockStyle.Fill;
+            txtZipCode.Location = new Point(230, 10);
+            txtZipCode.Margin = new Padding(10);
+            txtZipCode.Multiline = true;
+            txtZipCode.Name = "txtZipCode";
+            txtZipCode.PlaceholderText = "Postcode";
+            txtZipCode.Size = new Size(200, 66);
+            txtZipCode.TabIndex = 1;
             // 
             // lblAddress
             // 
@@ -163,54 +212,6 @@
             lblPassword.TabIndex = 8;
             lblPassword.Text = "Wachtwoord";
             lblPassword.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // btnLoginForm
-            // 
-            btnLoginForm.BackColor = Color.CadetBlue;
-            btnLoginForm.Dock = DockStyle.Fill;
-            btnLoginForm.Location = new Point(684, 383);
-            btnLoginForm.Margin = new Padding(15);
-            btnLoginForm.Name = "btnLoginForm";
-            btnLoginForm.Size = new Size(417, 63);
-            btnLoginForm.TabIndex = 3;
-            btnLoginForm.Text = "Al een account? Log in";
-            btnLoginForm.UseVisualStyleBackColor = false;
-            // 
-            // btnRegister
-            // 
-            btnRegister.BackColor = Color.DarkOrchid;
-            btnRegister.Dock = DockStyle.Fill;
-            btnRegister.Location = new Point(238, 383);
-            btnRegister.Margin = new Padding(15);
-            btnRegister.Name = "btnRegister";
-            btnRegister.Size = new Size(416, 63);
-            btnRegister.TabIndex = 2;
-            btnRegister.Text = "Registreer";
-            btnRegister.UseVisualStyleBackColor = false;
-            // 
-            // txtCity
-            // 
-            txtCity.BackColor = SystemColors.ControlLight;
-            txtCity.Dock = DockStyle.Fill;
-            txtCity.Location = new Point(10, 10);
-            txtCity.Margin = new Padding(10);
-            txtCity.Multiline = true;
-            txtCity.Name = "txtCity";
-            txtCity.PlaceholderText = "Stad";
-            txtCity.Size = new Size(200, 66);
-            txtCity.TabIndex = 0;
-            // 
-            // txtZipCode
-            // 
-            txtZipCode.BackColor = SystemColors.ControlLight;
-            txtZipCode.Dock = DockStyle.Fill;
-            txtZipCode.Location = new Point(230, 10);
-            txtZipCode.Margin = new Padding(10);
-            txtZipCode.Multiline = true;
-            txtZipCode.Name = "txtZipCode";
-            txtZipCode.PlaceholderText = "Postcode";
-            txtZipCode.Size = new Size(200, 66);
-            txtZipCode.TabIndex = 1;
             // 
             // txtStreetname
             // 

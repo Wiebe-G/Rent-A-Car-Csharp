@@ -13,7 +13,9 @@ namespace RentACar
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-
+            frmRegister reg = new();
+            this.Hide();
+            reg.Show();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
