@@ -5,7 +5,7 @@ namespace RentACar
 {
     public partial class frmLogin : Form
     {
-        Passwords passwords = new();
+        readonly Passwords passwords = new();
         public frmLogin()
         {
             InitializeComponent();

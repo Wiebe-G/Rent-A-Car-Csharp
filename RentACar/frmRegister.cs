@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Cms;
+using BC = BCrypt.Net.BCrypt;
 
 namespace RentACar
 {
     public partial class frmRegister : Form
     {
+        readonly Passwords passwords = new();
         public frmRegister()
         {
             InitializeComponent();
@@ -36,7 +31,47 @@ namespace RentACar
                 return;
             }
 
+            string Hash = BC.HashPassword(Password, workFactor: 12);
 
+            using MySqlConnection Conn = new(passwords.ConnStr);
+            Conn.Open();
+
+            using var Cmd = Conn.CreateCommand();
+            // Maak gebruiker address gegevens entry aan
+            Cmd.CommandText = "INSERT INTO user_address (streetname, zipcode, city) VALUES (@City, @ZipCode, @StreetName)";
+            Cmd.Parameters.AddWithValue("@City", City);
+            Cmd.Parameters.AddWithValue("@ZipCode", ZipCode);
+            Cmd.Parameters.AddWithValue("@StreetName", StreetName);
+
+
+            int RowsAffectedForAddress = Cmd.ExecuteNonQuery();
+
+            if (RowsAffectedForAddress <= 0)
+            {
+                MessageBox.Show("Kon account niet aanmaken. Probeer het later opnieuw");
+                return;
+            }
+            long UserAddressId = Cmd.LastInsertedId;
+            Cmd.CommandText = "INSERT INTO user (role_id, user_address_id, fname, lname, email, password, status, created_at, updated_at) " +
+                "VALUES(1, @UserAddressId, @Fname, @Lname, @Email, @Hash, 1, @TimeNow, @TimeNow)";
+            Cmd.Parameters.AddWithValue("@UserAddressId", UserAddressId);
+            Cmd.Parameters.AddWithValue("@Fname", Fname);
+            Cmd.Parameters.AddWithValue("@Lname", Lname);
+            Cmd.Parameters.AddWithValue("@Email", Email);
+            Cmd.Parameters.AddWithValue("@Hash", Hash);
+            Cmd.Parameters.AddWithValue("@TimeNow", new DateTime());
+
+            int RowsAffected = Cmd.ExecuteNonQuery();
+
+            if (RowsAffected <= 0)
+            {
+                MessageBox.Show("Kon account niet aanmaken. Probeer het later opnieuw");
+                return;
+            }
+            MessageBox.Show("Account aangemaakt!");
+            frmLogin login = new();
+            this.Hide();
+            login.Show();
         }
 
         private static bool ValidateInputs(string Fname, string Lname, string City, string ZipCode, string StreetName, string Email, string Password, string PassConfirm)
