@@ -40,6 +40,7 @@ namespace RentACar
                 while (reader.Read())
                 {
                     string Role = reader.GetString("name");
+                    _user.role = Role;
                 }
             }
             catch (Exception ex)
