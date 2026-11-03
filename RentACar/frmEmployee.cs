@@ -22,6 +22,13 @@ namespace RentACar
                 MessageBox.Show("Dit is niet voor klanten. OPROTTEN!");
                 return;
             }
+            btnOpenAdminPanel.Enabled = user.role == "owner" ? true : false;
+            btnOpenAdminPanel.Visible = user.role == "owner" ? true : false;
+        }
+
+        private void btnOpenAdminPanel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -23,6 +23,7 @@ namespace RentACar
             GetCorrectRole();
             btnOpenProfileForm.Text = $"{_user.fname} {_user.lname}";
             btnOpenEmployeePanel.Enabled = _user.role == "customer" ? false : true;
+            btnOpenEmployeePanel.Visible = _user.role == "customer" ? false : true;
         }
 
         internal void GetCorrectRole()
