@@ -14,7 +14,7 @@ namespace RentACar
     public partial class userCtrlAdminCars : UserControl
     {
         Passwords passwords = new();
-        Car[] cars;
+        List<Car> cars = new List<Car>();
         internal userCtrlAdminCars()
         {
             InitializeComponent();
@@ -36,16 +36,16 @@ namespace RentACar
 
                 while (reader.Read())
                 {
-                    cars[index] = new Car
+                    cars.Insert(index, new Car
                     {
-                        id = reader.GetString("id"),
+                        id = reader.GetInt32("id").ToString(),
                         merk = reader.GetString("merk"),
                         model = reader.GetString("model"),
                         kenteken = reader.GetString("kenteken"),
                         type = reader.GetString("type"),
                         dagprijs = reader.GetInt32("dagprijs"),
                         status = reader.GetString("status")
-                    };
+                    });
                     index++;
                 }
             }
@@ -53,20 +53,27 @@ namespace RentACar
             {
                 MessageBox.Show($"Er is een fout opgetreden: {ex.Message} \nStacktrace: {ex.StackTrace}");
             }
-            if (cars == null)
+            if (cars.Count < 1)
             {
                 MessageBox.Show("Geen auto's gevonden");
                 return;
             }
+            pnlTabAdminAllCars.RowCount = cars.Count / 3 > 1
+                ? cars.Count / 3
+                : 1;
             DisplayAllCars();
         }
 
         internal void DisplayAllCars()
         {
-            MessageBox.Show($"Er zijn {cars.Length} auto's");
-            pnlTabAdminAllCars.RowCount = cars.Length / 3 > 1
-                ? cars.Length / 3
-                : 1;
+            foreach (var car in cars)
+            {
+                userCtrlCarListing CarListing = new(car);
+                CarListing.Dock = DockStyle.Fill;
+
+                // niet vergeten om te zeggen WAAR het moet worden toegevoegd slimpie
+                pnlTabAdminAllCars.Controls.Add(CarListing);
+            }
         }
 
         private void btnSaveCar_Click(object sender, EventArgs e)

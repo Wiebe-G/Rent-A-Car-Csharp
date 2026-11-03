@@ -92,8 +92,10 @@ namespace RentACar
 
         private void RenderCarsMenu()
         {
-            userCtrlAdminCars cars = new();
-            cars.Dock = DockStyle.Fill;
+            userCtrlAdminCars cars = new()
+            {
+                Dock = DockStyle.Fill
+            };
             spltAdminLayout.Panel2.Controls.Clear();
             spltAdminLayout.Panel2.Controls.Add(cars);
         }
