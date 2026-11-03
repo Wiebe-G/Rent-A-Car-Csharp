@@ -18,6 +18,9 @@ namespace RentACar
         internal userCtrlAdminCars()
         {
             InitializeComponent();
+            pnlTabAdminAllCars.AutoSize = true;
+            pnlTabAdminAllCars.GrowStyle = TableLayoutPanelGrowStyle.AddRows;
+            pnlTabAdminAllCars.RowStyles.Clear();
             GetAllCars();
         }
 
@@ -58,21 +61,37 @@ namespace RentACar
                 MessageBox.Show("Geen auto's gevonden");
                 return;
             }
-            pnlTabAdminAllCars.RowCount = cars.Count / 3 > 1
-                ? cars.Count / 3
+            int RowsAmount = 3;
+            pnlTabAdminAllCars.RowCount = cars.Count / RowsAmount > 1
+                ? cars.Count / RowsAmount
                 : 1;
             DisplayAllCars();
         }
 
         internal void DisplayAllCars()
         {
+            int count = 0;
             foreach (var car in cars)
             {
-                userCtrlCarListing CarListing = new(car);
-                CarListing.Dock = DockStyle.Fill;
+                userCtrlCarListing CarListing = new(car)
+                {
+                    Dock = DockStyle.Fill,
+                };
+
+                frmEditCar edit = new(car);
+                CarListing.Click += (sender, e) =>
+                {
+                    MessageBox.Show("Test");
+                    edit.Show();
+                };
 
                 // niet vergeten om te zeggen WAAR het moet worden toegevoegd slimpie
                 pnlTabAdminAllCars.Controls.Add(CarListing);
+
+                //if (count % 3 == 0)
+                pnlTabAdminAllCars.RowCount++;
+                pnlTabAdminAllCars.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                count++;
             }
         }
 

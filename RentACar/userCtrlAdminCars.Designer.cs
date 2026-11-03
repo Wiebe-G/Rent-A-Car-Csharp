@@ -94,15 +94,18 @@
             // 
             // pnlTabAdminAllCars
             // 
+            pnlTabAdminAllCars.AutoScroll = true;
             pnlTabAdminAllCars.ColumnCount = 3;
-            pnlTabAdminAllCars.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            pnlTabAdminAllCars.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            pnlTabAdminAllCars.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            pnlTabAdminAllCars.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33333F));
+            pnlTabAdminAllCars.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
+            pnlTabAdminAllCars.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
             pnlTabAdminAllCars.Dock = DockStyle.Fill;
             pnlTabAdminAllCars.Location = new Point(0, 0);
             pnlTabAdminAllCars.Name = "pnlTabAdminAllCars";
-            pnlTabAdminAllCars.RowCount = 1;
+            pnlTabAdminAllCars.RowCount = 2;
             pnlTabAdminAllCars.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            pnlTabAdminAllCars.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            pnlTabAdminAllCars.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             pnlTabAdminAllCars.Size = new Size(1181, 490);
             pnlTabAdminAllCars.TabIndex = 0;
             // 
