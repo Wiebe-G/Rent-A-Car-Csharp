@@ -19,11 +19,9 @@ namespace RentACar
         {
             InitializeComponent();
             _user = user;
-            MessageBox.Show($"rol id is: {_user.role}");
             // hier de role pakken omdat het te lastig was om in login te doen 
             GetCorrectRole();
             btnOpenProfileForm.Text = $"{_user.fname} {_user.lname}";
-            MessageBox.Show($"blah blah blah rol is dit: {_user.role}");
             btnOpenEmployeePanel.Enabled = _user.role == "customer" ? false : true;
             btnOpenEmployeePanel.Visible = _user.role == "customer" ? false : true;
         }
@@ -45,7 +43,6 @@ namespace RentACar
                 while (reader.Read())
                 {
                     string Role = reader.GetString("name");
-                    MessageBox.Show($"Role uit de db is {Role}");
                     _user.role = Role;
                 }
             }
