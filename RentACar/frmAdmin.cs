@@ -46,5 +46,48 @@ namespace RentACar
             emp.Show();
             this.Hide();
         }
+
+        private void ShowCorrectMenu(object? sender, EventArgs e)
+        {
+            if (sender is not Button)
+            {
+                return;
+            }
+            Button? btn = sender as Button;
+            string Type = btn.Name.Remove(0, 7);
+
+            switch (Type)
+            {
+                case "Cars":
+                    // render auto's menu
+                    break;
+                case "Invoices":
+                    // render facturen menu
+                    break;
+                case "Customers":
+                    // render klanten menu
+                    break;
+                case "Employees":
+                    // render medewerkers menu
+                    break;
+                case "Stock":
+                    // render voorraad en reserveringen menu
+                    break;
+                case "Planning":
+                    // render planning menu, met knoppen per medewerker om agenda te zien
+                    break;
+                case "Dashboard":
+                    // prestatie dashboard menu, met per medewerker laten zien hoe veel auto's zijn verhuurd
+                    break;
+                case "OpeningTimes":
+                    // laat openingstijden zien
+                    break;
+                case "Logs":
+                    // logs laten zien
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

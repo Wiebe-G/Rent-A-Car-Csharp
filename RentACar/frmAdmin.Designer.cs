@@ -34,16 +34,15 @@
             btnBack = new Button();
             spltAdminLayout = new SplitContainer();
             pnlTabSideBarAdmin = new TableLayoutPanel();
-            btnCarsMenu = new Button();
-            btnInvoicesMenu = new Button();
-            btnCustomersMenu = new Button();
-            btnEmployeesMenu = new Button();
-            btnStockMenu = new Button();
-            btnPlanningMenu = new Button();
-            btnDashboardMenu = new Button();
-            btnOpeningsTimesMenu = new Button();
-            button9 = new Button();
-            button10 = new Button();
+            btnMenuCars = new Button();
+            btnMenuInvoices = new Button();
+            btnMenuCustomers = new Button();
+            btnMenuEmployees = new Button();
+            btnMenuStock = new Button();
+            btnMenuPlanning = new Button();
+            btnMenuDashboard = new Button();
+            btnMenuOpeningTimes = new Button();
+            btnMenuLogs = new Button();
             pnlTabLayoutAdmin.SuspendLayout();
             pnlTabTopBarAdmin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)spltAdminLayout).BeginInit();
@@ -128,21 +127,19 @@
             // 
             pnlTabSideBarAdmin.ColumnCount = 1;
             pnlTabSideBarAdmin.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            pnlTabSideBarAdmin.Controls.Add(btnCarsMenu, 0, 0);
-            pnlTabSideBarAdmin.Controls.Add(btnInvoicesMenu, 0, 1);
-            pnlTabSideBarAdmin.Controls.Add(btnCustomersMenu, 0, 2);
-            pnlTabSideBarAdmin.Controls.Add(btnEmployeesMenu, 0, 3);
-            pnlTabSideBarAdmin.Controls.Add(btnStockMenu, 0, 4);
-            pnlTabSideBarAdmin.Controls.Add(btnPlanningMenu, 0, 5);
-            pnlTabSideBarAdmin.Controls.Add(btnDashboardMenu, 0, 6);
-            pnlTabSideBarAdmin.Controls.Add(btnOpeningsTimesMenu, 0, 7);
-            pnlTabSideBarAdmin.Controls.Add(button9, 0, 8);
-            pnlTabSideBarAdmin.Controls.Add(button10, 0, 9);
+            pnlTabSideBarAdmin.Controls.Add(btnMenuCars, 0, 0);
+            pnlTabSideBarAdmin.Controls.Add(btnMenuInvoices, 0, 1);
+            pnlTabSideBarAdmin.Controls.Add(btnMenuCustomers, 0, 2);
+            pnlTabSideBarAdmin.Controls.Add(btnMenuEmployees, 0, 3);
+            pnlTabSideBarAdmin.Controls.Add(btnMenuStock, 0, 4);
+            pnlTabSideBarAdmin.Controls.Add(btnMenuPlanning, 0, 5);
+            pnlTabSideBarAdmin.Controls.Add(btnMenuDashboard, 0, 6);
+            pnlTabSideBarAdmin.Controls.Add(btnMenuOpeningTimes, 0, 7);
+            pnlTabSideBarAdmin.Controls.Add(btnMenuLogs, 0, 8);
             pnlTabSideBarAdmin.Dock = DockStyle.Fill;
             pnlTabSideBarAdmin.Location = new Point(0, 0);
             pnlTabSideBarAdmin.Name = "pnlTabSideBarAdmin";
-            pnlTabSideBarAdmin.RowCount = 10;
-            pnlTabSideBarAdmin.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            pnlTabSideBarAdmin.RowCount = 9;
             pnlTabSideBarAdmin.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
             pnlTabSideBarAdmin.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
             pnlTabSideBarAdmin.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
@@ -156,112 +153,113 @@
             pnlTabSideBarAdmin.Size = new Size(333, 401);
             pnlTabSideBarAdmin.TabIndex = 0;
             // 
-            // btnCarsMenu
+            // btnMenuCars
             // 
-            btnCarsMenu.BackColor = SystemColors.ActiveBorder;
-            btnCarsMenu.Dock = DockStyle.Fill;
-            btnCarsMenu.Location = new Point(3, 3);
-            btnCarsMenu.Name = "btnCarsMenu";
-            btnCarsMenu.Size = new Size(327, 34);
-            btnCarsMenu.TabIndex = 0;
-            btnCarsMenu.Text = "Auto's ";
-            btnCarsMenu.UseVisualStyleBackColor = false;
+            btnMenuCars.BackColor = SystemColors.ActiveBorder;
+            btnMenuCars.Dock = DockStyle.Fill;
+            btnMenuCars.Location = new Point(3, 3);
+            btnMenuCars.Name = "btnMenuCars";
+            btnMenuCars.Size = new Size(327, 38);
+            btnMenuCars.TabIndex = 0;
+            btnMenuCars.Text = "Auto's ";
+            btnMenuCars.UseVisualStyleBackColor = false;
+            btnMenuCars.Click += ShowCorrectMenu;
             // 
-            // btnInvoicesMenu
+            // btnMenuInvoices
             // 
-            btnInvoicesMenu.BackColor = SystemColors.ActiveBorder;
-            btnInvoicesMenu.Dock = DockStyle.Fill;
-            btnInvoicesMenu.Location = new Point(3, 43);
-            btnInvoicesMenu.Name = "btnInvoicesMenu";
-            btnInvoicesMenu.Size = new Size(327, 34);
-            btnInvoicesMenu.TabIndex = 1;
-            btnInvoicesMenu.Text = "Facturen";
-            btnInvoicesMenu.UseVisualStyleBackColor = false;
+            btnMenuInvoices.BackColor = SystemColors.ActiveBorder;
+            btnMenuInvoices.Dock = DockStyle.Fill;
+            btnMenuInvoices.Location = new Point(3, 47);
+            btnMenuInvoices.Name = "btnMenuInvoices";
+            btnMenuInvoices.Size = new Size(327, 38);
+            btnMenuInvoices.TabIndex = 1;
+            btnMenuInvoices.Text = "Facturen";
+            btnMenuInvoices.UseVisualStyleBackColor = false;
+            btnMenuInvoices.Click += ShowCorrectMenu;
             // 
-            // btnCustomersMenu
+            // btnMenuCustomers
             // 
-            btnCustomersMenu.BackColor = SystemColors.ActiveBorder;
-            btnCustomersMenu.Dock = DockStyle.Fill;
-            btnCustomersMenu.Location = new Point(3, 83);
-            btnCustomersMenu.Name = "btnCustomersMenu";
-            btnCustomersMenu.Size = new Size(327, 34);
-            btnCustomersMenu.TabIndex = 2;
-            btnCustomersMenu.Text = "Klanten";
-            btnCustomersMenu.UseVisualStyleBackColor = false;
+            btnMenuCustomers.BackColor = SystemColors.ActiveBorder;
+            btnMenuCustomers.Dock = DockStyle.Fill;
+            btnMenuCustomers.Location = new Point(3, 91);
+            btnMenuCustomers.Name = "btnMenuCustomers";
+            btnMenuCustomers.Size = new Size(327, 38);
+            btnMenuCustomers.TabIndex = 2;
+            btnMenuCustomers.Text = "Klanten";
+            btnMenuCustomers.UseVisualStyleBackColor = false;
+            btnMenuCustomers.Click += ShowCorrectMenu;
             // 
-            // btnEmployeesMenu
+            // btnMenuEmployees
             // 
-            btnEmployeesMenu.BackColor = SystemColors.ActiveBorder;
-            btnEmployeesMenu.Dock = DockStyle.Fill;
-            btnEmployeesMenu.Location = new Point(3, 123);
-            btnEmployeesMenu.Name = "btnEmployeesMenu";
-            btnEmployeesMenu.Size = new Size(327, 34);
-            btnEmployeesMenu.TabIndex = 3;
-            btnEmployeesMenu.Text = "Medewerkers";
-            btnEmployeesMenu.UseVisualStyleBackColor = false;
+            btnMenuEmployees.BackColor = SystemColors.ActiveBorder;
+            btnMenuEmployees.Dock = DockStyle.Fill;
+            btnMenuEmployees.Location = new Point(3, 135);
+            btnMenuEmployees.Name = "btnMenuEmployees";
+            btnMenuEmployees.Size = new Size(327, 38);
+            btnMenuEmployees.TabIndex = 3;
+            btnMenuEmployees.Text = "Medewerkers";
+            btnMenuEmployees.UseVisualStyleBackColor = false;
+            btnMenuEmployees.Click += ShowCorrectMenu;
             // 
-            // btnStockMenu
+            // btnMenuStock
             // 
-            btnStockMenu.BackColor = SystemColors.ActiveBorder;
-            btnStockMenu.Dock = DockStyle.Fill;
-            btnStockMenu.Location = new Point(3, 163);
-            btnStockMenu.Name = "btnStockMenu";
-            btnStockMenu.Size = new Size(327, 34);
-            btnStockMenu.TabIndex = 4;
-            btnStockMenu.Text = "Voorraad en reserveringen";
-            btnStockMenu.UseVisualStyleBackColor = false;
+            btnMenuStock.BackColor = SystemColors.ActiveBorder;
+            btnMenuStock.Dock = DockStyle.Fill;
+            btnMenuStock.Location = new Point(3, 179);
+            btnMenuStock.Name = "btnMenuStock";
+            btnMenuStock.Size = new Size(327, 38);
+            btnMenuStock.TabIndex = 4;
+            btnMenuStock.Text = "Voorraad en reserveringen";
+            btnMenuStock.UseVisualStyleBackColor = false;
+            btnMenuStock.Click += ShowCorrectMenu;
             // 
-            // btnPlanningMenu
+            // btnMenuPlanning
             // 
-            btnPlanningMenu.BackColor = SystemColors.ActiveBorder;
-            btnPlanningMenu.Dock = DockStyle.Fill;
-            btnPlanningMenu.Location = new Point(3, 203);
-            btnPlanningMenu.Name = "btnPlanningMenu";
-            btnPlanningMenu.Size = new Size(327, 34);
-            btnPlanningMenu.TabIndex = 5;
-            btnPlanningMenu.Text = "Roosters";
-            btnPlanningMenu.UseVisualStyleBackColor = false;
+            btnMenuPlanning.BackColor = SystemColors.ActiveBorder;
+            btnMenuPlanning.Dock = DockStyle.Fill;
+            btnMenuPlanning.Location = new Point(3, 223);
+            btnMenuPlanning.Name = "btnMenuPlanning";
+            btnMenuPlanning.Size = new Size(327, 38);
+            btnMenuPlanning.TabIndex = 5;
+            btnMenuPlanning.Text = "Roosters";
+            btnMenuPlanning.UseVisualStyleBackColor = false;
+            btnMenuPlanning.Click += ShowCorrectMenu;
             // 
-            // btnDashboardMenu
+            // btnMenuDashboard
             // 
-            btnDashboardMenu.BackColor = SystemColors.ActiveBorder;
-            btnDashboardMenu.Dock = DockStyle.Fill;
-            btnDashboardMenu.Location = new Point(3, 243);
-            btnDashboardMenu.Name = "btnDashboardMenu";
-            btnDashboardMenu.Size = new Size(327, 34);
-            btnDashboardMenu.TabIndex = 6;
-            btnDashboardMenu.Text = "Prestatie dashboard";
-            btnDashboardMenu.UseVisualStyleBackColor = false;
+            btnMenuDashboard.BackColor = SystemColors.ActiveBorder;
+            btnMenuDashboard.Dock = DockStyle.Fill;
+            btnMenuDashboard.Location = new Point(3, 267);
+            btnMenuDashboard.Name = "btnMenuDashboard";
+            btnMenuDashboard.Size = new Size(327, 38);
+            btnMenuDashboard.TabIndex = 6;
+            btnMenuDashboard.Text = "Prestatie dashboard";
+            btnMenuDashboard.UseVisualStyleBackColor = false;
+            btnMenuDashboard.Click += ShowCorrectMenu;
             // 
-            // btnOpeningsTimesMenu
+            // btnMenuOpeningTimes
             // 
-            btnOpeningsTimesMenu.Dock = DockStyle.Fill;
-            btnOpeningsTimesMenu.Location = new Point(3, 283);
-            btnOpeningsTimesMenu.Name = "btnOpeningsTimesMenu";
-            btnOpeningsTimesMenu.Size = new Size(327, 34);
-            btnOpeningsTimesMenu.TabIndex = 7;
-            btnOpeningsTimesMenu.Text = "Openingstijden";
-            btnOpeningsTimesMenu.UseVisualStyleBackColor = true;
+            btnMenuOpeningTimes.BackColor = SystemColors.ActiveBorder;
+            btnMenuOpeningTimes.Dock = DockStyle.Fill;
+            btnMenuOpeningTimes.Location = new Point(3, 311);
+            btnMenuOpeningTimes.Name = "btnMenuOpeningTimes";
+            btnMenuOpeningTimes.Size = new Size(327, 38);
+            btnMenuOpeningTimes.TabIndex = 7;
+            btnMenuOpeningTimes.Text = "Openingstijden";
+            btnMenuOpeningTimes.UseVisualStyleBackColor = false;
+            btnMenuOpeningTimes.Click += ShowCorrectMenu;
             // 
-            // button9
+            // btnMenuLogs
             // 
-            button9.Dock = DockStyle.Fill;
-            button9.Location = new Point(3, 323);
-            button9.Name = "button9";
-            button9.Size = new Size(327, 34);
-            button9.TabIndex = 8;
-            button9.Text = "button9";
-            button9.UseVisualStyleBackColor = true;
-            // 
-            // button10
-            // 
-            button10.Dock = DockStyle.Fill;
-            button10.Location = new Point(3, 363);
-            button10.Name = "button10";
-            button10.Size = new Size(327, 35);
-            button10.TabIndex = 9;
-            button10.Text = "button10";
-            button10.UseVisualStyleBackColor = true;
+            btnMenuLogs.BackColor = SystemColors.ActiveBorder;
+            btnMenuLogs.Dock = DockStyle.Fill;
+            btnMenuLogs.Location = new Point(3, 355);
+            btnMenuLogs.Name = "btnMenuLogs";
+            btnMenuLogs.Size = new Size(327, 43);
+            btnMenuLogs.TabIndex = 8;
+            btnMenuLogs.Text = "Logs";
+            btnMenuLogs.UseVisualStyleBackColor = false;
+            btnMenuLogs.Click += ShowCorrectMenu;
             // 
             // frmAdmin
             // 
@@ -288,15 +286,14 @@
         private Button btnBack;
         private SplitContainer spltAdminLayout;
         private TableLayoutPanel pnlTabSideBarAdmin;
-        private Button btnCarsMenu;
-        private Button btnInvoicesMenu;
-        private Button btnCustomersMenu;
-        private Button btnEmployeesMenu;
-        private Button btnStockMenu;
-        private Button btnPlanningMenu;
-        private Button btnDashboardMenu;
-        private Button btnOpeningsTimesMenu;
-        private Button button9;
-        private Button button10;
+        private Button btnMenuCars;
+        private Button btnMenuInvoices;
+        private Button btnMenuCustomers;
+        private Button btnMenuEmployees;
+        private Button btnMenuStock;
+        private Button btnMenuPlanning;
+        private Button btnMenuDashboard;
+        private Button btnMenuOpeningTimes;
+        private Button btnMenuLogs;
     }
 }
