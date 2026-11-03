@@ -28,7 +28,9 @@ namespace RentACar
 
         private void btnOpenAdminPanel_Click(object sender, EventArgs e)
         {
-
+            frmAdmin admin = new(_user);
+            admin.Show();
+            this.Hide();
         }
     }
 }
