@@ -47,6 +47,7 @@
             pnlTabTopBarAdmin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)spltAdminLayout).BeginInit();
             spltAdminLayout.Panel1.SuspendLayout();
+            spltAdminLayout.Panel2.SuspendLayout();
             spltAdminLayout.SuspendLayout();
             pnlTabSideBarAdmin.SuspendLayout();
             SuspendLayout();
@@ -118,6 +119,9 @@
             // 
             spltAdminLayout.Panel1.Controls.Add(pnlTabSideBarAdmin);
             spltAdminLayout.Panel1MinSize = 15;
+            // 
+            // spltAdminLayout.Panel2
+            // 
             spltAdminLayout.Panel2MinSize = 35;
             spltAdminLayout.Size = new Size(1156, 401);
             spltAdminLayout.SplitterDistance = 333;
@@ -272,6 +276,7 @@
             pnlTabLayoutAdmin.ResumeLayout(false);
             pnlTabTopBarAdmin.ResumeLayout(false);
             spltAdminLayout.Panel1.ResumeLayout(false);
+            spltAdminLayout.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)spltAdminLayout).EndInit();
             spltAdminLayout.ResumeLayout(false);
             pnlTabSideBarAdmin.ResumeLayout(false);

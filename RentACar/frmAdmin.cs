@@ -12,7 +12,7 @@ namespace RentACar
 {
     public partial class frmAdmin : Form
     {
-        User _user;
+        readonly User _user;
         internal frmAdmin(User user)
         {
             InitializeComponent();
@@ -59,7 +59,7 @@ namespace RentACar
             switch (Type)
             {
                 case "Cars":
-                    // render auto's menu
+                    RenderCarsMenu();
                     break;
                 case "Invoices":
                     // render facturen menu
@@ -88,6 +88,14 @@ namespace RentACar
                 default:
                     break;
             }
+        }
+
+        private void RenderCarsMenu()
+        {
+            userCtrlAdminCars cars = new();
+            cars.Dock = DockStyle.Fill;
+            spltAdminLayout.Panel2.Controls.Clear();
+            spltAdminLayout.Panel2.Controls.Add(cars);
         }
     }
 }
