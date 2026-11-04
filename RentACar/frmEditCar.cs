@@ -22,7 +22,7 @@ namespace RentACar
             InitializeComponent();
             _user = user;
             _car = car;
-            if (!EnsureCarAndUserExistAndAreAllowed(car, user)) return;
+            if (!EnsureCarAndUserExistAndAreAllowed()) return;
 
             txtMerkEdit.Text = car.merk ?? "Onbekend";
             txtModelEdit.Text = car.model ?? "Onbekend";
@@ -34,23 +34,23 @@ namespace RentACar
             numDagprijsEdit.Maximum = 100000;
         }
 
-        private bool EnsureCarAndUserExistAndAreAllowed(Car car, User user)
+        private bool EnsureCarAndUserExistAndAreAllowed()
         {
-            if (user == null)
+            if (_user == null)
             {
                 MessageBox.Show("Geen gebruiker gevonden.");
                 this.Close();
                 return false;
             }
 
-            if (user.role == "customer")
+            if (_user.role == "customer")
             {
                 MessageBox.Show("Klanten mogen hier niet zijn.");
                 this.Close();
                 return false;
             }
 
-            if (car == null)
+            if (_car == null)
             {
                 MessageBox.Show("Geen auto gevonden");
                 return false;
