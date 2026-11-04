@@ -31,7 +31,10 @@ namespace RentACar
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            DialogResult Logout = MessageBox.Show("Weet je zeker dat je wilt uitloggen?", "Uitloggen", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult Logout = MessageBox.Show("Weet je zeker dat je wilt uitloggen?",
+                "Uitloggen",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
 
             if (Logout == DialogResult.Yes)
             {

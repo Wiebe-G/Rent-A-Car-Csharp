@@ -270,6 +270,7 @@
             btnSaveChanges.TabIndex = 0;
             btnSaveChanges.Text = "Sla wijzigingen op";
             btnSaveChanges.UseVisualStyleBackColor = false;
+            btnSaveChanges.Click += btnSaveChanges_Click;
             // 
             // btnCancelEdit
             // 

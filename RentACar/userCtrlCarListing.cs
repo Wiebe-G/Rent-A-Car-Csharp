@@ -35,7 +35,7 @@ namespace RentACar
 
         private void btnEditCar_Click(object sender, EventArgs e)
         {
-            frmEditCar edit = new(_car);
+            frmEditCar edit = new(_car, _user);
             edit.Show();
         }
     }
