@@ -62,28 +62,30 @@ namespace RentACar
                     RenderCarsMenu();
                     break;
                 case "Invoices":
-                    // render facturen menu
+                    RenderInvoicesMenu();
                     break;
                 case "Customers":
-                    // render klanten menu
+                    RenderCustomersMenu();
                     break;
                 case "Employees":
-                    // render medewerkers menu
+                    RenderEmployeesMenu();
                     break;
                 case "Stock":
-                    // render voorraad en reserveringen menu
+                    RenderStockMenu();
                     break;
                 case "Planning":
                     // render planning menu, met knoppen per medewerker om agenda te zien
+                    // maar waarom dat niet gewoon in medewerkers menu?
                     break;
                 case "Dashboard":
                     // prestatie dashboard menu, met per medewerker laten zien hoe veel auto's zijn verhuurd
+                    RenderDashboardMenu();
                     break;
                 case "OpeningTimes":
-                    // laat openingstijden zien
+                    RenderOpeningTimesMenu();
                     break;
                 case "Logs":
-                    // logs laten zien
+                    RenderLogsMenu();
                     break;
                 default:
                     break;
@@ -92,12 +94,56 @@ namespace RentACar
 
         private void RenderCarsMenu()
         {
-            userCtrlAdminCars cars = new()
+            userCtrlAdminCars cars = new(_user)
             {
                 Dock = DockStyle.Fill
             };
+
             spltAdminLayout.Panel2.Controls.Clear();
             spltAdminLayout.Panel2.Controls.Add(cars);
+        }
+
+        private void RenderInvoicesMenu()
+        {
+            MessageBox.Show("Nog niet af ");
+            spltAdminLayout.Panel2.Controls.Clear();
+        }
+
+        private void RenderCustomersMenu()
+        {
+            MessageBox.Show("Nog niet af ");
+            spltAdminLayout.Panel2.Controls.Clear();
+        }
+
+        private void RenderEmployeesMenu()
+        {
+            // wacht waarom zouden we niet gewoon hier de planning inzetten
+            MessageBox.Show("Nog niet af ");
+            spltAdminLayout.Panel2.Controls.Clear();
+        }
+
+        private void RenderStockMenu()
+        {
+            MessageBox.Show("Nog niet af ");
+            spltAdminLayout.Panel2.Controls.Clear();
+        }
+
+        private void RenderDashboardMenu()
+        {
+            MessageBox.Show("Nog niet af ");
+            spltAdminLayout.Panel2.Controls.Clear();
+        }
+
+        private void RenderOpeningTimesMenu()
+        {
+            MessageBox.Show("Nog niet af ");
+            spltAdminLayout.Panel2.Controls.Clear();
+        }
+
+        private void RenderLogsMenu()
+        {
+            MessageBox.Show("Nog niet af ");
+            spltAdminLayout.Panel2.Controls.Clear();
         }
     }
 }

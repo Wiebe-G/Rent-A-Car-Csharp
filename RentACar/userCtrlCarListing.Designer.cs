@@ -29,25 +29,28 @@
         private void InitializeComponent()
         {
             pnlTabCarListingLayout = new TableLayoutPanel();
-            picCarPhoto = new PictureBox();
-            tableLayoutPanel1 = new TableLayoutPanel();
+            pnlTabLabels = new TableLayoutPanel();
             lblMerk = new Label();
             lblModel = new Label();
             lblKenteken = new Label();
             lblType = new Label();
             lblDagprijs = new Label();
             lblStatus = new Label();
+            pnlTabPicture = new TableLayoutPanel();
+            picCarPhoto = new PictureBox();
+            btnEditCar = new Button();
             pnlTabCarListingLayout.SuspendLayout();
+            pnlTabLabels.SuspendLayout();
+            pnlTabPicture.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picCarPhoto).BeginInit();
-            tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // pnlTabCarListingLayout
             // 
             pnlTabCarListingLayout.ColumnCount = 1;
             pnlTabCarListingLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            pnlTabCarListingLayout.Controls.Add(picCarPhoto, 0, 0);
-            pnlTabCarListingLayout.Controls.Add(tableLayoutPanel1, 0, 1);
+            pnlTabCarListingLayout.Controls.Add(pnlTabLabels, 0, 1);
+            pnlTabCarListingLayout.Controls.Add(pnlTabPicture, 0, 0);
             pnlTabCarListingLayout.Dock = DockStyle.Fill;
             pnlTabCarListingLayout.Location = new Point(0, 0);
             pnlTabCarListingLayout.Name = "pnlTabCarListingLayout";
@@ -57,35 +60,26 @@
             pnlTabCarListingLayout.Size = new Size(1199, 526);
             pnlTabCarListingLayout.TabIndex = 0;
             // 
-            // picCarPhoto
+            // pnlTabLabels
             // 
-            picCarPhoto.Dock = DockStyle.Fill;
-            picCarPhoto.Location = new Point(3, 3);
-            picCarPhoto.Name = "picCarPhoto";
-            picCarPhoto.Size = new Size(1193, 335);
-            picCarPhoto.TabIndex = 0;
-            picCarPhoto.TabStop = false;
-            // 
-            // tableLayoutPanel1
-            // 
-            tableLayoutPanel1.ColumnCount = 3;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel1.Controls.Add(lblMerk, 0, 0);
-            tableLayoutPanel1.Controls.Add(lblModel, 0, 1);
-            tableLayoutPanel1.Controls.Add(lblKenteken, 1, 0);
-            tableLayoutPanel1.Controls.Add(lblType, 1, 1);
-            tableLayoutPanel1.Controls.Add(lblDagprijs, 2, 0);
-            tableLayoutPanel1.Controls.Add(lblStatus, 2, 1);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(3, 344);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 2;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(1193, 179);
-            tableLayoutPanel1.TabIndex = 1;
+            pnlTabLabels.ColumnCount = 3;
+            pnlTabLabels.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            pnlTabLabels.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            pnlTabLabels.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            pnlTabLabels.Controls.Add(lblMerk, 0, 0);
+            pnlTabLabels.Controls.Add(lblModel, 0, 1);
+            pnlTabLabels.Controls.Add(lblKenteken, 1, 0);
+            pnlTabLabels.Controls.Add(lblType, 1, 1);
+            pnlTabLabels.Controls.Add(lblDagprijs, 2, 0);
+            pnlTabLabels.Controls.Add(lblStatus, 2, 1);
+            pnlTabLabels.Dock = DockStyle.Fill;
+            pnlTabLabels.Location = new Point(3, 344);
+            pnlTabLabels.Name = "pnlTabLabels";
+            pnlTabLabels.RowCount = 2;
+            pnlTabLabels.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            pnlTabLabels.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            pnlTabLabels.Size = new Size(1193, 179);
+            pnlTabLabels.TabIndex = 1;
             // 
             // lblMerk
             // 
@@ -153,6 +147,42 @@
             lblStatus.Text = "Status";
             lblStatus.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // pnlTabPicture
+            // 
+            pnlTabPicture.ColumnCount = 3;
+            pnlTabPicture.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            pnlTabPicture.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+            pnlTabPicture.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            pnlTabPicture.Controls.Add(picCarPhoto, 1, 0);
+            pnlTabPicture.Controls.Add(btnEditCar, 2, 0);
+            pnlTabPicture.Dock = DockStyle.Fill;
+            pnlTabPicture.Location = new Point(3, 3);
+            pnlTabPicture.Name = "pnlTabPicture";
+            pnlTabPicture.RowCount = 1;
+            pnlTabPicture.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            pnlTabPicture.Size = new Size(1193, 335);
+            pnlTabPicture.TabIndex = 2;
+            // 
+            // picCarPhoto
+            // 
+            picCarPhoto.Dock = DockStyle.Fill;
+            picCarPhoto.Location = new Point(241, 3);
+            picCarPhoto.Name = "picCarPhoto";
+            picCarPhoto.Size = new Size(709, 329);
+            picCarPhoto.TabIndex = 1;
+            picCarPhoto.TabStop = false;
+            // 
+            // btnEditCar
+            // 
+            btnEditCar.Dock = DockStyle.Fill;
+            btnEditCar.Location = new Point(956, 3);
+            btnEditCar.Name = "btnEditCar";
+            btnEditCar.Size = new Size(234, 329);
+            btnEditCar.TabIndex = 2;
+            btnEditCar.Text = "Bewerk (niet voor klanten)";
+            btnEditCar.UseVisualStyleBackColor = true;
+            btnEditCar.Click += btnEditCar_Click;
+            // 
             // userCtrlCarListing
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -161,22 +191,25 @@
             Name = "userCtrlCarListing";
             Size = new Size(1199, 526);
             pnlTabCarListingLayout.ResumeLayout(false);
+            pnlTabLabels.ResumeLayout(false);
+            pnlTabLabels.PerformLayout();
+            pnlTabPicture.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)picCarPhoto).EndInit();
-            tableLayoutPanel1.ResumeLayout(false);
-            tableLayoutPanel1.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
         private TableLayoutPanel pnlTabCarListingLayout;
-        private PictureBox picCarPhoto;
-        private TableLayoutPanel tableLayoutPanel1;
+        private TableLayoutPanel pnlTabLabels;
         private Label lblMerk;
         private Label lblModel;
         private Label lblKenteken;
         private Label lblType;
         private Label lblDagprijs;
         private Label lblStatus;
+        private TableLayoutPanel pnlTabPicture;
+        private PictureBox picCarPhoto;
+        private Button btnEditCar;
     }
 }

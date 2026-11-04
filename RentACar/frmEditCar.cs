@@ -12,17 +12,22 @@ namespace RentACar
 {
     public partial class frmEditCar : Form
     {
-        Car car;
-        internal frmEditCar(Car _car)
+        readonly Car _car;
+        internal frmEditCar(Car car)
         {
             InitializeComponent();
-            car = _car;
-            txtMerkEdit.Text = car.merk;
-            txtModelEdit.Text = car.model;
-            txtKentekenEdit.Text = car.kenteken;
-            txtTypeEdit.Text = car.type;
-            numDagprijsEdit.Value = car.dagprijs;
-            txtStatusEdit.Text = car.status;
+            _car = car;
+            if (car == null)
+            {
+                MessageBox.Show("Geen auto gevonden");
+                return;
+            }
+            txtMerkEdit.Text = car.merk ?? "Onbekend";
+            txtModelEdit.Text = car.model ?? "Onbekend";
+            txtKentekenEdit.Text = car.kenteken ?? "Onbekend";
+            txtTypeEdit.Text = car.type ?? "Onbekend";
+            numDagprijsEdit.Value = car?.dagprijs ?? 0;
+            txtStatusEdit.Text = car.status ?? "Onbekend";
         }
 
         private void btnCancelEdit_Click(object sender, EventArgs e)

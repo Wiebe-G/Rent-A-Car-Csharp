@@ -13,11 +13,13 @@ namespace RentACar
 {
     public partial class userCtrlAdminCars : UserControl
     {
-        Passwords passwords = new();
-        List<Car> cars = new List<Car>();
-        internal userCtrlAdminCars()
+        readonly Passwords passwords = new();
+        List<Car> cars = [];
+        User user;
+        internal userCtrlAdminCars(User _user)
         {
             InitializeComponent();
+            user = _user;
             pnlTabAdminAllCars.AutoSize = true;
             pnlTabAdminAllCars.GrowStyle = TableLayoutPanelGrowStyle.AddRows;
             pnlTabAdminAllCars.RowStyles.Clear();
@@ -73,24 +75,26 @@ namespace RentACar
             int count = 0;
             foreach (var car in cars)
             {
-                userCtrlCarListing CarListing = new(car)
+                userCtrlCarListing CarListing = new(car, user)
                 {
                     Dock = DockStyle.Fill,
                 };
 
-                frmEditCar edit = new(car);
-                CarListing.Click += (sender, e) =>
-                {
-                    MessageBox.Show("Test");
-                    edit.Show();
-                };
+                //frmEditCar edit = new(car);
+                //CarListing.Click += (_, _) =>
+                //{
+                //    MessageBox.Show("Test");
+                //    edit.Show();
+                //};
 
                 // niet vergeten om te zeggen WAAR het moet worden toegevoegd slimpie
                 pnlTabAdminAllCars.Controls.Add(CarListing);
 
-                //if (count % 3 == 0)
-                pnlTabAdminAllCars.RowCount++;
-                pnlTabAdminAllCars.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                if (count % 3 == 0)
+                {
+                    pnlTabAdminAllCars.RowCount++;
+                    pnlTabAdminAllCars.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                }
                 count++;
             }
         }
@@ -113,6 +117,12 @@ namespace RentACar
                 return;
             }
             MessageBox.Show("Auto aangemaakt!");
+            txtMerk.Clear();
+            txtModel.Clear();
+            txtKenteken.Clear();
+            txtType.Clear();
+            numDagprijs.Value = 0;
+            txtStatus.Clear();
         }
 
         private static bool ValidateInput(string Merk, string Model, string Kenteken, string Type, decimal Dagprijs, string Status)
