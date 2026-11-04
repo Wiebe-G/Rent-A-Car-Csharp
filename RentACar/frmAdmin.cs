@@ -108,8 +108,13 @@ namespace RentACar
 
         private void RenderInvoicesMenu()
         {
-            MessageBox.Show("Nog niet af ");
+            userCtrlAdminInvoices invoices = new(_user)
+            {
+                Dock = DockStyle.Fill
+            };
+
             spltAdminLayout.Panel2.Controls.Clear();
+            spltAdminLayout.Panel2.Controls.Add(invoices);
         }
 
         private void RenderCustomersMenu()
