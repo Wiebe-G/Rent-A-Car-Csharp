@@ -21,6 +21,9 @@ namespace RentACar
             _user = user;
             // hier de role pakken omdat het te lastig was om in login te doen 
             GetCorrectRole();
+            btnOpenProfileForm.Text = $"{_user.fname} {_user.lname}";
+            btnOpenEmployeePanel.Enabled = _user.role == "customer" ? false : true;
+            btnOpenEmployeePanel.Visible = _user.role == "customer" ? false : true;
         }
 
         internal void GetCorrectRole()
@@ -30,12 +33,12 @@ namespace RentACar
             {
                 conn.Open();
 
-                string query = "SELECT * FROM role WHERE id = @id";
+                string query = "SELECT name FROM role WHERE id = @id";
 
-                MySqlCommand cmd = new(query, conn);
-                cmd.Parameters.AddWithValue("@id", _user.role);
+                using MySqlCommand cmd = new(query, conn);
+                cmd.Parameters.AddWithValue("@id", int.Parse(_user.role));
 
-                MySqlDataReader reader = cmd.ExecuteReader();
+                using MySqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
@@ -47,6 +50,20 @@ namespace RentACar
             {
                 MessageBox.Show($"Er is een fout opgetreden. {ex.Message} \n Stacktrace: {ex.StackTrace}");
             }
+        }
+
+        private void btnOpenEmployeePanel_Click(object sender, EventArgs e)
+        {
+            frmEmployee emp = new(_user);
+            this.Hide();
+            emp.Show();
+        }
+
+        private void btnOpenProfileForm_Click(object sender, EventArgs e)
+        {
+            frmUserProfile user = new(_user);
+            this.Hide();
+            user.Show();
         }
     }
 }
