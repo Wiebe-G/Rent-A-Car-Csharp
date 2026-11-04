@@ -135,8 +135,7 @@ namespace RentACar
 
                 using var cmd = conn.CreateCommand();
 
-                // waarom is ook alleen status met hoofdletter??? wat was ik aan het doen
-                cmd.CommandText = "UPDATE car set merk=@merk, model=@model, kenteken=@kenteken, type=@type, dagprijs=@dagprijs, Status=@status " +
+                cmd.CommandText = "UPDATE car set merk=@merk, model=@model, kenteken=@kenteken, type=@type, dagprijs=@dagprijs, status=@status " +
                     "WHERE id=@id";
                 cmd.Parameters.AddWithValue("@merk", Merk);
                 cmd.Parameters.AddWithValue("@model", Model);
@@ -161,6 +160,44 @@ namespace RentACar
 
 
             return true;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Weet je zeker dat je de auto wil verwijderen?",
+                "Bevestig",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+            if (result == DialogResult.No)
+            {
+                MessageBox.Show("Ok");
+                return;
+            }
+            using MySqlConnection conn = new(passwords.ConnStr);
+
+            try
+            {
+                conn.Open();
+
+                using var cmd = conn.CreateCommand();
+                cmd.CommandText = "UPDATE car set deleted_at=@time WHERE id=@id";
+                cmd.Parameters.AddWithValue("@time", DateTime.Now);
+                cmd.Parameters.AddWithValue("@id", _car.id);
+
+                int RowsAffected = cmd.ExecuteNonQuery();
+
+                if (RowsAffected <= 0)
+                {
+                    MessageBox.Show("Kon niet verwijderen. Probeer het later opnieuw.");
+                    return;
+                }
+                MessageBox.Show("Auto verwijderd");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Er is een fout opgetreden. {ex.Message} \nStacktrace: {ex.StackTrace} \n{ex.Data}");
+            }
         }
     }
 }

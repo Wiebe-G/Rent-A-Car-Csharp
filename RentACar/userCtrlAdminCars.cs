@@ -33,7 +33,7 @@ namespace RentACar
             try
             {
                 conn.Open();
-                string query = "select * from car";
+                string query = "SELECT * FROM car WHERE deleted_at=null";
 
                 using MySqlCommand cmd = new(query, conn);
 

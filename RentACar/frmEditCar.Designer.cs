@@ -46,6 +46,7 @@
             tableLayoutPanel3 = new TableLayoutPanel();
             btnSaveChanges = new Button();
             btnCancelEdit = new Button();
+            btnDelete = new Button();
             pnlTabAdminEditCar.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numDagprijsEdit).BeginInit();
@@ -60,6 +61,7 @@
             pnlTabAdminEditCar.Controls.Add(tableLayoutPanel2, 0, 0);
             pnlTabAdminEditCar.Controls.Add(label7, 1, 0);
             pnlTabAdminEditCar.Controls.Add(tableLayoutPanel3, 0, 1);
+            pnlTabAdminEditCar.Controls.Add(btnDelete, 1, 1);
             pnlTabAdminEditCar.Dock = DockStyle.Fill;
             pnlTabAdminEditCar.Location = new Point(0, 0);
             pnlTabAdminEditCar.Name = "pnlTabAdminEditCar";
@@ -284,6 +286,18 @@
             btnCancelEdit.UseVisualStyleBackColor = false;
             btnCancelEdit.Click += btnCancelEdit_Click;
             // 
+            // btnDelete
+            // 
+            btnDelete.BackColor = Color.Red;
+            btnDelete.Dock = DockStyle.Fill;
+            btnDelete.Location = new Point(694, 450);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(456, 73);
+            btnDelete.TabIndex = 3;
+            btnDelete.Text = "Verwijderen";
+            btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
+            // 
             // frmEditCar
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -321,5 +335,6 @@
         private TableLayoutPanel tableLayoutPanel3;
         private Button btnSaveChanges;
         private Button btnCancelEdit;
+        private Button btnDelete;
     }
 }
