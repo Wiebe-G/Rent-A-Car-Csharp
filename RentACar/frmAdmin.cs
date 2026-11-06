@@ -68,7 +68,7 @@
                     break;
                 case "Planning":
                     // render planning menu, met knoppen per medewerker om agenda te zien
-                    // maar waarom dat niet gewoon in medewerkers menu?
+                    RenderPlanningMenu();
                     break;
                 case "Dashboard":
                     // prestatie dashboard menu, met per medewerker laten zien hoe veel auto's zijn verhuurd
@@ -98,6 +98,7 @@
 
         private void RenderInvoicesMenu()
         {
+            MessageBox.Show("Wordt aan gewerkt, en is nog niet functioneel");
             userCtrlAdminInvoices invoices = new(_user)
             {
                 Dock = DockStyle.Fill
@@ -110,17 +111,27 @@
         private void RenderCustomersMenu()
         {
             MessageBox.Show("Nog niet af ");
+            userCtrlAdminCustomers cust = new()
+            {
+                Dock = DockStyle.Fill
+            };
             spltAdminLayout.Panel2.Controls.Clear();
+            spltAdminLayout.Panel2.Controls.Add(cust);
         }
 
         private void RenderEmployeesMenu()
         {
-            // wacht waarom zouden we niet gewoon hier de planning inzetten
             MessageBox.Show("Nog niet af ");
             spltAdminLayout.Panel2.Controls.Clear();
         }
 
         private void RenderStockMenu()
+        {
+            MessageBox.Show("Nog niet af ");
+            spltAdminLayout.Panel2.Controls.Clear();
+        }
+
+        private void RenderPlanningMenu()
         {
             MessageBox.Show("Nog niet af ");
             spltAdminLayout.Panel2.Controls.Clear();

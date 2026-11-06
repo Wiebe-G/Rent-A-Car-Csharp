@@ -62,7 +62,7 @@ namespace RentACar
 
                 string query = "SELECT inv.* " +
                     "FROM invoice inv " +
-                    "INNER JOIN reservering res ON res.invoice_id = inv.id" +
+                    "INNER JOIN reservering res ON res.invoice_id = inv.id " +
                     "INNER JOIN reservering_car res_car ON car.id";
 
                 using MySqlCommand cmd = new(query, conn);
