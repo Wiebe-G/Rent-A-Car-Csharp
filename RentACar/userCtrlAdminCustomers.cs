@@ -46,7 +46,8 @@ namespace RentACar
                         email = reader.GetString("email"),
                         fname = reader.GetString("fname"),
                         lname = reader.GetString("lname"),
-                        status = reader.GetInt32("status")
+                        status = reader.GetInt32("status"),
+                        user_address_id = reader.GetInt32("user_address_id")
                     });
                     index++;
                 }
@@ -92,6 +93,12 @@ namespace RentACar
                     : "Inactief";
 
                 EditButton.Text = "Bewerk";
+
+                EditButton.Click += (sender, e) =>
+                {
+                    frmAdminEditUser edit = new(c);
+                    edit.Show();
+                };
 
                 pnlTabAdminAllCustomers.Controls.Add(LastName);
                 pnlTabAdminAllCustomers.Controls.Add(FirstName);
