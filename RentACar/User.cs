@@ -17,6 +17,6 @@ namespace RentACar
         internal string zipcode { get; set; } = string.Empty;
         internal string city { get; set; } = string.Empty;
         internal int user_id { get; set; }
-        internal int user_addressid { get; set; }
+        internal int user_address_id { get; set; }
     }
 }

@@ -6,7 +6,7 @@ namespace RentACar
 {
     public partial class frmUserProfile : Form
     {
-        private const string ConnStr = "Server=127.0.0.1;Port=3306;Database=rentacar;Uid=root;Pwd=;";
+        Passwords _passwords = new Passwords();
 
         User _user;
         bool _editing;
@@ -82,7 +82,7 @@ namespace RentACar
 
             try
             {
-                using (var conn = new MySqlConnection(ConnStr))
+                using (var conn = new MySqlConnection(_passwords.ConnStr))
                 {
                     conn.Open();
                     using (var tx = conn.BeginTransaction())
