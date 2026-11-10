@@ -190,5 +190,10 @@ namespace RentACar
 
             return true;
         }
+
+        internal void OpenAddCarTab()
+        {
+            tabAdminCars.SelectedTab = tabAdminAddCar;
+        }
     }
 }

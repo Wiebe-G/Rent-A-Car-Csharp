@@ -134,11 +134,25 @@ namespace RentACar
 
         private void btnAddCar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(
-                "De invoerform voor nieuwe auto's wordt als volgende stap toegevoegd.",
-                "Nog niet beschikbaar",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            using Form addCarForm = new()
+            {
+                Text = "Auto toevoegen",
+                StartPosition = FormStartPosition.CenterParent,
+                Size = new Size(1200, 600),
+                MinimumSize = new Size(1000, 500)
+            };
+
+            userCtrlAdminCars carsControl = new(_user)
+            {
+                Dock = DockStyle.Fill
+            };
+
+            addCarForm.Controls.Add(carsControl);
+            carsControl.OpenAddCarTab();
+
+            addCarForm.ShowDialog(this);
+
+            LoadCars();
         }
 
         private void btnEditCar_Click(object sender, EventArgs e)
