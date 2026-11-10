@@ -30,16 +30,19 @@
         {
             tabAdminCustomers = new TabControl();
             tabAdminAllCustomers = new TabPage();
-            pnlTabAdminAllCustomers = new TableLayoutPanel();
+            pnlTabAdminLayoutCustomers = new TableLayoutPanel();
+            pnlTabAdminSearch = new TableLayoutPanel();
             lblLastName = new Label();
             lblFirstName = new Label();
             lblStatus = new Label();
             lblEdit = new Label();
             txtSearchByLastName = new TextBox();
+            pnlTabAdminAllCustomers = new TableLayoutPanel();
             tabAdminAddCustomer = new TabPage();
             tabAdminCustomers.SuspendLayout();
             tabAdminAllCustomers.SuspendLayout();
-            pnlTabAdminAllCustomers.SuspendLayout();
+            pnlTabAdminLayoutCustomers.SuspendLayout();
+            pnlTabAdminSearch.SuspendLayout();
             SuspendLayout();
             // 
             // tabAdminCustomers
@@ -55,7 +58,7 @@
             // 
             // tabAdminAllCustomers
             // 
-            tabAdminAllCustomers.Controls.Add(pnlTabAdminAllCustomers);
+            tabAdminAllCustomers.Controls.Add(pnlTabAdminLayoutCustomers);
             tabAdminAllCustomers.Location = new Point(4, 29);
             tabAdminAllCustomers.Name = "tabAdminAllCustomers";
             tabAdminAllCustomers.Padding = new Padding(3);
@@ -64,36 +67,52 @@
             tabAdminAllCustomers.Text = "Alle klanten";
             tabAdminAllCustomers.UseVisualStyleBackColor = true;
             // 
-            // pnlTabAdminAllCustomers
+            // pnlTabAdminLayoutCustomers
             // 
-            pnlTabAdminAllCustomers.BackColor = SystemColors.ControlLight;
-            pnlTabAdminAllCustomers.ColumnCount = 4;
-            pnlTabAdminAllCustomers.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            pnlTabAdminAllCustomers.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            pnlTabAdminAllCustomers.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            pnlTabAdminAllCustomers.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            pnlTabAdminAllCustomers.Controls.Add(lblLastName, 0, 1);
-            pnlTabAdminAllCustomers.Controls.Add(lblFirstName, 1, 1);
-            pnlTabAdminAllCustomers.Controls.Add(lblStatus, 2, 1);
-            pnlTabAdminAllCustomers.Controls.Add(lblEdit, 3, 1);
-            pnlTabAdminAllCustomers.Controls.Add(txtSearchByLastName, 1, 0);
-            pnlTabAdminAllCustomers.Dock = DockStyle.Fill;
-            pnlTabAdminAllCustomers.Location = new Point(3, 3);
-            pnlTabAdminAllCustomers.Name = "pnlTabAdminAllCustomers";
-            pnlTabAdminAllCustomers.RowCount = 3;
-            pnlTabAdminAllCustomers.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            pnlTabAdminAllCustomers.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            pnlTabAdminAllCustomers.RowStyles.Add(new RowStyle(SizeType.Percent, 80F));
-            pnlTabAdminAllCustomers.Size = new Size(1086, 500);
-            pnlTabAdminAllCustomers.TabIndex = 0;
+            pnlTabAdminLayoutCustomers.BackColor = SystemColors.ControlLight;
+            pnlTabAdminLayoutCustomers.ColumnCount = 1;
+            pnlTabAdminLayoutCustomers.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            pnlTabAdminLayoutCustomers.Controls.Add(pnlTabAdminSearch, 0, 0);
+            pnlTabAdminLayoutCustomers.Controls.Add(pnlTabAdminAllCustomers, 0, 1);
+            pnlTabAdminLayoutCustomers.Dock = DockStyle.Fill;
+            pnlTabAdminLayoutCustomers.Location = new Point(3, 3);
+            pnlTabAdminLayoutCustomers.Name = "pnlTabAdminLayoutCustomers";
+            pnlTabAdminLayoutCustomers.RowCount = 2;
+            pnlTabAdminLayoutCustomers.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            pnlTabAdminLayoutCustomers.RowStyles.Add(new RowStyle(SizeType.Percent, 80F));
+            pnlTabAdminLayoutCustomers.Size = new Size(1086, 500);
+            pnlTabAdminLayoutCustomers.TabIndex = 0;
+            // 
+            // pnlTabAdminSearch
+            // 
+            pnlTabAdminSearch.BackColor = SystemColors.ControlLight;
+            pnlTabAdminSearch.ColumnCount = 4;
+            pnlTabAdminSearch.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            pnlTabAdminSearch.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            pnlTabAdminSearch.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            pnlTabAdminSearch.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            pnlTabAdminSearch.Controls.Add(lblLastName, 0, 1);
+            pnlTabAdminSearch.Controls.Add(lblFirstName, 1, 1);
+            pnlTabAdminSearch.Controls.Add(lblStatus, 2, 1);
+            pnlTabAdminSearch.Controls.Add(lblEdit, 3, 1);
+            pnlTabAdminSearch.Controls.Add(txtSearchByLastName, 1, 0);
+            pnlTabAdminSearch.Dock = DockStyle.Fill;
+            pnlTabAdminSearch.Location = new Point(3, 3);
+            pnlTabAdminSearch.Name = "pnlTabAdminSearch";
+            pnlTabAdminSearch.RowCount = 2;
+            pnlTabAdminSearch.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            pnlTabAdminSearch.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            pnlTabAdminSearch.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            pnlTabAdminSearch.Size = new Size(1080, 94);
+            pnlTabAdminSearch.TabIndex = 1;
             // 
             // lblLastName
             // 
             lblLastName.AutoSize = true;
             lblLastName.Dock = DockStyle.Fill;
-            lblLastName.Location = new Point(3, 50);
+            lblLastName.Location = new Point(3, 47);
             lblLastName.Name = "lblLastName";
-            lblLastName.Size = new Size(265, 50);
+            lblLastName.Size = new Size(264, 47);
             lblLastName.TabIndex = 0;
             lblLastName.Text = "Achternaam";
             lblLastName.TextAlign = ContentAlignment.MiddleCenter;
@@ -102,9 +121,9 @@
             // 
             lblFirstName.AutoSize = true;
             lblFirstName.Dock = DockStyle.Fill;
-            lblFirstName.Location = new Point(274, 50);
+            lblFirstName.Location = new Point(273, 47);
             lblFirstName.Name = "lblFirstName";
-            lblFirstName.Size = new Size(265, 50);
+            lblFirstName.Size = new Size(264, 47);
             lblFirstName.TabIndex = 1;
             lblFirstName.Text = "Voornaam";
             lblFirstName.TextAlign = ContentAlignment.MiddleCenter;
@@ -113,9 +132,9 @@
             // 
             lblStatus.AutoSize = true;
             lblStatus.Dock = DockStyle.Fill;
-            lblStatus.Location = new Point(545, 50);
+            lblStatus.Location = new Point(543, 47);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(265, 50);
+            lblStatus.Size = new Size(264, 47);
             lblStatus.TabIndex = 2;
             lblStatus.Text = "Status";
             lblStatus.TextAlign = ContentAlignment.MiddleCenter;
@@ -124,9 +143,9 @@
             // 
             lblEdit.AutoSize = true;
             lblEdit.Dock = DockStyle.Fill;
-            lblEdit.Location = new Point(816, 50);
+            lblEdit.Location = new Point(813, 47);
             lblEdit.Name = "lblEdit";
-            lblEdit.Size = new Size(267, 50);
+            lblEdit.Size = new Size(264, 47);
             lblEdit.TabIndex = 3;
             lblEdit.Text = "Bewerk";
             lblEdit.TextAlign = ContentAlignment.MiddleCenter;
@@ -135,13 +154,29 @@
             // 
             txtSearchByLastName.BackColor = SystemColors.ControlDark;
             txtSearchByLastName.Dock = DockStyle.Fill;
-            txtSearchByLastName.Location = new Point(274, 3);
+            txtSearchByLastName.Location = new Point(273, 3);
             txtSearchByLastName.Multiline = true;
             txtSearchByLastName.Name = "txtSearchByLastName";
             txtSearchByLastName.PlaceholderText = "Zoek op achternaam...";
-            txtSearchByLastName.Size = new Size(265, 44);
+            txtSearchByLastName.Size = new Size(264, 41);
             txtSearchByLastName.TabIndex = 4;
             txtSearchByLastName.TextChanged += txtSearchByLastName_TextChanged;
+            // 
+            // pnlTabAdminAllCustomers
+            // 
+            pnlTabAdminAllCustomers.ColumnCount = 4;
+            pnlTabAdminAllCustomers.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            pnlTabAdminAllCustomers.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            pnlTabAdminAllCustomers.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            pnlTabAdminAllCustomers.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            pnlTabAdminAllCustomers.Dock = DockStyle.Fill;
+            pnlTabAdminAllCustomers.Location = new Point(3, 103);
+            pnlTabAdminAllCustomers.Name = "pnlTabAdminAllCustomers";
+            pnlTabAdminAllCustomers.RowCount = 2;
+            pnlTabAdminAllCustomers.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            pnlTabAdminAllCustomers.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            pnlTabAdminAllCustomers.Size = new Size(1080, 394);
+            pnlTabAdminAllCustomers.TabIndex = 2;
             // 
             // tabAdminAddCustomer
             // 
@@ -162,8 +197,9 @@
             Size = new Size(1100, 539);
             tabAdminCustomers.ResumeLayout(false);
             tabAdminAllCustomers.ResumeLayout(false);
-            pnlTabAdminAllCustomers.ResumeLayout(false);
-            pnlTabAdminAllCustomers.PerformLayout();
+            pnlTabAdminLayoutCustomers.ResumeLayout(false);
+            pnlTabAdminSearch.ResumeLayout(false);
+            pnlTabAdminSearch.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -172,11 +208,13 @@
         private TabControl tabAdminCustomers;
         private TabPage tabAdminAllCustomers;
         private TabPage tabAdminAddCustomer;
-        private TableLayoutPanel pnlTabAdminAllCustomers;
+        private TableLayoutPanel pnlTabAdminLayoutCustomers;
+        private TableLayoutPanel pnlTabAdminSearch;
         private Label lblLastName;
         private Label lblFirstName;
         private Label lblStatus;
         private Label lblEdit;
         private TextBox txtSearchByLastName;
+        private TableLayoutPanel pnlTabAdminAllCustomers;
     }
 }

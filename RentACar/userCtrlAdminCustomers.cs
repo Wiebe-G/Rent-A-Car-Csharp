@@ -41,7 +41,7 @@ namespace RentACar
                 {
                     Customers.Insert(index, new User
                     {
-                        id = reader.GetInt32("id"),
+                        id = reader.GetInt32("user_id"),
                         role = "customer",
                         email = reader.GetString("email"),
                         fname = reader.GetString("fname"),
@@ -50,10 +50,60 @@ namespace RentACar
                     });
                     index++;
                 }
+
+                DisplayAllCustomers();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Er is een fout opgetreden: {ex.Message} \nStacktrace: {ex.StackTrace}");
+            }
+        }
+
+        private void DisplayAllCustomers()
+        {
+            int count = 0;
+            foreach (var c in Customers)
+            {
+                Label LastName = new()
+                {
+                    Dock = DockStyle.Fill,
+                    TextAlign = ContentAlignment.MiddleCenter
+                };
+                Label FirstName = new()
+                {
+                    Dock = DockStyle.Fill,
+                    TextAlign = ContentAlignment.MiddleCenter
+                };
+                Label Status = new()
+                {
+                    Dock = DockStyle.Fill,
+                    TextAlign = ContentAlignment.MiddleCenter
+                };
+                Button EditButton = new()
+                {
+                    Dock = DockStyle.Fill
+                };
+
+                LastName.Text = c.lname;
+                FirstName.Text = c.fname;
+
+                Status.Text = c.status == 1
+                    ? "Actief"
+                    : "Inactief";
+
+                EditButton.Text = "Bewerk";
+
+                pnlTabAdminAllCustomers.Controls.Add(LastName);
+                pnlTabAdminAllCustomers.Controls.Add(FirstName);
+                pnlTabAdminAllCustomers.Controls.Add(Status);
+                pnlTabAdminAllCustomers.Controls.Add(EditButton);
+
+                if (count % 3 == 0)
+                {
+                    pnlTabAdminAllCustomers.RowCount++;
+                    pnlTabAdminAllCustomers.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                }
+                count++;
             }
         }
 
