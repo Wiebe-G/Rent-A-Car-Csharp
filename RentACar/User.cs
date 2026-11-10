@@ -13,5 +13,10 @@ namespace RentACar
         internal string fname { get; set; } = string.Empty;
         internal string lname { get; set; } = string.Empty;
         internal string status { get; set; } = string.Empty;
+        internal string street { get; set; } = string.Empty;
+        internal string zipcode { get; set; } = string.Empty;
+        internal string city { get; set; } = string.Empty;
+        internal int user_id { get; set; }
+        internal int user_addressid { get; set; }
     }
 }
