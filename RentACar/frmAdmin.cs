@@ -110,7 +110,6 @@
 
         private void RenderCustomersMenu()
         {
-            MessageBox.Show("Nog niet af ");
             userCtrlAdminCustomers cust = new()
             {
                 Dock = DockStyle.Fill
