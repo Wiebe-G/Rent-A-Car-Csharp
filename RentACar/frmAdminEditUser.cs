@@ -42,7 +42,9 @@ namespace RentACar
 
             while (reader.Read())
             {
-                MessageBox.Show(reader.GetString("streetname"));
+                _user.street = reader.GetString("streetname");
+                _user.zipcode = reader.GetString("zipcode");
+                _user.city = reader.GetString("city");
             }
         }
 
