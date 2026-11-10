@@ -242,5 +242,38 @@ namespace RentACar
 
             Close();
         }
+
+        private void btnFleet_Click(object sender, EventArgs e)
+        {
+            pnlTabTopBarEmployee.Visible = true;
+            dgvCars.Visible = true;
+        }
+
+        private void btnCustomers_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "Het klantgedeelte wordt later toegevoegd.",
+                "Nog niet beschikbaar",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        }
+
+        private void btnDayOverview_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "Het dagoverzicht wordt later toegevoegd.",
+                "Nog niet beschikbaar",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        }
+
+        private void btnOpeningHours_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "De openingstijden worden later toegevoegd.",
+                "Nog niet beschikbaar",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        }
     }
 }
