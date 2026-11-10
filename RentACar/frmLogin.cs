@@ -62,8 +62,12 @@ namespace RentACar
                         fname = reader.GetString("fname"),
                         lname = reader.GetString("lname"),
                         email = reader.GetString("email"),
+<<<<<<< Updated upstream
                         // GetOrdinal gaf elke keer role_id 1 terug, godverdomme
                         role = reader.GetInt32("role_id").ToString()
+=======
+                        role = reader["role_id"].ToString() ?? string.Empty
+>>>>>>> Stashed changes
                     };
 
                     frmMain main = new(CurrentUser.LoggedInUser);
