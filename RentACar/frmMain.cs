@@ -33,12 +33,12 @@ namespace RentACar
             {
                 conn.Open();
 
-                string query = "SELECT * FROM role WHERE id = @id";
+                string query = "SELECT name FROM role WHERE id = @id";
 
-                MySqlCommand cmd = new(query, conn);
-                cmd.Parameters.AddWithValue("@id", _user.role);
+                using MySqlCommand cmd = new(query, conn);
+                cmd.Parameters.AddWithValue("@id", int.Parse(_user.role));
 
-                MySqlDataReader reader = cmd.ExecuteReader();
+                using MySqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
