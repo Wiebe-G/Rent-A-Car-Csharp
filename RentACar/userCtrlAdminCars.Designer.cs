@@ -50,6 +50,7 @@
             lblUitlegFoto = new Label();
             pnlTabCenterSaveButtonToCenterOfView = new TableLayoutPanel();
             btnSaveCar = new Button();
+            cmbStatus = new ComboBox();
             tabAdminCars.SuspendLayout();
             tabAdminAllCars.SuspendLayout();
             pnlAdminAllCars.SuspendLayout();
@@ -153,7 +154,7 @@
             pnlTabAdminCarsSideInputs.Controls.Add(txtKenteken, 0, 3);
             pnlTabAdminCarsSideInputs.Controls.Add(txtType, 1, 3);
             pnlTabAdminCarsSideInputs.Controls.Add(numDagprijs, 0, 5);
-            pnlTabAdminCarsSideInputs.Controls.Add(txtStatus, 1, 5);
+            pnlTabAdminCarsSideInputs.Controls.Add(cmbStatus, 1, 5);
             pnlTabAdminCarsSideInputs.Dock = DockStyle.Fill;
             pnlTabAdminCarsSideInputs.Location = new Point(3, 3);
             pnlTabAdminCarsSideInputs.Name = "pnlTabAdminCarsSideInputs";
@@ -339,6 +340,25 @@
             btnSaveCar.UseVisualStyleBackColor = false;
             btnSaveCar.Click += btnSaveCar_Click;
             // 
+            // cmbStatus
+            // 
+            cmbStatus.BackColor = SystemColors.ScrollBar;
+            cmbStatus.Dock = DockStyle.Fill;
+            cmbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbStatus.FormattingEnabled = true;
+            cmbStatus.Items.AddRange(new object[]
+            {
+                "beschikbaar",
+                "verhuurd",
+                "onderhoud",
+                "buiten gebruik"
+            });
+            cmbStatus.Location = new Point(354, 316);
+            cmbStatus.Name = "cmbStatus";
+            cmbStatus.Size = new Size(345, 28);
+            cmbStatus.TabIndex = 11;
+            cmbStatus.SelectedIndex = 0;
+            // 
             // userCtrlAdminCars
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -384,5 +404,6 @@
         private Label lblUitlegFoto;
         private TableLayoutPanel pnlTabCenterSaveButtonToCenterOfView;
         private Button btnSaveCar;
+        private ComboBox cmbStatus;
     }
 }
