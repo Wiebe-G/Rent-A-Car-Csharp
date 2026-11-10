@@ -223,11 +223,9 @@ namespace RentACar
 
         private void btnOpenAdminPanel_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(
-                "Het ownergedeelte wordt later toegevoegd.",
-                "Admin",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            frmAdmin admin = new(_user);
+            admin.Show();
+            Hide();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
