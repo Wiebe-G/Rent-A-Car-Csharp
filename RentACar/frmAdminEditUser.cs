@@ -68,7 +68,9 @@ namespace RentACar
             string Email = txtEmail.Text.Trim();
             if (!ValidateInputs(Fname, Lname, City, Zipcode, Street, Email)) return;
 
-            UpdateUser(Fname, Lname, City, Zipcode, Street, Email);
+            if (!UpdateUser(Fname, Lname, City, Zipcode, Street, Email)) return;
+
+            MessageBox.Show("Gebruiker bewerkt!");
         }
 
         private bool ValidateInputs(string Fname, string Lname, string City, string Zipcode, string Street, string Email)
@@ -98,10 +100,12 @@ namespace RentACar
             return true;
         }
 
-        private void UpdateUser(string Fname, string Lname, string City, string Zipcode, string Street, string Email)
+        private bool UpdateUser(string Fname, string Lname, string City, string Zipcode, string Street, string Email)
         {
             using MySqlConnection conn = new(passwords.ConnStr);
             conn.Open();
+
+            using MySqlTransaction transaction = conn.BeginTransaction();
 
             string query = "UPDATE user SET fname=@fname, lname=@lname, email=@email WHERE user_id=@id";
             using MySqlCommand cmd = new(query, conn);
@@ -115,24 +119,26 @@ namespace RentACar
             if (RowsAffected <= 0)
             {
                 MessageBox.Show("Er was een fout bij het updaten van de gebruiker. Probeer het later opnieuw.");
-                return;
+                return false;
             }
 
-            cmd.Parameters.Clear();
-            query = "UPDATE user_address SET streetname=@streetname, zipcode=@zipcode, city=@city WHERE id=@id";
-            cmd.Parameters.AddWithValue("@streetname", Street);
-            cmd.Parameters.AddWithValue("@zipcode", Zipcode);
-            cmd.Parameters.AddWithValue("@city", City);
-            cmd.Parameters.AddWithValue("@id", _user.user_address_id);
+            query = "UPDATE user_address SET streetname=@streetname, zipcode=@zipcode, city=@city WHERE id=@address_id";
+            MySqlCommand NewCMD = new(query, conn);
+            NewCMD.Parameters.AddWithValue("@streetname", Street);
+            NewCMD.Parameters.AddWithValue("@zipcode", Zipcode);
+            NewCMD.Parameters.AddWithValue("@city", City);
+            NewCMD.Parameters.AddWithValue("@address_id", _user.user_address_id);
 
-            int AddressRowsAffected = cmd.ExecuteNonQuery();
+            int AddressRowsAffected = NewCMD.ExecuteNonQuery();
             if (AddressRowsAffected <= 0)
             {
                 MessageBox.Show("Adresgegevens konden niet worden bijgewerkt. Probeer het later opnieuw");
-                return;
+                return false;
             }
 
-            return;
+            transaction.Commit();
+
+            return true;
         }
     }
 }
