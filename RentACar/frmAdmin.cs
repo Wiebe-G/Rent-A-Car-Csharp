@@ -17,6 +17,14 @@
                 MessageBox.Show("Dit gedeelte is alleen voor eigenaren.");
                 return;
             }
+
+            if (Screen.PrimaryScreen != null)
+            {
+                Width = Screen.PrimaryScreen.Bounds.Width;
+                Height = Screen.PrimaryScreen.Bounds.Height;
+                WindowState = FormWindowState.Maximized;
+                FormBorderStyle = FormBorderStyle.None;
+            }
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
