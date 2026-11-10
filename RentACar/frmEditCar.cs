@@ -122,6 +122,7 @@ namespace RentACar
                 && Kenteken == _car.kenteken
                 && Type == _car.type
                 && Status == _car.status
+                && Dagprijs == _car.dagprijs
                 )
             {
                 MessageBox.Show("Niks aangepast");
