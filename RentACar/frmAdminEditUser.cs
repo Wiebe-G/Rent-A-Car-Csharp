@@ -13,7 +13,7 @@ namespace RentACar
 {
     public partial class frmAdminEditUser : Form
     {
-        User _user;
+        readonly User _user;
         Passwords passwords = new();
         internal frmAdminEditUser(User user)
         {
@@ -56,6 +56,83 @@ namespace RentACar
             txtZipCode.Text = _user.zipcode;
             txtStreetname.Text = _user.street;
             txtEmail.Text = _user.email;
+        }
+
+        private void btnUpdateUser_Click(object sender, EventArgs e)
+        {
+            string Fname = txtFname.Text.Trim();
+            string Lname = txtLname.Text.Trim();
+            string City = txtCity.Text.Trim();
+            string Zipcode = txtZipCode.Text.Trim();
+            string Street = txtStreetname.Text.Trim();
+            string Email = txtEmail.Text.Trim();
+            if (!ValidateInputs(Fname, Lname, City, Zipcode, Street, Email)) return;
+
+            UpdateUser(Fname, Lname, City, Zipcode, Street, Email);
+        }
+
+        private bool ValidateInputs(string Fname, string Lname, string City, string Zipcode, string Street, string Email)
+        {
+            if (Fname.Length > 255
+                            || Lname.Length > 255
+                            || City.Length > 255
+                            || Zipcode.Length > 255
+                            || Street.Length > 255
+                            || Email.Length > 255)
+            {
+                MessageBox.Show("Input mag max 255 karakters zijn.");
+                return false;
+            }
+
+            if (Fname.Length < 1
+                            || Lname.Length < 1
+                            || City.Length < 1
+                            || Zipcode.Length < 1
+                            || Street.Length < 1
+                            || Email.Length < 1)
+            {
+                MessageBox.Show("Niet alle vereiste gegevens zijn ingevuld.");
+                return false;
+            }
+
+            return true;
+        }
+
+        private void UpdateUser(string Fname, string Lname, string City, string Zipcode, string Street, string Email)
+        {
+            using MySqlConnection conn = new(passwords.ConnStr);
+            conn.Open();
+
+            string query = "UPDATE user SET fname=@fname, lname=@lname, email=@email WHERE user_id=@id";
+            using MySqlCommand cmd = new(query, conn);
+
+            cmd.Parameters.AddWithValue("@fname", Fname);
+            cmd.Parameters.AddWithValue("@lname", Lname);
+            cmd.Parameters.AddWithValue("@email", Email);
+            cmd.Parameters.AddWithValue("@id", _user.id);
+
+            int RowsAffected = cmd.ExecuteNonQuery();
+            if (RowsAffected <= 0)
+            {
+                MessageBox.Show("Er was een fout bij het updaten van de gebruiker. Probeer het later opnieuw.");
+                return;
+            }
+
+            cmd.Parameters.Clear();
+            query = "UPDATE user_address SET streetname=@streetname, zipcode=@zipcode, city=@city WHERE id=@id";
+            cmd.Parameters.AddWithValue("@streetname", Street);
+            cmd.Parameters.AddWithValue("@zipcode", Zipcode);
+            cmd.Parameters.AddWithValue("@city", City);
+            cmd.Parameters.AddWithValue("@id", _user.user_address_id);
+
+            int AddressRowsAffected = cmd.ExecuteNonQuery();
+            if (AddressRowsAffected <= 0)
+            {
+                MessageBox.Show("Adresgegevens konden niet worden bijgewerkt. Probeer het later opnieuw");
+                return;
+            }
+
+            return;
         }
     }
 }
