@@ -38,7 +38,6 @@
             lblEdit = new Label();
             txtSearchByLastName = new TextBox();
             pnlTabAdminAllCustomers = new TableLayoutPanel();
-            tabAdminAddCustomer = new TabPage();
             tabAdminCustomers.SuspendLayout();
             tabAdminAllCustomers.SuspendLayout();
             pnlTabAdminLayoutCustomers.SuspendLayout();
@@ -48,7 +47,6 @@
             // tabAdminCustomers
             // 
             tabAdminCustomers.Controls.Add(tabAdminAllCustomers);
-            tabAdminCustomers.Controls.Add(tabAdminAddCustomer);
             tabAdminCustomers.Dock = DockStyle.Fill;
             tabAdminCustomers.Location = new Point(0, 0);
             tabAdminCustomers.Name = "tabAdminCustomers";
@@ -178,16 +176,6 @@
             pnlTabAdminAllCustomers.Size = new Size(1080, 394);
             pnlTabAdminAllCustomers.TabIndex = 2;
             // 
-            // tabAdminAddCustomer
-            // 
-            tabAdminAddCustomer.Location = new Point(4, 29);
-            tabAdminAddCustomer.Name = "tabAdminAddCustomer";
-            tabAdminAddCustomer.Padding = new Padding(3);
-            tabAdminAddCustomer.Size = new Size(1092, 506);
-            tabAdminAddCustomer.TabIndex = 1;
-            tabAdminAddCustomer.Text = "Voeg klant toe";
-            tabAdminAddCustomer.UseVisualStyleBackColor = true;
-            // 
             // userCtrlAdminCustomers
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -207,7 +195,6 @@
 
         private TabControl tabAdminCustomers;
         private TabPage tabAdminAllCustomers;
-        private TabPage tabAdminAddCustomer;
         private TableLayoutPanel pnlTabAdminLayoutCustomers;
         private TableLayoutPanel pnlTabAdminSearch;
         private Label lblLastName;
