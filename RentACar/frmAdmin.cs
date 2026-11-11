@@ -45,7 +45,7 @@
         {
             frmEmployee emp = new(_user);
             emp.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void ShowCorrectMenu(object? sender, EventArgs e)
@@ -128,8 +128,14 @@
 
         private void RenderEmployeesMenu()
         {
+            userCtrlAdminEmployees employees = new()
+            {
+                Dock = DockStyle.Fill
+            };
+
             MessageBox.Show("Nog niet af ");
             spltAdminLayout.Panel2.Controls.Clear();
+            spltAdminLayout.Panel2.Controls.Add(employees);
         }
 
         private void RenderStockMenu()
