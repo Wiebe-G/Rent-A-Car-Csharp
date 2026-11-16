@@ -18,6 +18,7 @@ namespace RentACar
         public userCtrlAdminEmployees()
         {
             InitializeComponent();
+            FetchEmployees();
         }
 
         internal void FetchEmployees()
@@ -27,7 +28,9 @@ namespace RentACar
 
             conn.Open();
 
-            string query = "SELECT * FROM user WHERE role_id <> 1";
+            string query = "SELECT user.user_id, user.role_id, user.user_address_id, user.fname, user.lname, user.email, user.status, role.name " +
+                "FROM user " +
+                "JOIN role ON role.id = user.role_id";
 
             using MySqlCommand cmd = new(query, conn);
 
@@ -35,12 +38,42 @@ namespace RentACar
 
             while (reader.Read())
             {
+
+                if (reader.GetString("name") == "customer")
+                {
+                    continue;
+                }
+                // hier adresgegvens ophalen en dan in de user instance zetten
                 employees.Insert(index, new User
                 {
-
+                    id = reader.GetInt32("user_id"),
+                    role = TranslateRoleName(reader.GetString("name")),
+                    email = reader.GetString("email"),
+                    fname = reader.GetString("fname"),
+                    lname = reader.GetString("lname"),
+                    status = reader.GetInt32("status"),
+                    user_address_id = reader.GetInt32("user_address_id")
                 });
                 index++;
             }
+        }
+
+        internal string TranslateRoleName(string input)
+        {
+            string output = "onbekend";
+            switch (input)
+            {
+                case "employee":
+                    output = "medewerker";
+                    break;
+                case "owner":
+                    output = "eigenaar";
+                    break;
+                default:
+                    break;
+            }
+
+            return output;
         }
     }
 }
