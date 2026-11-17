@@ -275,8 +275,6 @@ namespace RentACar
             {
                 return false;
             }
-            MessageBox.Show($"{RoleId} is id van {Role}");
-            return false;
             cmd.Parameters.AddWithValue("@role", RoleId);
             cmd.Parameters.AddWithValue("@UserAddressId", UserAddressId);
             cmd.Parameters.AddWithValue("@Fname", Fname);
