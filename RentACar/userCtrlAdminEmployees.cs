@@ -28,15 +28,12 @@ namespace RentACar
 
             conn.Open();
 
-            //string query = "SELECT user.user_id, user.role_id, user.user_address_id, user.fname, user.lname, user.email, user.status, " +
-            //    "role.name as role, " +
-            //    "user_address.id, user_address.streetname, user_address.zipcode, user_address.city " +
-            //    "FROM user " +
-            //    "JOIN role ON role.id = user.role_id " +
-            //    "JOIN user_address ON user.user_address_id = user_address.id " +
-            //    "WHERE role <> 'customer'";
-
-            string query = "SELECT user.user_id, user.role_id, user.user_address_id, user.fname, user.lname, user.email, user.status, role.name as role,\r\nuser_address.id, user_address.streetname, user_address.zipcode, user_address.city\r\nfrom user \r\njoin role on role.id = user.role_id\r\njoin user_address on user.user_address_id = user_address.id\r\nwhere role.name <> 'customer'";
+            string query = "SELECT user.user_id, user.role_id, user.user_address_id, user.fname, user.lname, user.email, user.status, role.name AS role, " +
+                "user_address.id, user_address.streetname, user_address.zipcode, user_address.city " +
+                "FROM user " +
+                "JOIN role ON role.id = user.role_id " +
+                "JOIN user_address ON user.user_address_id = user_address.id " +
+                "WHERE role.name <> 'customer'";
 
             using MySqlCommand cmd = new(query, conn);
 
@@ -58,6 +55,7 @@ namespace RentACar
                 });
                 index++;
             }
+            RenderEmployees();
         }
 
         internal string TranslateRoleName(string input)
@@ -76,6 +74,61 @@ namespace RentACar
             }
 
             return output;
+        }
+
+        internal void RenderEmployees()
+        {
+            foreach (var e in employees)
+            {
+                TableLayoutPanel tab = new()
+                {
+                    Dock = DockStyle.Fill,
+                    ColumnCount = 4,
+                };
+
+                for (int i = 0; i < 4; i++)
+                {
+                    tab.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25f));
+                }
+
+                Label Lname = new()
+                {
+                    Dock = DockStyle.Fill,
+                    Text = e.lname,
+                    TextAlign = ContentAlignment.MiddleCenter
+                };
+
+                Label Fname = new()
+                {
+                    Dock = DockStyle.Fill,
+                    Text = e.fname,
+                    TextAlign = ContentAlignment.MiddleCenter
+                };
+
+                Label Status = new()
+                {
+                    Dock = DockStyle.Fill,
+                    Text = e.status == 1
+                    ? "Actief"
+                    : "Inactief",
+                    TextAlign = ContentAlignment.MiddleCenter
+                };
+
+                Button Edit = new()
+                {
+                    Dock = DockStyle.Fill,
+                    Text = "Bewerk",
+                    TextAlign = ContentAlignment.MiddleCenter
+                };
+
+                tab.Controls.Add(Lname);
+                tab.Controls.Add(Fname);
+                tab.Controls.Add(Status);
+                tab.Controls.Add(Edit);
+
+                pnlTabAdminEmployeesLayout.RowStyles.Add(new RowStyle(SizeType.Percent, employees.Count / 4));
+                pnlTabAdminEmployeesLayout.Controls.Add(tab);
+            }
         }
     }
 }
