@@ -12,6 +12,10 @@ namespace RentACar
         public userCtrlAdminEmployees()
         {
             InitializeComponent();
+            pnlTabAdminEmployeesLayout.AutoScroll = true;
+            pnlTabAdminEmployeesLayout.RowStyles.Clear();
+            pnlTabAdminEmployeesLayout.RowCount = 0;
+
             FetchRoles();
             FetchEmployees();
         }
@@ -136,9 +140,10 @@ namespace RentACar
                 tab.Controls.Add(Role);
                 tab.Controls.Add(Edit);
 
+                pnlTabAdminEmployeesLayout.Controls.Add(tab);
+
                 pnlTabAdminEmployeesLayout.RowCount++;
                 pnlTabAdminEmployeesLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-                pnlTabAdminEmployeesLayout.Controls.Add(tab);
             }
         }
 

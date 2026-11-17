@@ -133,7 +133,6 @@
                 Dock = DockStyle.Fill
             };
 
-            MessageBox.Show("Nog niet af ");
             spltAdminLayout.Panel2.Controls.Clear();
             spltAdminLayout.Panel2.Controls.Add(employees);
         }
