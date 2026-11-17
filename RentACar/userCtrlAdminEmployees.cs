@@ -8,7 +8,7 @@ namespace RentACar
     {
         readonly Passwords passwords = new();
         List<User> employees = [];
-        List<string> Roles = [];
+        List<Role> Roles = [];
         public userCtrlAdminEmployees()
         {
             InitializeComponent();
@@ -263,7 +263,21 @@ namespace RentACar
              * haal alle rollen op uit de db, zit dit in een list bovenaan, zet ze in de combobox (dropdown)
              * en kijk dan hier naar welke waarde het heeft en pak die id, en zet die in de parameter
             */
-            cmd.Parameters.AddWithValue("@role", 2);
+            int RoleId = 0;
+
+            foreach (Role r in Roles)
+            {
+                if (r.name == Role)
+                    RoleId = r.id;
+            }
+
+            if (RoleId <= 0)
+            {
+                return false;
+            }
+            MessageBox.Show($"{RoleId} is id van {Role}");
+            return false;
+            cmd.Parameters.AddWithValue("@role", RoleId);
             cmd.Parameters.AddWithValue("@UserAddressId", UserAddressId);
             cmd.Parameters.AddWithValue("@Fname", Fname);
             cmd.Parameters.AddWithValue("@Lname", Lname);
@@ -295,7 +309,11 @@ namespace RentACar
             int index = 0;
             while (readinger.Read())
             {
-                Roles.Insert(index, readinger.GetString("name"));
+                Roles.Insert(index, new Role
+                {
+                    id = readinger.GetInt32("id"),
+                    name = readinger.GetString("name")
+                });
                 index++;
             }
 
@@ -304,13 +322,15 @@ namespace RentACar
             {
                 for (int i = 0; i < Roles.Count; i++)
                 {
-                    cmbRole.Items.Add(Roles[i]);
+                    cmbRole.Items.Add(Roles[i].name);
                 }
             }
             finally
             {
                 cmbRole.EndUpdate();
             }
+
+            cmbRole.DropDownStyle = ComboBoxStyle.DropDownList;
         }
     }
 }
