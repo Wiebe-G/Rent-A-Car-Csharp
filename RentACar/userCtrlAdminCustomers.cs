@@ -52,7 +52,7 @@ namespace RentACar
                     index++;
                 }
 
-                DisplayAllCustomers();
+                DisplayAllCustomers(Customers);
             }
             catch (Exception ex)
             {
@@ -60,10 +60,10 @@ namespace RentACar
             }
         }
 
-        private void DisplayAllCustomers()
+        private void DisplayAllCustomers(List<User> cust)
         {
             int count = 0;
-            foreach (var c in Customers)
+            foreach (var c in cust)
             {
                 Label LastName = new()
                 {

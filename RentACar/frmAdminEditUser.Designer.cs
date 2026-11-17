@@ -39,10 +39,12 @@
             lblEmail = new Label();
             txtStreetname = new TextBox();
             txtEmail = new TextBox();
-            btnUpdateUser = new Button();
-            btnCancel = new Button();
             lblRole = new Label();
             cmbRole = new ComboBox();
+            btnUpdateUser = new Button();
+            btnCancel = new Button();
+            lblStatus = new Label();
+            lstStatus = new ListBox();
             pnlTabEditUser.SuspendLayout();
             pnlTabAddress.SuspendLayout();
             SuspendLayout();
@@ -62,19 +64,22 @@
             pnlTabEditUser.Controls.Add(lblEmail, 0, 2);
             pnlTabEditUser.Controls.Add(txtStreetname, 2, 1);
             pnlTabEditUser.Controls.Add(txtEmail, 1, 2);
-            pnlTabEditUser.Controls.Add(btnUpdateUser, 1, 4);
-            pnlTabEditUser.Controls.Add(btnCancel, 0, 4);
             pnlTabEditUser.Controls.Add(lblRole, 0, 3);
             pnlTabEditUser.Controls.Add(cmbRole, 1, 3);
+            pnlTabEditUser.Controls.Add(btnUpdateUser, 1, 5);
+            pnlTabEditUser.Controls.Add(btnCancel, 0, 5);
+            pnlTabEditUser.Controls.Add(lblStatus, 0, 4);
+            pnlTabEditUser.Controls.Add(lstStatus, 1, 4);
             pnlTabEditUser.Dock = DockStyle.Fill;
             pnlTabEditUser.Location = new Point(0, 0);
             pnlTabEditUser.Name = "pnlTabEditUser";
-            pnlTabEditUser.RowCount = 5;
-            pnlTabEditUser.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            pnlTabEditUser.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            pnlTabEditUser.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            pnlTabEditUser.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            pnlTabEditUser.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            pnlTabEditUser.RowCount = 6;
+            pnlTabEditUser.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            pnlTabEditUser.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            pnlTabEditUser.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            pnlTabEditUser.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            pnlTabEditUser.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            pnlTabEditUser.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
             pnlTabEditUser.Size = new Size(1147, 471);
             pnlTabEditUser.TabIndex = 1;
             // 
@@ -84,7 +89,7 @@
             lblName.Dock = DockStyle.Fill;
             lblName.Location = new Point(3, 0);
             lblName.Name = "lblName";
-            lblName.Size = new Size(223, 94);
+            lblName.Size = new Size(223, 78);
             lblName.TabIndex = 0;
             lblName.Text = "Naam";
             lblName.TextAlign = ContentAlignment.MiddleCenter;
@@ -98,7 +103,7 @@
             txtFname.Multiline = true;
             txtFname.Name = "txtFname";
             txtFname.PlaceholderText = "Voornaam";
-            txtFname.Size = new Size(438, 74);
+            txtFname.Size = new Size(438, 58);
             txtFname.TabIndex = 1;
             // 
             // txtLname
@@ -110,7 +115,7 @@
             txtLname.Multiline = true;
             txtLname.Name = "txtLname";
             txtLname.PlaceholderText = "Achternaam";
-            txtLname.Size = new Size(440, 74);
+            txtLname.Size = new Size(440, 58);
             txtLname.TabIndex = 4;
             // 
             // pnlTabAddress
@@ -121,11 +126,11 @@
             pnlTabAddress.Controls.Add(txtCity, 0, 0);
             pnlTabAddress.Controls.Add(txtZipCode, 1, 0);
             pnlTabAddress.Dock = DockStyle.Fill;
-            pnlTabAddress.Location = new Point(232, 97);
+            pnlTabAddress.Location = new Point(232, 81);
             pnlTabAddress.Name = "pnlTabAddress";
             pnlTabAddress.RowCount = 1;
             pnlTabAddress.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            pnlTabAddress.Size = new Size(452, 88);
+            pnlTabAddress.Size = new Size(452, 72);
             pnlTabAddress.TabIndex = 5;
             // 
             // txtCity
@@ -137,7 +142,7 @@
             txtCity.Multiline = true;
             txtCity.Name = "txtCity";
             txtCity.PlaceholderText = "Stad";
-            txtCity.Size = new Size(206, 68);
+            txtCity.Size = new Size(206, 52);
             txtCity.TabIndex = 0;
             // 
             // txtZipCode
@@ -149,16 +154,16 @@
             txtZipCode.Multiline = true;
             txtZipCode.Name = "txtZipCode";
             txtZipCode.PlaceholderText = "Postcode";
-            txtZipCode.Size = new Size(206, 68);
+            txtZipCode.Size = new Size(206, 52);
             txtZipCode.TabIndex = 1;
             // 
             // lblAddress
             // 
             lblAddress.AutoSize = true;
             lblAddress.Dock = DockStyle.Fill;
-            lblAddress.Location = new Point(3, 94);
+            lblAddress.Location = new Point(3, 78);
             lblAddress.Name = "lblAddress";
-            lblAddress.Size = new Size(223, 94);
+            lblAddress.Size = new Size(223, 78);
             lblAddress.TabIndex = 6;
             lblAddress.Text = "Adresgegevens:";
             lblAddress.TextAlign = ContentAlignment.MiddleCenter;
@@ -167,9 +172,9 @@
             // 
             lblEmail.AutoSize = true;
             lblEmail.Dock = DockStyle.Fill;
-            lblEmail.Location = new Point(3, 188);
+            lblEmail.Location = new Point(3, 156);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(223, 94);
+            lblEmail.Size = new Size(223, 78);
             lblEmail.TabIndex = 7;
             lblEmail.Text = "Email";
             lblEmail.TextAlign = ContentAlignment.MiddleCenter;
@@ -178,58 +183,33 @@
             // 
             txtStreetname.BackColor = SystemColors.ControlLight;
             txtStreetname.Dock = DockStyle.Fill;
-            txtStreetname.Location = new Point(697, 104);
+            txtStreetname.Location = new Point(697, 88);
             txtStreetname.Margin = new Padding(10);
             txtStreetname.Multiline = true;
             txtStreetname.Name = "txtStreetname";
             txtStreetname.PlaceholderText = "Straatnaam en huisnummer";
-            txtStreetname.Size = new Size(440, 74);
+            txtStreetname.Size = new Size(440, 58);
             txtStreetname.TabIndex = 9;
             // 
             // txtEmail
             // 
             txtEmail.BackColor = SystemColors.ControlLight;
             txtEmail.Dock = DockStyle.Fill;
-            txtEmail.Location = new Point(239, 198);
+            txtEmail.Location = new Point(239, 166);
             txtEmail.Margin = new Padding(10);
             txtEmail.Multiline = true;
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "Email-adres";
-            txtEmail.Size = new Size(438, 74);
+            txtEmail.Size = new Size(438, 58);
             txtEmail.TabIndex = 10;
-            // 
-            // btnUpdateUser
-            // 
-            btnUpdateUser.BackColor = Color.DarkOrchid;
-            btnUpdateUser.Dock = DockStyle.Fill;
-            btnUpdateUser.Location = new Point(244, 391);
-            btnUpdateUser.Margin = new Padding(15);
-            btnUpdateUser.Name = "btnUpdateUser";
-            btnUpdateUser.Size = new Size(428, 65);
-            btnUpdateUser.TabIndex = 2;
-            btnUpdateUser.Text = "Update gebruiker";
-            btnUpdateUser.UseVisualStyleBackColor = false;
-            btnUpdateUser.Click += btnUpdateUser_Click;
-            // 
-            // btnCancel
-            // 
-            btnCancel.BackColor = Color.Silver;
-            btnCancel.Dock = DockStyle.Fill;
-            btnCancel.Location = new Point(15, 391);
-            btnCancel.Margin = new Padding(15);
-            btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(199, 65);
-            btnCancel.TabIndex = 3;
-            btnCancel.Text = "Annuleren";
-            btnCancel.UseVisualStyleBackColor = false;
             // 
             // lblRole
             // 
             lblRole.AutoSize = true;
             lblRole.Dock = DockStyle.Fill;
-            lblRole.Location = new Point(3, 282);
+            lblRole.Location = new Point(3, 234);
             lblRole.Name = "lblRole";
-            lblRole.Size = new Size(223, 94);
+            lblRole.Size = new Size(223, 78);
             lblRole.TabIndex = 11;
             lblRole.Text = "Rol";
             lblRole.TextAlign = ContentAlignment.MiddleCenter;
@@ -239,10 +219,54 @@
             cmbRole.BackColor = SystemColors.ControlLight;
             cmbRole.Dock = DockStyle.Fill;
             cmbRole.FormattingEnabled = true;
-            cmbRole.Location = new Point(232, 285);
+            cmbRole.Location = new Point(232, 237);
             cmbRole.Name = "cmbRole";
             cmbRole.Size = new Size(452, 28);
             cmbRole.TabIndex = 13;
+            // 
+            // btnUpdateUser
+            // 
+            btnUpdateUser.BackColor = Color.DarkOrchid;
+            btnUpdateUser.Dock = DockStyle.Fill;
+            btnUpdateUser.Location = new Point(244, 405);
+            btnUpdateUser.Margin = new Padding(15);
+            btnUpdateUser.Name = "btnUpdateUser";
+            btnUpdateUser.Size = new Size(428, 51);
+            btnUpdateUser.TabIndex = 2;
+            btnUpdateUser.Text = "Update gebruiker";
+            btnUpdateUser.UseVisualStyleBackColor = false;
+            btnUpdateUser.Click += btnUpdateUser_Click;
+            // 
+            // btnCancel
+            // 
+            btnCancel.BackColor = Color.Silver;
+            btnCancel.Dock = DockStyle.Fill;
+            btnCancel.Location = new Point(15, 405);
+            btnCancel.Margin = new Padding(15);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(199, 51);
+            btnCancel.TabIndex = 3;
+            btnCancel.Text = "Annuleren";
+            btnCancel.UseVisualStyleBackColor = false;
+            // 
+            // lblStatus
+            // 
+            lblStatus.AutoSize = true;
+            lblStatus.Dock = DockStyle.Fill;
+            lblStatus.Location = new Point(3, 312);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(223, 78);
+            lblStatus.TabIndex = 14;
+            lblStatus.Text = "Status";
+            lblStatus.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lstStatus
+            // 
+            lstStatus.FormattingEnabled = true;
+            lstStatus.Location = new Point(232, 315);
+            lstStatus.Name = "lstStatus";
+            lstStatus.Size = new Size(150, 64);
+            lstStatus.TabIndex = 15;
             // 
             // frmAdminEditUser
             // 
@@ -277,5 +301,7 @@
         private TextBox txtEmail;
         private Label lblRole;
         private ComboBox cmbRole;
+        private Label lblStatus;
+        private ListBox lstStatus;
     }
 }
