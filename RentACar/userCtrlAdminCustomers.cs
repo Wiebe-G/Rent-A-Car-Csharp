@@ -52,7 +52,7 @@ namespace RentACar
                     index++;
                 }
 
-                DisplayAllCustomers();
+                DisplayAllCustomers(Customers);
             }
             catch (Exception ex)
             {
@@ -60,10 +60,10 @@ namespace RentACar
             }
         }
 
-        private void DisplayAllCustomers()
+        private void DisplayAllCustomers(List<User> cust)
         {
             int count = 0;
-            foreach (var c in Customers)
+            foreach (var c in cust)
             {
                 Label LastName = new()
                 {
@@ -116,7 +116,17 @@ namespace RentACar
 
         private void txtSearchByLastName_TextChanged(object sender, EventArgs e)
         {
-            MessageBox.Show("Hallo o/");
+            string search = txtSearchByLastName.Text.Trim();
+            if (search.Length < 0)
+            {
+                pnlTabAdminAllCustomers.Controls.Clear();
+                DisplayAllCustomers(Customers);
+                return;
+            }
+
+            List<User> filtered = Customers.Where(c => c.lname.StartsWith(search)).ToList();
+            pnlTabAdminAllCustomers.Controls.Clear();
+            DisplayAllCustomers(filtered);
         }
     }
 }

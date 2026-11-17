@@ -17,6 +17,14 @@
                 MessageBox.Show("Dit gedeelte is alleen voor eigenaren.");
                 return;
             }
+
+            if (Screen.PrimaryScreen != null)
+            {
+                Width = Screen.PrimaryScreen.Bounds.Width;
+                Height = Screen.PrimaryScreen.Bounds.Height;
+                WindowState = FormWindowState.Maximized;
+                FormBorderStyle = FormBorderStyle.None;
+            }
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -37,7 +45,7 @@
         {
             frmEmployee emp = new(_user);
             emp.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void ShowCorrectMenu(object? sender, EventArgs e)
@@ -120,8 +128,13 @@
 
         private void RenderEmployeesMenu()
         {
-            MessageBox.Show("Nog niet af ");
+            userCtrlAdminEmployees employees = new()
+            {
+                Dock = DockStyle.Fill
+            };
+
             spltAdminLayout.Panel2.Controls.Clear();
+            spltAdminLayout.Panel2.Controls.Add(employees);
         }
 
         private void RenderStockMenu()
