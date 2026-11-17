@@ -8,9 +8,11 @@ namespace RentACar
     {
         readonly Passwords passwords = new();
         List<User> employees = [];
+        List<string> Roles = [];
         public userCtrlAdminEmployees()
         {
             InitializeComponent();
+            FetchRoles();
             FetchEmployees();
         }
 
@@ -161,14 +163,19 @@ namespace RentACar
             string Zip = txtZipCode.Text.Trim();
             string Street = txtStreetname.Text.Trim();
             string Email = txtEmail.Text.Trim();
-            string Role = cmbRole.SelectedText.ToString().Trim();
+            string Role = cmbRole.Text.ToString().Trim();
             string Password = txtPassword.Text.Trim();
             string PasswordConfirm = txtPassConfirm.Text.Trim();
             if (!ValidateInput(Fname, Lname, City, Zip, Street, Email, Password, PasswordConfirm)) return;
 
-            if (!CreateEmployee(Fname, Lname, City, Zip, Street, Email, Password)) return;
+            if (!CreateEmployee(Fname, Lname, City, Zip, Street, Email, Role, Password)) return;
 
             MessageBox.Show("Medewerker is aangemaakt!");
+            ClearInputs();
+        }
+
+        private void ClearInputs()
+        {
             txtFname.Clear();
             txtLname.Clear();
             txtCity.Clear();
@@ -228,7 +235,7 @@ namespace RentACar
             return true;
         }
 
-        private bool CreateEmployee(string Fname, string Lname, string City, string Zip, string Street, string Email, string Pass)
+        private bool CreateEmployee(string Fname, string Lname, string City, string Zip, string Street, string Email, string Role, string Pass)
         {
             string Hash = BC.HashPassword(Pass, workFactor: 12);
 
@@ -273,6 +280,37 @@ namespace RentACar
             }
 
             return true;
+        }
+
+        internal void FetchRoles()
+        {
+            string query = "SELECT * FROM role";
+
+            using MySqlConnection conn = new(passwords.ConnStr);
+            conn.Open();
+
+            using MySqlCommand command = new(query, conn);
+            using MySqlDataReader readinger = command.ExecuteReader();
+
+            int index = 0;
+            while (readinger.Read())
+            {
+                Roles.Insert(index, readinger.GetString("name"));
+                index++;
+            }
+
+            cmbRole.BeginUpdate();
+            try
+            {
+                for (int i = 0; i < Roles.Count; i++)
+                {
+                    cmbRole.Items.Add(Roles[i]);
+                }
+            }
+            finally
+            {
+                cmbRole.EndUpdate();
+            }
         }
     }
 }
