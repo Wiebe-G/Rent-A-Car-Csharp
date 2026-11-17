@@ -28,9 +28,15 @@ namespace RentACar
 
             conn.Open();
 
-            string query = "SELECT user.user_id, user.role_id, user.user_address_id, user.fname, user.lname, user.email, user.status, role.name " +
-                "FROM user " +
-                "JOIN role ON role.id = user.role_id";
+            //string query = "SELECT user.user_id, user.role_id, user.user_address_id, user.fname, user.lname, user.email, user.status, " +
+            //    "role.name as role, " +
+            //    "user_address.id, user_address.streetname, user_address.zipcode, user_address.city " +
+            //    "FROM user " +
+            //    "JOIN role ON role.id = user.role_id " +
+            //    "JOIN user_address ON user.user_address_id = user_address.id " +
+            //    "WHERE role <> 'customer'";
+
+            string query = "SELECT user.user_id, user.role_id, user.user_address_id, user.fname, user.lname, user.email, user.status, role.name as role,\r\nuser_address.id, user_address.streetname, user_address.zipcode, user_address.city\r\nfrom user \r\njoin role on role.id = user.role_id\r\njoin user_address on user.user_address_id = user_address.id\r\nwhere role.name <> 'customer'";
 
             using MySqlCommand cmd = new(query, conn);
 
@@ -38,21 +44,17 @@ namespace RentACar
 
             while (reader.Read())
             {
-
-                if (reader.GetString("name") == "customer")
-                {
-                    continue;
-                }
-                // hier adresgegvens ophalen en dan in de user instance zetten
                 employees.Insert(index, new User
                 {
                     id = reader.GetInt32("user_id"),
-                    role = TranslateRoleName(reader.GetString("name")),
+                    role = TranslateRoleName(reader.GetString("role")),
                     email = reader.GetString("email"),
                     fname = reader.GetString("fname"),
                     lname = reader.GetString("lname"),
                     status = reader.GetInt32("status"),
-                    user_address_id = reader.GetInt32("user_address_id")
+                    street = reader.GetString("streetname"),
+                    city = reader.GetString("city"),
+                    zipcode = reader.GetString("zipcode")
                 });
                 index++;
             }
