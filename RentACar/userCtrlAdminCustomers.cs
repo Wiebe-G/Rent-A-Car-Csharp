@@ -116,7 +116,17 @@ namespace RentACar
 
         private void txtSearchByLastName_TextChanged(object sender, EventArgs e)
         {
-            MessageBox.Show("Hallo o/");
+            string search = txtSearchByLastName.Text.Trim();
+            if (search.Length < 0)
+            {
+                pnlTabAdminAllCustomers.Controls.Clear();
+                DisplayAllCustomers(Customers);
+                return;
+            }
+
+            List<User> filtered = Customers.Where(c => c.lname.StartsWith(search)).ToList();
+            pnlTabAdminAllCustomers.Controls.Clear();
+            DisplayAllCustomers(filtered);
         }
     }
 }
