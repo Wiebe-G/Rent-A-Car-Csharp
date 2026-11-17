@@ -437,6 +437,7 @@
             txtPassword.Location = new Point(242, 315);
             txtPassword.Multiline = true;
             txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '*';
             txtPassword.PlaceholderText = "Wachtwoord...";
             txtPassword.Size = new Size(473, 72);
             txtPassword.TabIndex = 15;
@@ -448,6 +449,7 @@
             txtPassConfirm.Location = new Point(721, 315);
             txtPassConfirm.Multiline = true;
             txtPassConfirm.Name = "txtPassConfirm";
+            txtPassConfirm.PasswordChar = '*';
             txtPassConfirm.PlaceholderText = "Herhaal wachtwoord...";
             txtPassConfirm.Size = new Size(474, 72);
             txtPassConfirm.TabIndex = 16;
