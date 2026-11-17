@@ -30,7 +30,6 @@
         {
             tabAdminEmployees = new TabControl();
             tabAdminAllEmployees = new TabPage();
-            tabAdminMakeEmployee = new TabPage();
             pnlTabGioIsEenTeringlijer = new TableLayoutPanel();
             pnlTabAdminSearchEmployee = new TableLayoutPanel();
             txtSearchEmployeeByLastName = new TextBox();
@@ -38,7 +37,9 @@
             lblFirstName = new Label();
             lblStatus = new Label();
             lblEditButton = new Label();
+            lblRole = new Label();
             pnlTabAdminEmployeesLayout = new TableLayoutPanel();
+            tabAdminMakeEmployee = new TabPage();
             tabAdminEmployees.SuspendLayout();
             tabAdminAllEmployees.SuspendLayout();
             pnlTabGioIsEenTeringlijer.SuspendLayout();
@@ -67,16 +68,6 @@
             tabAdminAllEmployees.TabIndex = 0;
             tabAdminAllEmployees.Text = "Alle medewerkers";
             // 
-            // tabAdminMakeEmployee
-            // 
-            tabAdminMakeEmployee.BackColor = SystemColors.ControlLight;
-            tabAdminMakeEmployee.Location = new Point(4, 29);
-            tabAdminMakeEmployee.Name = "tabAdminMakeEmployee";
-            tabAdminMakeEmployee.Padding = new Padding(3);
-            tabAdminMakeEmployee.Size = new Size(1204, 479);
-            tabAdminMakeEmployee.TabIndex = 1;
-            tabAdminMakeEmployee.Text = "Maak medewerker aan";
-            // 
             // pnlTabGioIsEenTeringlijer
             // 
             pnlTabGioIsEenTeringlijer.ColumnCount = 1;
@@ -95,16 +86,18 @@
             // 
             // pnlTabAdminSearchEmployee
             // 
-            pnlTabAdminSearchEmployee.ColumnCount = 4;
-            pnlTabAdminSearchEmployee.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            pnlTabAdminSearchEmployee.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            pnlTabAdminSearchEmployee.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            pnlTabAdminSearchEmployee.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            pnlTabAdminSearchEmployee.ColumnCount = 5;
+            pnlTabAdminSearchEmployee.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            pnlTabAdminSearchEmployee.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            pnlTabAdminSearchEmployee.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            pnlTabAdminSearchEmployee.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            pnlTabAdminSearchEmployee.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
             pnlTabAdminSearchEmployee.Controls.Add(txtSearchEmployeeByLastName, 1, 0);
             pnlTabAdminSearchEmployee.Controls.Add(lblLastName, 0, 1);
             pnlTabAdminSearchEmployee.Controls.Add(lblFirstName, 1, 1);
             pnlTabAdminSearchEmployee.Controls.Add(lblStatus, 2, 1);
-            pnlTabAdminSearchEmployee.Controls.Add(lblEditButton, 3, 1);
+            pnlTabAdminSearchEmployee.Controls.Add(lblEditButton, 4, 1);
+            pnlTabAdminSearchEmployee.Controls.Add(lblRole, 3, 1);
             pnlTabAdminSearchEmployee.Dock = DockStyle.Fill;
             pnlTabAdminSearchEmployee.Location = new Point(3, 3);
             pnlTabAdminSearchEmployee.Name = "pnlTabAdminSearchEmployee";
@@ -118,12 +111,13 @@
             // 
             txtSearchEmployeeByLastName.BackColor = SystemColors.ControlDark;
             txtSearchEmployeeByLastName.Dock = DockStyle.Fill;
-            txtSearchEmployeeByLastName.Location = new Point(301, 3);
+            txtSearchEmployeeByLastName.Location = new Point(241, 3);
             txtSearchEmployeeByLastName.Multiline = true;
             txtSearchEmployeeByLastName.Name = "txtSearchEmployeeByLastName";
             txtSearchEmployeeByLastName.PlaceholderText = "Zoek op achternaam...";
-            txtSearchEmployeeByLastName.Size = new Size(292, 38);
+            txtSearchEmployeeByLastName.Size = new Size(232, 38);
             txtSearchEmployeeByLastName.TabIndex = 0;
+            txtSearchEmployeeByLastName.TextChanged += txtSearchEmployeeByLastName_TextChanged;
             // 
             // lblLastName
             // 
@@ -131,7 +125,7 @@
             lblLastName.Dock = DockStyle.Fill;
             lblLastName.Location = new Point(3, 44);
             lblLastName.Name = "lblLastName";
-            lblLastName.Size = new Size(292, 44);
+            lblLastName.Size = new Size(232, 44);
             lblLastName.TabIndex = 1;
             lblLastName.Text = "Achternaam";
             lblLastName.TextAlign = ContentAlignment.MiddleCenter;
@@ -140,9 +134,9 @@
             // 
             lblFirstName.AutoSize = true;
             lblFirstName.Dock = DockStyle.Fill;
-            lblFirstName.Location = new Point(301, 44);
+            lblFirstName.Location = new Point(241, 44);
             lblFirstName.Name = "lblFirstName";
-            lblFirstName.Size = new Size(292, 44);
+            lblFirstName.Size = new Size(232, 44);
             lblFirstName.TabIndex = 2;
             lblFirstName.Text = "Voornaam";
             lblFirstName.TextAlign = ContentAlignment.MiddleCenter;
@@ -151,9 +145,9 @@
             // 
             lblStatus.AutoSize = true;
             lblStatus.Dock = DockStyle.Fill;
-            lblStatus.Location = new Point(599, 44);
+            lblStatus.Location = new Point(479, 44);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(292, 44);
+            lblStatus.Size = new Size(232, 44);
             lblStatus.TabIndex = 3;
             lblStatus.Text = "Status";
             lblStatus.TextAlign = ContentAlignment.MiddleCenter;
@@ -162,28 +156,45 @@
             // 
             lblEditButton.AutoSize = true;
             lblEditButton.Dock = DockStyle.Fill;
-            lblEditButton.Location = new Point(897, 44);
+            lblEditButton.Location = new Point(955, 44);
             lblEditButton.Name = "lblEditButton";
-            lblEditButton.Size = new Size(292, 44);
+            lblEditButton.Size = new Size(234, 44);
             lblEditButton.TabIndex = 4;
             lblEditButton.Text = "Bewerk";
             lblEditButton.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // lblRole
+            // 
+            lblRole.AutoSize = true;
+            lblRole.Dock = DockStyle.Fill;
+            lblRole.Location = new Point(717, 44);
+            lblRole.Name = "lblRole";
+            lblRole.Size = new Size(232, 44);
+            lblRole.TabIndex = 5;
+            lblRole.Text = "Rol";
+            lblRole.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // pnlTabAdminEmployeesLayout
             // 
             pnlTabAdminEmployeesLayout.ColumnCount = 1;
-            pnlTabAdminEmployeesLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            pnlTabAdminEmployeesLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            pnlTabAdminEmployeesLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            pnlTabAdminEmployeesLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            pnlTabAdminEmployeesLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
             pnlTabAdminEmployeesLayout.Dock = DockStyle.Fill;
             pnlTabAdminEmployeesLayout.Location = new Point(3, 97);
             pnlTabAdminEmployeesLayout.Name = "pnlTabAdminEmployeesLayout";
-            pnlTabAdminEmployeesLayout.RowCount = 2;
-            pnlTabAdminEmployeesLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            pnlTabAdminEmployeesLayout.RowCount = 1;
             pnlTabAdminEmployeesLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             pnlTabAdminEmployeesLayout.Size = new Size(1192, 373);
             pnlTabAdminEmployeesLayout.TabIndex = 1;
+            // 
+            // tabAdminMakeEmployee
+            // 
+            tabAdminMakeEmployee.BackColor = SystemColors.ControlLight;
+            tabAdminMakeEmployee.Location = new Point(4, 29);
+            tabAdminMakeEmployee.Name = "tabAdminMakeEmployee";
+            tabAdminMakeEmployee.Padding = new Padding(3);
+            tabAdminMakeEmployee.Size = new Size(1204, 479);
+            tabAdminMakeEmployee.TabIndex = 1;
+            tabAdminMakeEmployee.Text = "Maak medewerker aan";
             // 
             // userCtrlAdminEmployees
             // 
@@ -214,5 +225,6 @@
         private Label lblEditButton;
         private TableLayoutPanel pnlTabAdminEmployeesLayout;
         private TabPage tabAdminMakeEmployee;
+        private Label lblRole;
     }
 }

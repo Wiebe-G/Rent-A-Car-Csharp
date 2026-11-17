@@ -44,7 +44,7 @@ namespace RentACar
                 employees.Insert(index, new User
                 {
                     id = reader.GetInt32("user_id"),
-                    role = TranslateRoleName(reader.GetString("role")),
+                    role = reader.GetString("role"),
                     email = reader.GetString("email"),
                     fname = reader.GetString("fname"),
                     lname = reader.GetString("lname"),
@@ -55,7 +55,7 @@ namespace RentACar
                 });
                 index++;
             }
-            RenderEmployees();
+            RenderEmployees(employees);
         }
 
         internal string TranslateRoleName(string input)
@@ -76,19 +76,19 @@ namespace RentACar
             return output;
         }
 
-        internal void RenderEmployees()
+        internal void RenderEmployees(List<User> emps)
         {
-            foreach (var e in employees)
+            foreach (var e in emps)
             {
                 TableLayoutPanel tab = new()
                 {
                     Dock = DockStyle.Fill,
-                    ColumnCount = 4,
+                    ColumnCount = 5,
                 };
 
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < tab.ColumnCount; i++)
                 {
-                    tab.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25f));
+                    tab.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20f));
                 }
 
                 Label Lname = new()
@@ -114,6 +114,13 @@ namespace RentACar
                     TextAlign = ContentAlignment.MiddleCenter
                 };
 
+                Label Role = new()
+                {
+                    Dock = DockStyle.Fill,
+                    Text = TranslateRoleName(e.role),
+                    TextAlign = ContentAlignment.MiddleCenter
+                };
+
                 Button Edit = new()
                 {
                     Dock = DockStyle.Fill,
@@ -121,14 +128,34 @@ namespace RentACar
                     TextAlign = ContentAlignment.MiddleCenter
                 };
 
+                Edit.Click += (_, _) =>
+                {
+                    frmAdminEditUser edit = new(e);
+                    edit.Show();
+                };
+
                 tab.Controls.Add(Lname);
                 tab.Controls.Add(Fname);
                 tab.Controls.Add(Status);
+                tab.Controls.Add(Role);
                 tab.Controls.Add(Edit);
 
-                pnlTabAdminEmployeesLayout.RowStyles.Add(new RowStyle(SizeType.Percent, employees.Count / 4));
+                pnlTabAdminEmployeesLayout.RowCount++;
+                pnlTabAdminEmployeesLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
                 pnlTabAdminEmployeesLayout.Controls.Add(tab);
             }
+        }
+
+        private void txtSearchEmployeeByLastName_TextChanged(object sender, EventArgs e)
+        {
+            if (txtSearchEmployeeByLastName.Text.Trim().Length < 0)
+            {
+                FetchEmployees();
+                return;
+            }
+            List<User> filtered = employees.Where(e => e.lname.StartsWith(txtSearchEmployeeByLastName.Text.Trim())).ToList();
+            pnlTabAdminEmployeesLayout.Controls.Clear();
+            RenderEmployees(filtered);
         }
     }
 }

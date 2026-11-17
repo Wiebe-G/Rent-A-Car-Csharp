@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,7 @@ namespace RentACar
     {
         readonly User _user;
         Passwords passwords = new();
+        List<string> Roles = [];
         internal frmAdminEditUser(User user)
         {
             InitializeComponent();
@@ -25,8 +27,8 @@ namespace RentACar
                 return;
             }
 
+            cmbRole.DropDownStyle = ComboBoxStyle.DropDownList;
             FetchAddressData();
-            RenderDataInTextboxes();
         }
 
         internal void FetchAddressData()
@@ -46,6 +48,26 @@ namespace RentACar
                 _user.zipcode = reader.GetString("zipcode");
                 _user.city = reader.GetString("city");
             }
+            FetchRoles();
+        }
+
+        internal void FetchRoles()
+        {
+            string query = "SELECT * FROM role";
+
+            using MySqlConnection conn = new(passwords.ConnStr);
+            conn.Open();
+
+            using MySqlCommand command = new(query, conn);
+            using MySqlDataReader readinger = command.ExecuteReader();
+
+            int index = 0;
+            while (readinger.Read())
+            {
+                Roles.Insert(index, readinger.GetString("name"));
+                index++;
+            }
+            RenderDataInTextboxes();
         }
 
         internal void RenderDataInTextboxes()
@@ -56,6 +78,14 @@ namespace RentACar
             txtZipCode.Text = _user.zipcode;
             txtStreetname.Text = _user.street;
             txtEmail.Text = _user.email;
+
+            for (int i = 0; i < Roles.Count; i++)
+            {
+                cmbRole.Items.Add(Roles[i].ToString());
+                if (Roles[i] == _user.role)
+                    cmbRole.SelectedIndex = i;
+            }
+
         }
 
         private void btnUpdateUser_Click(object sender, EventArgs e)
