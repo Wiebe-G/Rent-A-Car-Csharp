@@ -166,14 +166,32 @@ namespace RentACar
                     MessageBoxIcon.Information);
 
                 return;
-
             }
 
-            MessageBox.Show(
-                "De bewerkform voor auto's wordt als volgende stap toegevoegd.",
-                "Nog niet beschikbaar",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            DataGridViewRow selectedRow = dgvCars.SelectedRows[0];
+
+            Car selectedCar = new()
+            {
+                id = Convert.ToInt32(
+                    selectedRow.Cells["car_id"].Value).ToString(),
+                merk = Convert.ToString(
+                    selectedRow.Cells["merk"].Value) ?? string.Empty,
+                model = Convert.ToString(
+                    selectedRow.Cells["model"].Value) ?? string.Empty,
+                kenteken = Convert.ToString(
+                    selectedRow.Cells["kenteken"].Value) ?? string.Empty,
+                type = Convert.ToString(
+                    selectedRow.Cells["type"].Value) ?? string.Empty,
+                dagprijs = Convert.ToInt32(
+                    selectedRow.Cells["dagprijs"].Value),
+                status = Convert.ToString(
+                    selectedRow.Cells["status"].Value) ?? string.Empty
+            };
+
+            using frmEditCar editForm = new(selectedCar, _user);
+            editForm.ShowDialog(this);
+
+            LoadCars();
         }
 
         private void btnSetCarOutOfService_Click(object sender, EventArgs e)

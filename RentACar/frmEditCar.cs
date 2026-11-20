@@ -28,10 +28,21 @@ namespace RentACar
             txtModelEdit.Text = car.model ?? "Onbekend";
             txtKentekenEdit.Text = car.kenteken ?? "Onbekend";
             txtTypeEdit.Text = car.type ?? "Onbekend";
-            numDagprijsEdit.Value = car?.dagprijs ?? 0;
-            txtStatusEdit.Text = car.status ?? "Onbekend";
 
             numDagprijsEdit.Maximum = 100000;
+            numDagprijsEdit.Value = Math.Clamp(
+                (decimal)car.dagprijs,
+                numDagprijsEdit.Minimum,
+                numDagprijsEdit.Maximum);
+
+            string status = car.status?.ToLowerInvariant() ?? "beschikbaar";
+
+            cmbStatusEdit.SelectedItem = status;
+
+            if (cmbStatusEdit.SelectedIndex == -1)
+            {
+                cmbStatusEdit.SelectedIndex = 0;
+            }
         }
 
         private bool EnsureCarAndUserExistAndAreAllowed()
@@ -78,11 +89,31 @@ namespace RentACar
             string Kenteken = txtKentekenEdit.Text;
             string Type = txtTypeEdit.Text;
             decimal Dagprijs = numDagprijsEdit.Value;
-            string Status = txtStatusEdit.Text;
+            string Status = cmbStatusEdit.SelectedItem?.ToString()
+    ?? string.Empty;
             if (!ValidateInput(Merk, Model, Kenteken, Type, Dagprijs, Status)) return;
 
-            if (!EditCar(Merk, Model, Kenteken, Type, Dagprijs, Status)) return;
-            MessageBox.Show("Auto bewerkt! Sluit dit bericht om de pagina af te sluiten.");
+            DialogResult confirmation = MessageBox.Show(
+                "Weet je zeker dat je deze auto wilt aanpassen?",
+                "Wijziging bevestigen",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (confirmation != DialogResult.Yes)
+            {
+                return;
+            }
+
+            if (!EditCar(Merk, Model, Kenteken, Type, Dagprijs, Status))
+            {
+                return;
+            }
+
+            MessageBox.Show(
+                "Auto succesvol bewerkt.",
+                "Auto bewerken",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
 
             this.Close();
         }
@@ -121,8 +152,8 @@ namespace RentACar
                 && Model == _car.model
                 && Kenteken == _car.kenteken
                 && Type == _car.type
-                && Status == _car.status
                 && Dagprijs == _car.dagprijs
+                && Status == _car.status
                 )
             {
                 MessageBox.Show("Niks aangepast");
