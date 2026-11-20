@@ -143,6 +143,8 @@ namespace RentACar
             {
                 return;
             }
+
+            MessageBox.Show("Tijden zijn aangepast!");
         }
 
         private bool CreateOpeningTimes(TimeOnly? MonOpen, TimeOnly? MonClose, TimeOnly? TueOpen, TimeOnly? TueClose, TimeOnly? WedOpen, TimeOnly? WedClose, TimeOnly? ThuOpen, TimeOnly? ThuClose, TimeOnly? FriOpen, TimeOnly? FriClose, TimeOnly? SatOpen, TimeOnly? SatClose, TimeOnly? SunOpen, TimeOnly? SunClose)
