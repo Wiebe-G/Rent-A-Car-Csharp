@@ -17,6 +17,7 @@ namespace RentACar
         public userCtrlAdminOpeningTimes()
         {
             InitializeComponent();
+            LoadOpeningTimes();
         }
 
         private void userCtrlAdminOpeningTimes_Load(object sender, EventArgs e)
@@ -27,6 +28,11 @@ namespace RentACar
         private void pnlTabOpeningTimes_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void LoadOpeningTimes()
+        {
+            MessageBox.Show("In deze method moeten de tijden worden opgehaald");
         }
 
         private void ChangeEnabledForOpened(object sender, EventArgs e)
@@ -133,9 +139,60 @@ namespace RentACar
                 SunClose = TimeOnly.FromTimeSpan(dateTimeSunClosed.Value.TimeOfDay);
             }
 
-            using MySqlConnection conn = new(passwords.ConnStr);
+            if (!CreateOpeningTimes(MonOpen, MonClose, TueOpen, TueClose, WedOpen, WedClose, ThuOpen, ThuClose, FriOpen, FriClose, SatOpen, SatClose, SunOpen, SunClose))
+            {
+                return;
+            }
+        }
 
+        private bool CreateOpeningTimes(TimeOnly? MonOpen, TimeOnly? MonClose, TimeOnly? TueOpen, TimeOnly? TueClose, TimeOnly? WedOpen, TimeOnly? WedClose, TimeOnly? ThuOpen, TimeOnly? ThuClose, TimeOnly? FriOpen, TimeOnly? FriClose, TimeOnly? SatOpen, TimeOnly? SatClose, TimeOnly? SunOpen, TimeOnly? SunClose)
+        {
+            MySqlConnection conn = new(passwords.ConnStr);
             conn.Open();
+            MySqlCommand cmd = conn.CreateCommand();
+            // BOMBOCLAT wat een query
+            cmd.CommandText = "UPDATE opening_times SET open = case day " +
+                "WHEN mon THEN @MonOpen " +
+                "WHEN tue THEN @TueOpen " +
+                "WHEN wed THEN @WedOpen " +
+                "WHEN thu THEN @ThuOpen " +
+                "WHEN fri THEN @FriOpen " +
+                "WHEN sat THEN @SatOpen " +
+                "WHEN sun THEN @SunOpen " +
+                "ELSE null" +
+                "end, close = case day " +
+                "WHEN mon THEN @MonClose " +
+                "WHEN tue THEN @TueClose " +
+                "WHEN wed THEN @WedClose " +
+                "WHEN thu THEN @ThuClose " +
+                "WHEN fri THEN @FriClose " +
+                "WHEN sat THEN @SatClose" +
+                "end";
+            cmd.Parameters.AddWithValue("@MonOpen", MonOpen);
+            cmd.Parameters.AddWithValue("@TueOpen", TueOpen);
+            cmd.Parameters.AddWithValue("@WedOpen", WedOpen);
+            cmd.Parameters.AddWithValue("@ThuOpen", ThuOpen);
+            cmd.Parameters.AddWithValue("@FriOpen", FriOpen);
+            cmd.Parameters.AddWithValue("@SatOpen", SatOpen);
+            cmd.Parameters.AddWithValue("@SunOpen", SunOpen);
+
+            cmd.Parameters.AddWithValue("@MonClose", MonClose);
+            cmd.Parameters.AddWithValue("@TueClose", TueClose);
+            cmd.Parameters.AddWithValue("@WedClose", WedClose);
+            cmd.Parameters.AddWithValue("@ThuClose", ThuClose);
+            cmd.Parameters.AddWithValue("@FriClose", FriClose);
+            cmd.Parameters.AddWithValue("@SatClose", SatClose);
+            cmd.Parameters.AddWithValue("@SunClose", SunClose);
+
+            int RowsAffected = cmd.ExecuteNonQuery();
+
+            if (RowsAffected < 0)
+            {
+                MessageBox.Show("Er is een probleem opgetreden. Probeer het later opnieuw.");
+                return false;
+            }
+
+            return true;
         }
     }
 }
