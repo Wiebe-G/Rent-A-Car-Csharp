@@ -152,21 +152,22 @@ namespace RentACar
             MySqlCommand cmd = conn.CreateCommand();
             // BOMBOCLAT wat een query
             cmd.CommandText = "UPDATE opening_times SET open = case day " +
-                "WHEN mon THEN @MonOpen " +
-                "WHEN tue THEN @TueOpen " +
-                "WHEN wed THEN @WedOpen " +
-                "WHEN thu THEN @ThuOpen " +
-                "WHEN fri THEN @FriOpen " +
-                "WHEN sat THEN @SatOpen " +
-                "WHEN sun THEN @SunOpen " +
-                "ELSE null" +
+                "WHEN 'mon' THEN @MonOpen " +
+                "WHEN 'tue' THEN @TueOpen " +
+                "WHEN 'wed' THEN @WedOpen " +
+                "WHEN 'thu' THEN @ThuOpen " +
+                "WHEN 'fri' THEN @FriOpen " +
+                "WHEN 'sat' THEN @SatOpen " +
+                "WHEN 'sun' THEN @SunOpen " +
+                "ELSE null " +
                 "end, close = case day " +
-                "WHEN mon THEN @MonClose " +
-                "WHEN tue THEN @TueClose " +
-                "WHEN wed THEN @WedClose " +
-                "WHEN thu THEN @ThuClose " +
-                "WHEN fri THEN @FriClose " +
-                "WHEN sat THEN @SatClose" +
+                "WHEN 'mon' THEN @MonClose " +
+                "WHEN 'tue' THEN @TueClose " +
+                "WHEN 'wed' THEN @WedClose " +
+                "WHEN 'thu' THEN @ThuClose " +
+                "WHEN 'fri' THEN @FriClose " +
+                "WHEN 'sat' THEN @SatClose " +
+                "WHEN 'sun' THEN @SunClose " +
                 "end";
             cmd.Parameters.AddWithValue("@MonOpen", MonOpen);
             cmd.Parameters.AddWithValue("@TueOpen", TueOpen);
