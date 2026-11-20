@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,10 +12,17 @@ using System.Windows.Forms;
 
 namespace RentACar
 {
+
     public partial class frmAdminEditUser : Form
     {
         readonly User _user;
         Passwords passwords = new();
+        List<string> Roles = [];
+        List<item> items = new()
+        {
+                new() { Text = "Actief", id = 1 },
+                new() { Text = "Inactief", id = 0 }
+                };
         internal frmAdminEditUser(User user)
         {
             InitializeComponent();
@@ -25,8 +33,8 @@ namespace RentACar
                 return;
             }
 
+            cmbRole.DropDownStyle = ComboBoxStyle.DropDownList;
             FetchAddressData();
-            RenderDataInTextboxes();
         }
 
         internal void FetchAddressData()
@@ -46,6 +54,26 @@ namespace RentACar
                 _user.zipcode = reader.GetString("zipcode");
                 _user.city = reader.GetString("city");
             }
+            FetchRoles();
+        }
+
+        internal void FetchRoles()
+        {
+            string query = "SELECT * FROM role";
+
+            using MySqlConnection conn = new(passwords.ConnStr);
+            conn.Open();
+
+            using MySqlCommand command = new(query, conn);
+            using MySqlDataReader readinger = command.ExecuteReader();
+
+            int index = 0;
+            while (readinger.Read())
+            {
+                Roles.Insert(index, readinger.GetString("name"));
+                index++;
+            }
+            RenderDataInTextboxes();
         }
 
         internal void RenderDataInTextboxes()
@@ -56,6 +84,22 @@ namespace RentACar
             txtZipCode.Text = _user.zipcode;
             txtStreetname.Text = _user.street;
             txtEmail.Text = _user.email;
+
+            for (int i = 0; i < Roles.Count; i++)
+            {
+                cmbRole.Items.Add(Roles[i].ToString());
+                if (Roles[i] == _user.role)
+                    cmbRole.SelectedIndex = i;
+            }
+
+            foreach (var i in items)
+            {
+                lstStatus.Items.Add(i.Text);
+            }
+
+            lstStatus.SelectedIndex = _user.status == 1
+                ? lstStatus.Items.IndexOf("Actief")
+                : lstStatus.Items.IndexOf("Inactief");
         }
 
         private void btnUpdateUser_Click(object sender, EventArgs e)
@@ -66,14 +110,16 @@ namespace RentACar
             string Zipcode = txtZipCode.Text.Trim();
             string Street = txtStreetname.Text.Trim();
             string Email = txtEmail.Text.Trim();
-            if (!ValidateInputs(Fname, Lname, City, Zipcode, Street, Email)) return;
+            object Status = lstStatus.SelectedItem;
+            int SelectedStatus = items.Where(i => i.Text == Status).First().id;
+            if (!ValidateInputs(Fname, Lname, City, Zipcode, Street, Email, SelectedStatus)) return;
 
-            if (!UpdateUser(Fname, Lname, City, Zipcode, Street, Email)) return;
+            if (!UpdateUser(Fname, Lname, City, Zipcode, Street, Email, SelectedStatus)) return;
 
             MessageBox.Show("Gebruiker bewerkt!");
         }
 
-        private bool ValidateInputs(string Fname, string Lname, string City, string Zipcode, string Street, string Email)
+        private bool ValidateInputs(string Fname, string Lname, string City, string Zipcode, string Street, string Email, int Status)
         {
             if (Fname.Length > 255
                             || Lname.Length > 255
@@ -83,6 +129,12 @@ namespace RentACar
                             || Email.Length > 255)
             {
                 MessageBox.Show("Input mag max 255 karakters zijn.");
+                return false;
+            }
+
+            if (Status is >= 2 && Status < 0)
+            {
+                MessageBox.Show("Geen status ingevuld.");
                 return false;
             }
 
@@ -100,19 +152,20 @@ namespace RentACar
             return true;
         }
 
-        private bool UpdateUser(string Fname, string Lname, string City, string Zipcode, string Street, string Email)
+        private bool UpdateUser(string Fname, string Lname, string City, string Zipcode, string Street, string Email, int Status)
         {
             using MySqlConnection conn = new(passwords.ConnStr);
             conn.Open();
 
             using MySqlTransaction transaction = conn.BeginTransaction();
 
-            string query = "UPDATE user SET fname=@fname, lname=@lname, email=@email WHERE user_id=@id";
+            string query = "UPDATE user SET fname=@fname, lname=@lname, email=@email, status=@status WHERE user_id=@id";
             using MySqlCommand cmd = new(query, conn);
 
             cmd.Parameters.AddWithValue("@fname", Fname);
             cmd.Parameters.AddWithValue("@lname", Lname);
             cmd.Parameters.AddWithValue("@email", Email);
+            cmd.Parameters.AddWithValue("@status", Status);
             cmd.Parameters.AddWithValue("@id", _user.id);
 
             int RowsAffected = cmd.ExecuteNonQuery();
@@ -140,5 +193,10 @@ namespace RentACar
 
             return true;
         }
+    }
+    internal class item
+    {
+        internal string Text { get; set; }
+        internal int id { get; set; }
     }
 }

@@ -222,6 +222,7 @@
             numDagprijsEdit.BackColor = SystemColors.ScrollBar;
             numDagprijsEdit.Dock = DockStyle.Fill;
             numDagprijsEdit.Location = new Point(3, 339);
+            numDagprijsEdit.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             numDagprijsEdit.Name = "numDagprijsEdit";
             numDagprijsEdit.Size = new Size(336, 27);
             numDagprijsEdit.TabIndex = 10;

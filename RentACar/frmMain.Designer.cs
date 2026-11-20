@@ -48,7 +48,7 @@
             pnlTabLayoutMainForm.RowCount = 2;
             pnlTabLayoutMainForm.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
             pnlTabLayoutMainForm.RowStyles.Add(new RowStyle(SizeType.Percent, 85F));
-            pnlTabLayoutMainForm.Size = new Size(1177, 488);
+            pnlTabLayoutMainForm.Size = new Size(1134, 467);
             pnlTabLayoutMainForm.TabIndex = 0;
             // 
             // pnlTabTopBarMain
@@ -64,16 +64,16 @@
             pnlTabTopBarMain.Name = "pnlTabTopBarMain";
             pnlTabTopBarMain.RowCount = 1;
             pnlTabTopBarMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            pnlTabTopBarMain.Size = new Size(1171, 67);
+            pnlTabTopBarMain.Size = new Size(1128, 64);
             pnlTabTopBarMain.TabIndex = 0;
             // 
             // btnOpenProfileForm
             // 
             btnOpenProfileForm.BackColor = SystemColors.ActiveBorder;
             btnOpenProfileForm.Dock = DockStyle.Fill;
-            btnOpenProfileForm.Location = new Point(939, 3);
+            btnOpenProfileForm.Location = new Point(904, 3);
             btnOpenProfileForm.Name = "btnOpenProfileForm";
-            btnOpenProfileForm.Size = new Size(229, 61);
+            btnOpenProfileForm.Size = new Size(221, 58);
             btnOpenProfileForm.TabIndex = 0;
             btnOpenProfileForm.Text = "Naam van gebruiker";
             btnOpenProfileForm.UseVisualStyleBackColor = false;
@@ -85,7 +85,7 @@
             btnOpenEmployeePanel.Dock = DockStyle.Fill;
             btnOpenEmployeePanel.Location = new Point(3, 3);
             btnOpenEmployeePanel.Name = "btnOpenEmployeePanel";
-            btnOpenEmployeePanel.Size = new Size(228, 61);
+            btnOpenEmployeePanel.Size = new Size(219, 58);
             btnOpenEmployeePanel.TabIndex = 1;
             btnOpenEmployeePanel.Text = "Medewerkers paneel";
             btnOpenEmployeePanel.UseVisualStyleBackColor = false;
@@ -95,7 +95,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1177, 488);
+            ClientSize = new Size(1134, 467);
             Controls.Add(pnlTabLayoutMainForm);
             Name = "frmMain";
             Text = "Alle auto's";

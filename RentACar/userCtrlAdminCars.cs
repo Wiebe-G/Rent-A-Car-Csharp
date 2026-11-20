@@ -80,13 +80,6 @@ namespace RentACar
                     Dock = DockStyle.Fill,
                 };
 
-                //frmEditCar edit = new(car);
-                //CarListing.Click += (_, _) =>
-                //{
-                //    MessageBox.Show("Test");
-                //    edit.Show();
-                //};
-
                 // niet vergeten om te zeggen WAAR het moet worden toegevoegd slimpie
                 pnlTabAdminAllCars.Controls.Add(CarListing);
 
