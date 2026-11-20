@@ -41,12 +41,12 @@
             txtKentekenEdit = new TextBox();
             txtTypeEdit = new TextBox();
             numDagprijsEdit = new NumericUpDown();
-            txtStatusEdit = new TextBox();
             label7 = new Label();
             tableLayoutPanel3 = new TableLayoutPanel();
             btnSaveChanges = new Button();
             btnCancelEdit = new Button();
             btnDelete = new Button();
+            cmbStatusEdit = new ComboBox();
             pnlTabAdminEditCar.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numDagprijsEdit).BeginInit();
@@ -87,7 +87,7 @@
             tableLayoutPanel2.Controls.Add(txtKentekenEdit, 0, 3);
             tableLayoutPanel2.Controls.Add(txtTypeEdit, 1, 3);
             tableLayoutPanel2.Controls.Add(numDagprijsEdit, 0, 5);
-            tableLayoutPanel2.Controls.Add(txtStatusEdit, 1, 5);
+            tableLayoutPanel2.Controls.Add(cmbStatusEdit, 1, 5);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(3, 3);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -227,17 +227,6 @@
             numDagprijsEdit.Size = new Size(336, 27);
             numDagprijsEdit.TabIndex = 10;
             // 
-            // txtStatusEdit
-            // 
-            txtStatusEdit.BackColor = SystemColors.ScrollBar;
-            txtStatusEdit.Dock = DockStyle.Fill;
-            txtStatusEdit.Location = new Point(345, 339);
-            txtStatusEdit.Multiline = true;
-            txtStatusEdit.Name = "txtStatusEdit";
-            txtStatusEdit.PlaceholderText = "Status (beschikbaar, verhuurd, etc)";
-            txtStatusEdit.Size = new Size(337, 99);
-            txtStatusEdit.TabIndex = 11;
-            // 
             // label7
             // 
             label7.AutoSize = true;
@@ -299,6 +288,24 @@
             btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
             // 
+            // cmbStatusEdit
+            // 
+            cmbStatusEdit.BackColor = SystemColors.ScrollBar;
+            cmbStatusEdit.Dock = DockStyle.Fill;
+            cmbStatusEdit.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbStatusEdit.FormattingEnabled = true;
+            cmbStatusEdit.Items.AddRange(new object[]
+{
+    "beschikbaar",
+    "verhuurd",
+    "onderhoud",
+    "buiten gebruik"
+});
+            cmbStatusEdit.Location = new Point(345, 339);
+            cmbStatusEdit.Name = "cmbStatusEdit";
+            cmbStatusEdit.Size = new Size(337, 28);
+            cmbStatusEdit.TabIndex = 11;
+            // 
             // frmEditCar
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -331,11 +338,11 @@
         private TextBox txtKentekenEdit;
         private TextBox txtTypeEdit;
         private NumericUpDown numDagprijsEdit;
-        private TextBox txtStatusEdit;
         private Label label7;
         private TableLayoutPanel tableLayoutPanel3;
         private Button btnSaveChanges;
         private Button btnCancelEdit;
         private Button btnDelete;
+        private ComboBox cmbStatusEdit;
     }
 }

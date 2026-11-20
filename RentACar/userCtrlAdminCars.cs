@@ -99,7 +99,7 @@ namespace RentACar
             string Kenteken = txtKenteken.Text.Trim();
             string Type = txtType.Text.Trim();
             decimal Dagprijs = numDagprijs.Value;
-            string Status = txtStatus.Text.Trim();
+            string Status = cmbStatus.Text;
 
             if (!ValidateInput(Merk, Model, Kenteken, Type, Dagprijs, Status))
             {
@@ -115,7 +115,7 @@ namespace RentACar
             txtKenteken.Clear();
             txtType.Clear();
             numDagprijs.Value = 0;
-            txtStatus.Clear();
+            cmbStatus.SelectedIndex = 0;
         }
 
         private static bool ValidateInput(string Merk, string Model, string Kenteken, string Type, decimal Dagprijs, string Status)
@@ -182,6 +182,11 @@ namespace RentACar
             }
 
             return true;
+        }
+
+        internal void OpenAddCarTab()
+        {
+            tabAdminCars.SelectedTab = tabAdminAddCar;
         }
     }
 }

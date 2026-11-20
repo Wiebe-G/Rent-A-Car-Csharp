@@ -62,7 +62,6 @@ namespace RentACar
                         fname = reader.GetString("fname"),
                         lname = reader.GetString("lname"),
                         email = reader.GetString("email"),
-                        // GetOrdinal gaf elke keer role_id 1 terug, godverdomme
                         role = reader.GetInt32("role_id").ToString()
                     };
 
