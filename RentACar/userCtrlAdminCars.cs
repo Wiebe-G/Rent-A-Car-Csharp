@@ -33,7 +33,7 @@ namespace RentACar
             try
             {
                 conn.Open();
-                string query = "SELECT * FROM car WHERE deleted_at=null";
+                string query = "SELECT * FROM car WHERE deleted_at IS null";
 
                 using MySqlCommand cmd = new(query, conn);
 
@@ -80,13 +80,6 @@ namespace RentACar
                     Dock = DockStyle.Fill,
                 };
 
-                //frmEditCar edit = new(car);
-                //CarListing.Click += (_, _) =>
-                //{
-                //    MessageBox.Show("Test");
-                //    edit.Show();
-                //};
-
                 // niet vergeten om te zeggen WAAR het moet worden toegevoegd slimpie
                 pnlTabAdminAllCars.Controls.Add(CarListing);
 
@@ -106,7 +99,7 @@ namespace RentACar
             string Kenteken = txtKenteken.Text.Trim();
             string Type = txtType.Text.Trim();
             decimal Dagprijs = numDagprijs.Value;
-            string Status = txtStatus.Text.Trim();
+            string Status = cmbStatus.Text;
 
             if (!ValidateInput(Merk, Model, Kenteken, Type, Dagprijs, Status))
             {
@@ -122,7 +115,7 @@ namespace RentACar
             txtKenteken.Clear();
             txtType.Clear();
             numDagprijs.Value = 0;
-            txtStatus.Clear();
+            cmbStatus.SelectedIndex = 0;
         }
 
         private static bool ValidateInput(string Merk, string Model, string Kenteken, string Type, decimal Dagprijs, string Status)
@@ -189,6 +182,11 @@ namespace RentACar
             }
 
             return true;
+        }
+
+        internal void OpenAddCarTab()
+        {
+            tabAdminCars.SelectedTab = tabAdminAddCar;
         }
     }
 }

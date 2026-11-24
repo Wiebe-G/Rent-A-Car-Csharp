@@ -50,7 +50,7 @@ namespace RentACar
 
             using var Cmd = Conn.CreateCommand();
             // Maak gebruiker address gegevens entry aan
-            Cmd.CommandText = "INSERT INTO user_address (streetname, zipcode, city) VALUES (@City, @ZipCode, @StreetName)";
+            Cmd.CommandText = "INSERT INTO user_address (streetname, zipcode, city) VALUES (@StreetName, @ZipCode, @City)";
             Cmd.Parameters.AddWithValue("@City", City);
             Cmd.Parameters.AddWithValue("@ZipCode", ZipCode);
             Cmd.Parameters.AddWithValue("@StreetName", StreetName);

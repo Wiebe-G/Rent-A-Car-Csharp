@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace RentACar
+﻿namespace RentACar
 {
     public partial class frmAdmin : Form
     {
@@ -26,6 +16,14 @@ namespace RentACar
             {
                 MessageBox.Show("Dit gedeelte is alleen voor eigenaren.");
                 return;
+            }
+
+            if (Screen.PrimaryScreen != null)
+            {
+                Width = Screen.PrimaryScreen.Bounds.Width;
+                Height = Screen.PrimaryScreen.Bounds.Height;
+                WindowState = FormWindowState.Maximized;
+                FormBorderStyle = FormBorderStyle.None;
             }
         }
 
@@ -47,7 +45,7 @@ namespace RentACar
         {
             frmEmployee emp = new(_user);
             emp.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void ShowCorrectMenu(object? sender, EventArgs e)
@@ -78,7 +76,7 @@ namespace RentACar
                     break;
                 case "Planning":
                     // render planning menu, met knoppen per medewerker om agenda te zien
-                    // maar waarom dat niet gewoon in medewerkers menu?
+                    RenderPlanningMenu();
                     break;
                 case "Dashboard":
                     // prestatie dashboard menu, met per medewerker laten zien hoe veel auto's zijn verhuurd
@@ -108,24 +106,44 @@ namespace RentACar
 
         private void RenderInvoicesMenu()
         {
-            MessageBox.Show("Nog niet af ");
+            MessageBox.Show("Wordt aan gewerkt, en is nog niet functioneel");
+            userCtrlAdminInvoices invoices = new(_user)
+            {
+                Dock = DockStyle.Fill
+            };
+
             spltAdminLayout.Panel2.Controls.Clear();
+            spltAdminLayout.Panel2.Controls.Add(invoices);
         }
 
         private void RenderCustomersMenu()
         {
-            MessageBox.Show("Nog niet af ");
+            userCtrlAdminCustomers cust = new()
+            {
+                Dock = DockStyle.Fill
+            };
             spltAdminLayout.Panel2.Controls.Clear();
+            spltAdminLayout.Panel2.Controls.Add(cust);
         }
 
         private void RenderEmployeesMenu()
         {
-            // wacht waarom zouden we niet gewoon hier de planning inzetten
+            userCtrlAdminEmployees employees = new()
+            {
+                Dock = DockStyle.Fill
+            };
+
+            spltAdminLayout.Panel2.Controls.Clear();
+            spltAdminLayout.Panel2.Controls.Add(employees);
+        }
+
+        private void RenderStockMenu()
+        {
             MessageBox.Show("Nog niet af ");
             spltAdminLayout.Panel2.Controls.Clear();
         }
 
-        private void RenderStockMenu()
+        private void RenderPlanningMenu()
         {
             MessageBox.Show("Nog niet af ");
             spltAdminLayout.Panel2.Controls.Clear();
@@ -139,8 +157,14 @@ namespace RentACar
 
         private void RenderOpeningTimesMenu()
         {
-            MessageBox.Show("Nog niet af ");
             spltAdminLayout.Panel2.Controls.Clear();
+
+            userCtrlAdminOpeningTimes open = new()
+            {
+                Dock = DockStyle.Fill
+            };
+
+            spltAdminLayout.Panel2.Controls.Add(open);
         }
 
         private void RenderLogsMenu()

@@ -8,15 +8,11 @@ namespace RentACar
 {
     internal class User
     {
+        internal int id { get; set; }
         internal string email { get; set; } = string.Empty;
         internal string role { get; set; } = string.Empty;
         internal string fname { get; set; } = string.Empty;
         internal string lname { get; set; } = string.Empty;
         internal string status { get; set; } = string.Empty;
-        internal string street { get; set; } = string.Empty;
-        internal string zipcode { get; set; } = string.Empty;
-        internal string city { get; set; } = string.Empty;
-        internal int user_id { get; set; }
-        internal int user_address_id { get; set; }
     }
 }
