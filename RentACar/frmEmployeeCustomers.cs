@@ -195,6 +195,7 @@ namespace RentACar
                         u.fname,
                         u.lname,
                         u.email,
+                        u.status AS status_id,
                         CASE
                             WHEN u.status = 1 THEN 'Actief'
                             ELSE 'Inactief'
@@ -250,6 +251,11 @@ namespace RentACar
             if (dgvCustomers.Columns["user_address_id"] != null)
             {
                 dgvCustomers.Columns["user_address_id"].Visible = false;
+            }
+
+            if (dgvCustomers.Columns["status_id"] != null)
+            {
+                dgvCustomers.Columns["status_id"].Visible = false;
             }
 
             SetHeader("fname", "Voornaam");
@@ -525,6 +531,278 @@ namespace RentACar
             {
                 MessageBox.Show(
                     $"De klantgegevens konden niet worden bijgewerkt.\n\n{exception.Message}",
+                    "Databasefout",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnToggleCustomerStatus_Click(object sender, EventArgs e)
+        {
+            if (dgvCustomers.SelectedRows.Count == 0)
+            {
+                MessageBox.Show(
+                    "Selecteer eerst een klant.",
+                    "Geen klant geselecteerd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                return;
+            }
+
+            DataGridViewRow row = dgvCustomers.SelectedRows[0];
+
+            int customerId = Convert.ToInt32(row.Cells["user_id"].Value);
+            int currentStatus = Convert.ToInt32(row.Cells["status_id"].Value);
+            int newStatus = currentStatus == 1 ? 0 : 1;
+
+            string action = newStatus == 1
+                ? "activeren"
+                : "inactief zetten";
+
+            DialogResult result = MessageBox.Show(
+                $"Wil je deze klant {action}?",
+                "Bevestiging",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result != DialogResult.Yes)
+            {
+                return;
+            }
+
+            UpdateCustomerStatus(customerId, newStatus);
+        }
+
+        private void UpdateCustomerStatus(int customerId, int status)
+        {
+            try
+            {
+                using MySqlConnection connection = new(_passwords.ConnStr);
+                connection.Open();
+
+                const string query = """
+                    UPDATE `user`
+                    SET
+                        status = @status,
+                        updated_at = @updated_at
+                    WHERE user_id = @user_id
+                      AND role_id = 1;
+                    """;
+
+                using MySqlCommand command = new(query, connection);
+
+                command.Parameters.AddWithValue("@status", status);
+                command.Parameters.AddWithValue("@updated_at", DateTime.Now);
+                command.Parameters.AddWithValue("@user_id", customerId);
+
+                if (command.ExecuteNonQuery() == 0)
+                {
+                    MessageBox.Show(
+                        "De klantstatus kon niet worden aangepast.",
+                        "Databasefout",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+
+                    return;
+                }
+
+                ClearCustomerInput();
+                LoadCustomers();
+
+                MessageBox.Show(
+                    status == 1
+                        ? "De klant is geactiveerd."
+                        : "De klant is inactief gemaakt.",
+                    "Status aangepast",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(
+                    $"De klantstatus kon niet worden aangepast.\n\n{exception.Message}",
+                    "Databasefout",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnDeleteCustomer_Click(object sender, EventArgs e)
+        {
+            if (dgvCustomers.SelectedRows.Count == 0)
+            {
+                MessageBox.Show(
+                    "Selecteer eerst een klant.",
+                    "Geen klant geselecteerd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                return;
+            }
+
+            DataGridViewRow row = dgvCustomers.SelectedRows[0];
+
+            int customerId = Convert.ToInt32(row.Cells["user_id"].Value);
+            string customerName =
+                $"{row.Cells["fname"].Value} {row.Cells["lname"].Value}";
+
+            DialogResult result = MessageBox.Show(
+                $"Weet je zeker dat je klant {customerName} wilt verwijderen?\n\n"
+                + "Deze actie kan niet ongedaan worden gemaakt.",
+                "Klant definitief verwijderen",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (result != DialogResult.Yes)
+            {
+                return;
+            }
+
+            DeleteCustomer(customerId);
+        }
+
+        private void DeleteCustomer(int customerId)
+        {
+            try
+            {
+                using MySqlConnection connection = new(_passwords.ConnStr);
+                connection.Open();
+
+                const string reservationCheckQuery = """
+            SELECT COUNT(*)
+            FROM reservering
+            WHERE customer_id = @customer_id;
+            """;
+
+                using MySqlCommand reservationCheckCommand =
+                    new(reservationCheckQuery, connection);
+
+                reservationCheckCommand.Parameters.AddWithValue(
+                    "@customer_id",
+                    customerId);
+
+                int reservationCount = Convert.ToInt32(
+                    reservationCheckCommand.ExecuteScalar());
+
+                if (reservationCount > 0)
+                {
+                    MessageBox.Show(
+                        "Deze klant kan niet definitief worden verwijderd, "
+                        + "omdat er reserveringen aan gekoppeld zijn.\n\n"
+                        + "Maak de klant in plaats daarvan inactief.",
+                        "Klant kan niet worden verwijderd",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+
+                using MySqlTransaction transaction = connection.BeginTransaction();
+
+                const string addressIdQuery = """
+            SELECT user_address_id
+            FROM `user`
+            WHERE user_id = @customer_id
+              AND role_id = 1;
+            """;
+
+                using MySqlCommand addressIdCommand =
+                    new(addressIdQuery, connection, transaction);
+
+                addressIdCommand.Parameters.AddWithValue(
+                    "@customer_id",
+                    customerId);
+
+                object? addressIdResult = addressIdCommand.ExecuteScalar();
+
+                if (addressIdResult == null || addressIdResult == DBNull.Value)
+                {
+                    transaction.Rollback();
+
+                    MessageBox.Show(
+                        "De klant kon niet worden gevonden.",
+                        "Verwijderen mislukt",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+
+                int addressId = Convert.ToInt32(addressIdResult);
+
+                const string deleteUserQuery = """
+            DELETE FROM `user`
+            WHERE user_id = @customer_id
+              AND role_id = 1;
+            """;
+
+                using MySqlCommand deleteUserCommand =
+                    new(deleteUserQuery, connection, transaction);
+
+                deleteUserCommand.Parameters.AddWithValue(
+                    "@customer_id",
+                    customerId);
+
+                int deletedUsers = deleteUserCommand.ExecuteNonQuery();
+
+                if (deletedUsers != 1)
+                {
+                    transaction.Rollback();
+
+                    MessageBox.Show(
+                        "De klant kon niet worden verwijderd.",
+                        "Verwijderen mislukt",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+
+                    return;
+                }
+
+                const string deleteAddressQuery = """
+            DELETE FROM user_address
+            WHERE id = @address_id
+              AND NOT EXISTS
+              (
+                  SELECT 1
+                  FROM `user`
+                  WHERE user_address_id = @address_id
+              );
+            """;
+
+                using MySqlCommand deleteAddressCommand =
+                    new(deleteAddressQuery, connection, transaction);
+
+                deleteAddressCommand.Parameters.AddWithValue(
+                    "@address_id",
+                    addressId);
+
+                deleteAddressCommand.ExecuteNonQuery();
+
+                transaction.Commit();
+
+                ClearCustomerInput();
+                LoadCustomers();
+
+                MessageBox.Show(
+                    "De klant is definitief verwijderd.",
+                    "Klant verwijderd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            catch (MySqlException exception) when (exception.Number == 1451)
+            {
+                MessageBox.Show(
+                    "Deze klant kan niet worden verwijderd omdat er nog "
+                    + "gekoppelde gegevens bestaan.",
+                    "Klant kan niet worden verwijderd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(
+                    $"De klant kon niet worden verwijderd.\n\n{exception.Message}",
                     "Databasefout",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);

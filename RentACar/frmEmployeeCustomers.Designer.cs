@@ -40,6 +40,8 @@ namespace RentACar
             txtCity = new TextBox();
             btnAddCustomer = new Button();
             btnEditCustomer = new Button();
+            btnToggleCustomerStatus = new Button();
+            btnDeleteCustomer = new Button();
 
             pnlMain.SuspendLayout();
             pnlSearch.SuspendLayout();
@@ -60,16 +62,20 @@ namespace RentACar
             pnlMain.Controls.Add(dgvCustomers, 0, 1);
             pnlMain.Controls.Add(grpAddCustomer, 0, 2);
 
-            pnlSearch.ColumnCount = 4;
+            pnlSearch.ColumnCount = 6;
             pnlSearch.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 85F));
             pnlSearch.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             pnlSearch.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 120F));
             pnlSearch.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 170F));
+            pnlSearch.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150F));
+            pnlSearch.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150F));
             pnlSearch.Dock = DockStyle.Fill;
             pnlSearch.Controls.Add(lblSearch, 0, 0);
             pnlSearch.Controls.Add(txtCustomerSearch, 1, 0);
             pnlSearch.Controls.Add(btnRefreshCustomers, 2, 0);
             pnlSearch.Controls.Add(btnEditCustomer, 3, 0);
+            pnlSearch.Controls.Add(btnToggleCustomerStatus, 4, 0);
+            pnlSearch.Controls.Add(btnDeleteCustomer, 5, 0);
 
             lblSearch.Text = "Zoeken:";
             lblSearch.TextAlign = ContentAlignment.MiddleLeft;
@@ -139,6 +145,14 @@ namespace RentACar
             btnEditCustomer.Dock = DockStyle.Fill;
             btnEditCustomer.Click += btnEditCustomer_Click;
 
+            btnToggleCustomerStatus.Text = "Status wijzigen";
+            btnToggleCustomerStatus.Dock = DockStyle.Fill;
+            btnToggleCustomerStatus.Click += btnToggleCustomerStatus_Click;
+
+            btnDeleteCustomer.Text = "Klant verwijderen";
+            btnDeleteCustomer.Dock = DockStyle.Fill;
+            btnDeleteCustomer.Click += btnDeleteCustomer_Click;
+
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1450, 850);
@@ -200,5 +214,7 @@ namespace RentACar
         private TextBox txtCity;
         private Button btnAddCustomer;
         private Button btnEditCustomer;
+        private Button btnToggleCustomerStatus;
+        private Button btnDeleteCustomer;
     }
 }
