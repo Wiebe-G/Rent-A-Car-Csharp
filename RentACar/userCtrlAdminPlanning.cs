@@ -20,6 +20,8 @@ namespace RentACar
         {
             InitializeComponent();
 
+            cmbSelectEmployee.DropDownStyle = ComboBoxStyle.DropDownList;
+
             FetchEmployeesAndPlanning();
         }
 
@@ -35,7 +37,8 @@ namespace RentACar
                 "FROM user " +
                 "JOIN planning ON planning.employee_id = user.user_id " +
                 "WHERE user.role_id = 2 " +
-                "AND status = 1";
+                "AND user.status = 1 " +
+                "AND planning.date >=  CURDATE()";
 
             using MySqlCommand cmd = new(query, conn);
 
@@ -43,14 +46,18 @@ namespace RentACar
 
             while (reader.Read())
             {
-                employees.Insert(index, new User
+                int userId = reader.GetInt32("user_id");
+                if (!employees.Any(e => e.id == userId))
                 {
-                    id = reader.GetInt32("user_id"),
-                    role = "medewerker",
-                    fname = reader.GetString("fname"),
-                    lname = reader.GetString("lname"),
-                    status = reader.GetInt32("status"),
-                });
+                    employees.Insert(index, new User
+                    {
+                        id = reader.GetInt32("user_id"),
+                        role = "medewerker",
+                        fname = reader.GetString("fname"),
+                        lname = reader.GetString("lname"),
+                        status = reader.GetInt32("status"),
+                    });
+                }
                 planning.Insert(index, new Planning
                 {
                     employee_id = reader.GetInt32("employee_id"),
@@ -60,22 +67,27 @@ namespace RentACar
                 });
                 index++;
             }
-            MessageBox.Show($"{employees.Count}");
             RenderEmployeeChoicesOnLeftSide();
         }
 
         internal void RenderEmployeeChoicesOnLeftSide()
         {
-            foreach (var emp in employees)
-            {
-                Button btn = new()
-                {
-                    Dock = DockStyle.Fill,
-                    Text = $"{emp.fname} {emp.lname}"
-                };
-                pnlTabSelectEmployee.RowCount++;
-                pnlTabSelectEmployee.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            }
+            var items = employees
+                .Select(emp => new KeyValuePair<int, string>(emp.id, $"{emp.fname} {emp.lname}"))
+                .ToList();
+            cmbSelectEmployee.DisplayMember = "Value";
+            cmbSelectEmployee.ValueMember = "Key";
+            cmbSelectEmployee.DataSource = items;
+        }
+
+        private void cmbSelectEmployee_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbSelectEmployee.SelectedValue is not int employeeId)
+                return;
+
+            List<Planning> filteredPlanning = planning
+                .Where(p => p.employee_id == employeeId)
+                .ToList();
         }
     }
 }

@@ -42,6 +42,7 @@
             lblSun = new Label();
             pnlTabSelectEmployee = new TableLayoutPanel();
             lblSelectEmp = new Label();
+            cmbSelectEmployee = new ComboBox();
             pnlTabAdminPlanningLayout.SuspendLayout();
             pnlTabSelectWeekLayout.SuspendLayout();
             pnlTabAdminPlanningLayout2.SuspendLayout();
@@ -218,12 +219,17 @@
             pnlTabSelectEmployee.ColumnCount = 1;
             pnlTabSelectEmployee.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             pnlTabSelectEmployee.Controls.Add(lblSelectEmp, 0, 0);
+            pnlTabSelectEmployee.Controls.Add(cmbSelectEmployee, 0, 1);
             pnlTabSelectEmployee.Dock = DockStyle.Fill;
             pnlTabSelectEmployee.Location = new Point(3, 3);
             pnlTabSelectEmployee.Name = "pnlTabSelectEmployee";
             pnlTabSelectEmployee.RowCount = 2;
             pnlTabSelectEmployee.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
             pnlTabSelectEmployee.RowStyles.Add(new RowStyle(SizeType.Percent, 85F));
+            pnlTabSelectEmployee.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            pnlTabSelectEmployee.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            pnlTabSelectEmployee.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            pnlTabSelectEmployee.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             pnlTabSelectEmployee.Size = new Size(187, 449);
             pnlTabSelectEmployee.TabIndex = 3;
             // 
@@ -237,6 +243,16 @@
             lblSelectEmp.TabIndex = 0;
             lblSelectEmp.Text = "Selecteer medewerker";
             lblSelectEmp.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // cmbSelectEmployee
+            // 
+            cmbSelectEmployee.Dock = DockStyle.Fill;
+            cmbSelectEmployee.FormattingEnabled = true;
+            cmbSelectEmployee.Location = new Point(3, 70);
+            cmbSelectEmployee.Name = "cmbSelectEmployee";
+            cmbSelectEmployee.Size = new Size(181, 28);
+            cmbSelectEmployee.TabIndex = 1;
+            cmbSelectEmployee.SelectedIndexChanged += cmbSelectEmployee_SelectedIndexChanged;
             // 
             // userCtrlAdminPlanning
             // 
@@ -272,5 +288,6 @@
         private Label lblSun;
         private TableLayoutPanel pnlTabSelectEmployee;
         private Label lblSelectEmp;
+        private ComboBox cmbSelectEmployee;
     }
 }
