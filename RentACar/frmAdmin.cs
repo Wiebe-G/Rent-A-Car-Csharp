@@ -157,8 +157,14 @@
 
         private void RenderOpeningTimesMenu()
         {
-            MessageBox.Show("Nog niet af ");
             spltAdminLayout.Panel2.Controls.Clear();
+
+            userCtrlAdminOpeningTimes open = new()
+            {
+                Dock = DockStyle.Fill
+            };
+
+            spltAdminLayout.Panel2.Controls.Add(open);
         }
 
         private void RenderLogsMenu()
