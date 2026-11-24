@@ -100,7 +100,7 @@
             btnCustomers.Name = "btnCustomers";
             btnCustomers.Size = new Size(192, 107);
             btnCustomers.TabIndex = 1;
-            btnCustomers.Text = "Klanten";
+            btnCustomers.Text = "Klantenbeheer";
             btnCustomers.UseVisualStyleBackColor = true;
             btnCustomers.Click += btnCustomers_Click;
             // 
@@ -287,7 +287,7 @@
             Controls.Add(pnlTabLayoutEmployeeForm);
             Name = "frmEmployee";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Medewerkers - Wagenpark";
+            Text = "Medewerkerspaneel";
             pnlTabLayoutEmployeeForm.ResumeLayout(false);
             pnlEmployeeSidebar.ResumeLayout(false);
             pnlEmployeeContent.ResumeLayout(false);

@@ -15,6 +15,7 @@ namespace RentACar
     {
         private readonly User _user;
         private readonly Passwords _passwords = new();
+        private frmEmployeeCustomers? _customersControl;
         internal frmEmployee(User user)
         {
             InitializeComponent();
@@ -277,17 +278,34 @@ namespace RentACar
 
         private void btnFleet_Click(object sender, EventArgs e)
         {
+            if (_customersControl != null)
+            {
+                _customersControl.Visible = false;
+            }
+
             pnlTabTopBarEmployee.Visible = true;
             dgvCars.Visible = true;
+            dgvCars.BringToFront();
         }
 
         private void btnCustomers_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(
-                "Het klantgedeelte wordt later toegevoegd.",
-                "Nog niet beschikbaar",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            pnlTabTopBarEmployee.Visible = false;
+            dgvCars.Visible = false;
+
+            if (_customersControl == null)
+            {
+                _customersControl = new frmEmployeeCustomers
+                {
+                    Dock = DockStyle.Fill,
+                    Margin = new Padding(0)
+                };
+
+                pnlEmployeeContent.Controls.Add(_customersControl);
+            }
+
+            _customersControl.Visible = true;
+            _customersControl.BringToFront();
         }
 
         private void btnDayOverview_Click(object sender, EventArgs e)
