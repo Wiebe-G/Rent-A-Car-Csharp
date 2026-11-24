@@ -39,6 +39,7 @@ namespace RentACar
             lblCity = new Label();
             txtCity = new TextBox();
             btnAddCustomer = new Button();
+            btnEditCustomer = new Button();
 
             pnlMain.SuspendLayout();
             pnlSearch.SuspendLayout();
@@ -59,14 +60,16 @@ namespace RentACar
             pnlMain.Controls.Add(dgvCustomers, 0, 1);
             pnlMain.Controls.Add(grpAddCustomer, 0, 2);
 
-            pnlSearch.ColumnCount = 3;
+            pnlSearch.ColumnCount = 4;
             pnlSearch.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 85F));
             pnlSearch.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             pnlSearch.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 120F));
+            pnlSearch.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 170F));
             pnlSearch.Dock = DockStyle.Fill;
             pnlSearch.Controls.Add(lblSearch, 0, 0);
             pnlSearch.Controls.Add(txtCustomerSearch, 1, 0);
             pnlSearch.Controls.Add(btnRefreshCustomers, 2, 0);
+            pnlSearch.Controls.Add(btnEditCustomer, 3, 0);
 
             lblSearch.Text = "Zoeken:";
             lblSearch.TextAlign = ContentAlignment.MiddleLeft;
@@ -132,6 +135,10 @@ namespace RentACar
             pnlAddCustomer.Controls.Add(btnAddCustomer, 2, 3);
             pnlAddCustomer.SetColumnSpan(btnAddCustomer, 2);
 
+            btnEditCustomer.Text = "Klant bewerken";
+            btnEditCustomer.Dock = DockStyle.Fill;
+            btnEditCustomer.Click += btnEditCustomer_Click;
+
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1450, 850);
@@ -192,5 +199,6 @@ namespace RentACar
         private Label lblCity;
         private TextBox txtCity;
         private Button btnAddCustomer;
+        private Button btnEditCustomer;
     }
 }

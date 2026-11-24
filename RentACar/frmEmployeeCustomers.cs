@@ -8,6 +8,8 @@ namespace RentACar
     public partial class frmEmployeeCustomers : UserControl
     {
         private readonly Passwords _passwords = new();
+        private int? _selectedCustomerId;
+        private int? _selectedAddressId;
 
         internal frmEmployeeCustomers()
         {
@@ -31,6 +33,12 @@ namespace RentACar
 
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
+            if (_selectedCustomerId.HasValue)
+            {
+                UpdateCustomer();
+                return;
+            }
+
             if (!ValidateCustomerInput())
             {
                 return;
@@ -183,6 +191,7 @@ namespace RentACar
                 const string query = """
                     SELECT
                         u.user_id,
+                        u.user_address_id,
                         u.fname,
                         u.lname,
                         u.email,
@@ -238,6 +247,11 @@ namespace RentACar
                 dgvCustomers.Columns["user_id"].Visible = false;
             }
 
+            if (dgvCustomers.Columns["user_address_id"] != null)
+            {
+                dgvCustomers.Columns["user_address_id"].Visible = false;
+            }
+
             SetHeader("fname", "Voornaam");
             SetHeader("lname", "Achternaam");
             SetHeader("email", "E-mailadres");
@@ -279,13 +293,14 @@ namespace RentACar
             if (string.IsNullOrWhiteSpace(txtFirstName.Text)
                 || string.IsNullOrWhiteSpace(txtLastName.Text)
                 || string.IsNullOrWhiteSpace(txtEmail.Text)
-                || string.IsNullOrWhiteSpace(txtPassword.Text)
+                || (!_selectedCustomerId.HasValue
+                    && string.IsNullOrWhiteSpace(txtPassword.Text))
                 || string.IsNullOrWhiteSpace(txtStreetname.Text)
                 || string.IsNullOrWhiteSpace(txtZipcode.Text)
                 || string.IsNullOrWhiteSpace(txtCity.Text))
             {
                 MessageBox.Show(
-                    "Vul alle klant- en adresgegevens in.",
+                    "Vul alle verplichte klant en adresgegevens in.",
                     "Ongeldige invoer",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
@@ -308,7 +323,8 @@ namespace RentACar
                 return false;
             }
 
-            if (txtPassword.Text.Length < 8)
+            if (!_selectedCustomerId.HasValue
+    && txtPassword.Text.Length < 8)
             {
                 MessageBox.Show(
                     "Het wachtwoord moet minimaal 8 tekens bevatten.",
@@ -340,6 +356,9 @@ namespace RentACar
 
         private void ClearCustomerInput()
         {
+            _selectedCustomerId = null;
+            _selectedAddressId = null;
+
             txtFirstName.Clear();
             txtLastName.Clear();
             txtEmail.Clear();
@@ -347,6 +366,169 @@ namespace RentACar
             txtStreetname.Clear();
             txtZipcode.Clear();
             txtCity.Clear();
+
+            txtPassword.PlaceholderText = string.Empty;
+            grpAddCustomer.Text = "Nieuwe klant";
+            btnAddCustomer.Text = "Klant toevoegen";
+        }
+
+        private void btnEditCustomer_Click(object sender, EventArgs e)
+        {
+            if (dgvCustomers.SelectedRows.Count == 0)
+            {
+                MessageBox.Show(
+                    "Selecteer eerst een klant.",
+                    "Geen klant geselecteerd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                return;
+            }
+
+            DataGridViewRow row = dgvCustomers.SelectedRows[0];
+
+            _selectedCustomerId = Convert.ToInt32(row.Cells["user_id"].Value);
+            _selectedAddressId = Convert.ToInt32(row.Cells["user_address_id"].Value);
+
+            txtFirstName.Text = Convert.ToString(row.Cells["fname"].Value) ?? string.Empty;
+            txtLastName.Text = Convert.ToString(row.Cells["lname"].Value) ?? string.Empty;
+            txtEmail.Text = Convert.ToString(row.Cells["email"].Value) ?? string.Empty;
+            txtStreetname.Text =
+                Convert.ToString(row.Cells["streetname"].Value) ?? string.Empty;
+            txtZipcode.Text =
+                Convert.ToString(row.Cells["zipcode"].Value) ?? string.Empty;
+            txtCity.Text = Convert.ToString(row.Cells["city"].Value) ?? string.Empty;
+
+            txtPassword.Clear();
+            txtPassword.PlaceholderText =
+                "Leeg laten om wachtwoord te behouden";
+
+            grpAddCustomer.Text = "Klant bewerken";
+            btnAddCustomer.Text = "Wijzigingen opslaan";
+        }
+
+        private void UpdateCustomer()
+        {
+            if (!ValidateCustomerInput())
+            {
+                return;
+            }
+
+            try
+            {
+                using MySqlConnection connection = new(_passwords.ConnStr);
+                connection.Open();
+
+                using MySqlTransaction transaction = connection.BeginTransaction();
+
+                const string duplicateEmailQuery = """
+                    SELECT COUNT(*)
+                    FROM `user`
+                    WHERE email = @email
+                      AND user_id != @user_id;
+                    """;
+
+                using MySqlCommand duplicateEmailCommand =
+                    new(duplicateEmailQuery, connection, transaction);
+
+                duplicateEmailCommand.Parameters.AddWithValue(
+                    "@user_id",
+                    _selectedCustomerId.Value);
+                duplicateEmailCommand.Parameters.AddWithValue(
+                    "@email",
+                    txtEmail.Text.Trim());
+
+                if (Convert.ToInt32(
+                    duplicateEmailCommand.ExecuteScalar()) > 0)
+                {
+                    transaction.Rollback();
+
+                    MessageBox.Show(
+                        "Er bestaat al een klant met dit e-mailadres.",
+                        "E-mailadres bestaat al",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+
+                const string addressQuery = """
+                    UPDATE user_address
+                    SET
+                        streetname = @streetname,
+                        zipcode = @zipcode,
+                        city = @city
+                    WHERE id = @id;
+                    """;
+
+                using MySqlCommand addressCommand =
+                    new(addressQuery, connection, transaction);
+
+                addressCommand.Parameters.AddWithValue(
+                    "@id",
+                    _selectedAddressId.Value);
+                addressCommand.Parameters.AddWithValue(
+                    "@streetname",
+                    txtStreetname.Text.Trim());
+                addressCommand.Parameters.AddWithValue(
+                    "@zipcode",
+                    txtZipcode.Text.Trim());
+                addressCommand.Parameters.AddWithValue(
+                    "@city",
+                    txtCity.Text.Trim());
+
+                addressCommand.ExecuteNonQuery();
+
+                const string userQuery = """
+                    UPDATE `user`
+                    SET
+                        fname = @fname,
+                        lname = @lname,
+                        email = @email,
+                        status = @status,
+                        updated_at = @updated_at
+                    WHERE user_id = @user_id;
+                    """;
+
+                using MySqlCommand userCommand =
+                    new(userQuery, connection, transaction);
+
+                userCommand.Parameters.AddWithValue(
+                    "@user_id",
+                    _selectedCustomerId.Value);
+                userCommand.Parameters.AddWithValue(
+                    "@fname",
+                    txtFirstName.Text.Trim());
+                userCommand.Parameters.AddWithValue(
+                    "@lname",
+                    txtLastName.Text.Trim());
+                userCommand.Parameters.AddWithValue(
+                    "@email",
+                    txtEmail.Text.Trim());
+                userCommand.Parameters.AddWithValue("@status", 1);
+                userCommand.Parameters.AddWithValue("@updated_at", DateTime.Now);
+
+                userCommand.ExecuteNonQuery();
+
+                transaction.Commit();
+
+                MessageBox.Show(
+                    "De klantgegevens zijn succesvol bijgewerkt.",
+                    "Klant bijgewerkt",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                ClearCustomerInput();
+                LoadCustomers();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(
+                    $"De klantgegevens konden niet worden bijgewerkt.\n\n{exception.Message}",
+                    "Databasefout",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
     }
 }
