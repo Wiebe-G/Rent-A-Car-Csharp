@@ -1,38 +1,151 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace RentACar
 {
     public partial class userCtrlAdminOpeningTimes : UserControl
     {
         Passwords passwords = new();
+        Dictionary<string, (TimeOnly? Open, TimeOnly? Close)> OpeningTimes = new()
+        {
+            ["mon"] = (null, null),
+            ["tue"] = (null, null),
+            ["wed"] = (null, null),
+            ["thu"] = (null, null),
+            ["fri"] = (null, null),
+            ["sat"] = (null, null),
+            ["sun"] = (null, null)
+        };
+
         public userCtrlAdminOpeningTimes()
         {
             InitializeComponent();
             LoadOpeningTimes();
         }
 
-        private void userCtrlAdminOpeningTimes_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnlTabOpeningTimes_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void LoadOpeningTimes()
         {
-            MessageBox.Show("In deze method moeten de tijden worden opgehaald");
+            using MySqlConnection conn = new(passwords.ConnStr);
+
+            conn.Open();
+
+            string query = "SELECT * FROM opening_times";
+
+            using MySqlCommand cmd = new(query, conn);
+
+            using MySqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                TimeOnly? Open = null;
+                TimeOnly? Close = null;
+
+                if (!reader.IsDBNull(reader.GetOrdinal("open")))
+                {
+                    Open = TimeOnly.FromTimeSpan(reader.GetTimeSpan("open"));
+                }
+
+                if (!reader.IsDBNull(reader.GetOrdinal("close")))
+                {
+                    Close = TimeOnly.FromTimeSpan(reader.GetTimeSpan("close"));
+                }
+
+                OpeningTimes[reader.GetString("day")] = (Open, Close);
+            }
+            RenderOpeningTimes();
+        }
+
+        private void RenderOpeningTimes()
+        {
+            if (OpeningTimes["mon"].Open == null
+                || OpeningTimes["mon"].Close == null)
+            {
+                dateTimeMon.Enabled = false;
+                dateTimeMonClosed.Enabled = false;
+                chkMonClosed.Checked = true;
+            }
+            else
+            {
+                dateTimeMon.Value = DateTime.Today.Add(OpeningTimes["mon"].Open!.Value.ToTimeSpan());
+                dateTimeMonClosed.Value = DateTime.Today.Add(OpeningTimes["mon"].Close!.Value.ToTimeSpan());
+            }
+
+            if (OpeningTimes["tue"].Open == null
+                || OpeningTimes["tue"].Close == null)
+            {
+                dateTimeTue.Enabled = false;
+                dateTimeTueClosed.Enabled = false;
+                chkTueClosed.Checked = true;
+            }
+            else
+            {
+                dateTimeTue.Value = DateTime.Today.Add(OpeningTimes["tue"].Open!.Value.ToTimeSpan());
+                dateTimeTueClosed.Value = DateTime.Today.Add(OpeningTimes["tue"].Close!.Value.ToTimeSpan());
+            }
+
+            if (OpeningTimes["wed"].Open == null
+                || OpeningTimes["wed"].Close == null)
+            {
+                dateTimeWed.Enabled = false;
+                dateTimeWedClosed.Enabled = false;
+                chkWedClosed.Checked = true;
+            }
+            else
+            {
+                dateTimeWed.Value = DateTime.Today.Add(OpeningTimes["wed"].Open!.Value.ToTimeSpan());
+                dateTimeWedClosed.Value = DateTime.Today.Add(OpeningTimes["wed"].Close!.Value.ToTimeSpan());
+            }
+
+            if (OpeningTimes["thu"].Open == null
+                || OpeningTimes["thu"].Close == null)
+            {
+                dateTimeThu.Enabled = false;
+                dateTimeThuClosed.Enabled = false;
+                chkThuClosed.Checked = true;
+            }
+            else
+            {
+                dateTimeThu.Value = DateTime.Today.Add(OpeningTimes["thu"].Open!.Value.ToTimeSpan());
+                dateTimeThuClosed.Value = DateTime.Today.Add(OpeningTimes["thu"].Close!.Value.ToTimeSpan());
+            }
+
+            if (OpeningTimes["fri"].Open == null
+                || OpeningTimes["fri"].Close == null)
+            {
+                dateTimeFri.Enabled = false;
+                dateTimeFriClosed.Enabled = false;
+                chkFriClosed.Checked = true;
+            }
+            else
+            {
+                dateTimeFri.Value = DateTime.Today.Add(OpeningTimes["fri"].Open!.Value.ToTimeSpan());
+                dateTimeFriClosed.Value = DateTime.Today.Add(OpeningTimes["fri"].Close!.Value.ToTimeSpan());
+            }
+
+            if (OpeningTimes["sat"].Open == null
+                || OpeningTimes["sat"].Close == null)
+            {
+                dateTimeSat.Enabled = false;
+                dateTimeSatClosed.Enabled = false;
+                chkSatClosed.Checked = true;
+            }
+            else
+            {
+                dateTimeSat.Value = DateTime.Today.Add(OpeningTimes["sat"].Open!.Value.ToTimeSpan());
+                dateTimeSatClosed.Value = DateTime.Today.Add(OpeningTimes["sat"].Close!.Value.ToTimeSpan());
+            }
+
+            if (OpeningTimes["sun"].Open == null
+                || OpeningTimes["sun"].Close == null)
+            {
+                dateTimeSun.Enabled = false;
+                dateTimeSunClosed.Enabled = false;
+                chkSunClosed.Checked = true;
+            }
+            else
+            {
+                dateTimeSun.Value = DateTime.Today.Add(OpeningTimes["sun"].Open!.Value.ToTimeSpan());
+                dateTimeSunClosed.Value = DateTime.Today.Add(OpeningTimes["sun"].Close!.Value.ToTimeSpan());
+            }
         }
 
         private void ChangeEnabledForOpened(object sender, EventArgs e)
@@ -152,47 +265,51 @@ namespace RentACar
             MySqlConnection conn = new(passwords.ConnStr);
             conn.Open();
             MySqlCommand cmd = conn.CreateCommand();
-            // BOMBOCLAT wat een query
-            cmd.CommandText = "UPDATE opening_times SET open = case day " +
-                "WHEN 'mon' THEN @MonOpen " +
-                "WHEN 'tue' THEN @TueOpen " +
-                "WHEN 'wed' THEN @WedOpen " +
-                "WHEN 'thu' THEN @ThuOpen " +
-                "WHEN 'fri' THEN @FriOpen " +
-                "WHEN 'sat' THEN @SatOpen " +
-                "WHEN 'sun' THEN @SunOpen " +
-                "ELSE null " +
-                "end, close = case day " +
-                "WHEN 'mon' THEN @MonClose " +
-                "WHEN 'tue' THEN @TueClose " +
-                "WHEN 'wed' THEN @WedClose " +
-                "WHEN 'thu' THEN @ThuClose " +
-                "WHEN 'fri' THEN @FriClose " +
-                "WHEN 'sat' THEN @SatClose " +
-                "WHEN 'sun' THEN @SunClose " +
-                "end";
-            cmd.Parameters.AddWithValue("@MonOpen", MonOpen);
-            cmd.Parameters.AddWithValue("@TueOpen", TueOpen);
-            cmd.Parameters.AddWithValue("@WedOpen", WedOpen);
-            cmd.Parameters.AddWithValue("@ThuOpen", ThuOpen);
-            cmd.Parameters.AddWithValue("@FriOpen", FriOpen);
-            cmd.Parameters.AddWithValue("@SatOpen", SatOpen);
-            cmd.Parameters.AddWithValue("@SunOpen", SunOpen);
-
-            cmd.Parameters.AddWithValue("@MonClose", MonClose);
-            cmd.Parameters.AddWithValue("@TueClose", TueClose);
-            cmd.Parameters.AddWithValue("@WedClose", WedClose);
-            cmd.Parameters.AddWithValue("@ThuClose", ThuClose);
-            cmd.Parameters.AddWithValue("@FriClose", FriClose);
-            cmd.Parameters.AddWithValue("@SatClose", SatClose);
-            cmd.Parameters.AddWithValue("@SunClose", SunClose);
-
-            int RowsAffected = cmd.ExecuteNonQuery();
-
-            if (RowsAffected < 0)
+            var OpeningTimes = new Dictionary<string, (TimeOnly? Open, TimeOnly? Close)>
             {
-                MessageBox.Show("Er is een probleem opgetreden. Probeer het later opnieuw.");
-                return false;
+                ["mon"] = (MonOpen, MonClose),
+                ["tue"] = (TueOpen, TueClose),
+                ["wed"] = (WedOpen, WedClose),
+                ["thu"] = (ThuOpen, ThuClose),
+                ["fri"] = (FriOpen, FriClose),
+                ["sat"] = (SatOpen, SatClose),
+                ["sun"] = (SunOpen, SunClose)
+            };
+
+            cmd.CommandText = @"UPDATE opening_times " +
+                                "SET open=@Open, close=@Close " +
+                                "WHERE day=@Day";
+            //cmd.Parameters.AddWithValue("@MonOpen", MonOpen);
+            //cmd.Parameters.AddWithValue("@TueOpen", TueOpen);
+            //cmd.Parameters.AddWithValue("@WedOpen", WedOpen);
+            //cmd.Parameters.AddWithValue("@ThuOpen", ThuOpen);
+            //cmd.Parameters.AddWithValue("@FriOpen", FriOpen);
+            //cmd.Parameters.AddWithValue("@SatOpen", SatOpen);
+            //cmd.Parameters.AddWithValue("@SunOpen", SunOpen);
+
+            //cmd.Parameters.AddWithValue("@MonClose", MonClose);
+            //cmd.Parameters.AddWithValue("@TueClose", TueClose);
+            //cmd.Parameters.AddWithValue("@WedClose", WedClose);
+            //cmd.Parameters.AddWithValue("@ThuClose", ThuClose);
+            //cmd.Parameters.AddWithValue("@FriClose", FriClose);
+            //cmd.Parameters.AddWithValue("@SatClose", SatClose);
+            //cmd.Parameters.AddWithValue("@SunClose", SunClose);
+
+            foreach (var (day, times) in OpeningTimes)
+            {
+                cmd.Parameters.Clear();
+
+                cmd.Parameters.AddWithValue("@Open", (object?)times.Open ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Close", (object?)times.Close ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Day", day);
+
+                int RowsAffected = cmd.ExecuteNonQuery();
+
+                if (RowsAffected < 0)
+                {
+                    MessageBox.Show("Er is een probleem opgetreden. Probeer het later opnieuw.");
+                    return false;
+                }
             }
 
             return true;

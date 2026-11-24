@@ -107,9 +107,9 @@
             pnlTabOpeningTimes.Controls.Add(dateTimeTueClosed, 1, 1);
             pnlTabOpeningTimes.Controls.Add(dateTimeWedClosed, 1, 2);
             pnlTabOpeningTimes.Controls.Add(dateTimeThuClosed, 1, 3);
-            pnlTabOpeningTimes.Controls.Add(dateTimeSatClosed, 1, 5);
             pnlTabOpeningTimes.Controls.Add(dateTimeFriClosed, 1, 4);
             pnlTabOpeningTimes.Controls.Add(dateTimeSunClosed, 1, 6);
+            pnlTabOpeningTimes.Controls.Add(dateTimeSatClosed, 1, 5);
             pnlTabOpeningTimes.Dock = DockStyle.Fill;
             pnlTabOpeningTimes.Location = new Point(239, 3);
             pnlTabOpeningTimes.Name = "pnlTabOpeningTimes";
@@ -123,13 +123,13 @@
             pnlTabOpeningTimes.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
             pnlTabOpeningTimes.Size = new Size(703, 363);
             pnlTabOpeningTimes.TabIndex = 0;
-            pnlTabOpeningTimes.Paint += pnlTabOpeningTimes_Paint;
             // 
             // dateTimeTue
             // 
             dateTimeTue.Format = DateTimePickerFormat.Time;
             dateTimeTue.Location = new Point(3, 54);
             dateTimeTue.Name = "dateTimeTue";
+            dateTimeTue.ShowUpDown = true;
             dateTimeTue.Size = new Size(250, 27);
             dateTimeTue.TabIndex = 1;
             // 
@@ -138,6 +138,7 @@
             dateTimeWed.Format = DateTimePickerFormat.Time;
             dateTimeWed.Location = new Point(3, 105);
             dateTimeWed.Name = "dateTimeWed";
+            dateTimeWed.ShowUpDown = true;
             dateTimeWed.Size = new Size(250, 27);
             dateTimeWed.TabIndex = 2;
             // 
@@ -146,6 +147,7 @@
             dateTimeThu.Format = DateTimePickerFormat.Time;
             dateTimeThu.Location = new Point(3, 156);
             dateTimeThu.Name = "dateTimeThu";
+            dateTimeThu.ShowUpDown = true;
             dateTimeThu.Size = new Size(250, 27);
             dateTimeThu.TabIndex = 3;
             // 
@@ -154,6 +156,7 @@
             dateTimeMon.Format = DateTimePickerFormat.Time;
             dateTimeMon.Location = new Point(3, 3);
             dateTimeMon.Name = "dateTimeMon";
+            dateTimeMon.ShowUpDown = true;
             dateTimeMon.Size = new Size(250, 27);
             dateTimeMon.TabIndex = 4;
             dateTimeMon.Value = new DateTime(2026, 11, 20, 9, 0, 0, 0);
@@ -163,6 +166,7 @@
             dateTimeFri.Format = DateTimePickerFormat.Time;
             dateTimeFri.Location = new Point(3, 207);
             dateTimeFri.Name = "dateTimeFri";
+            dateTimeFri.ShowUpDown = true;
             dateTimeFri.Size = new Size(250, 27);
             dateTimeFri.TabIndex = 5;
             // 
@@ -171,6 +175,7 @@
             dateTimeSat.Format = DateTimePickerFormat.Time;
             dateTimeSat.Location = new Point(3, 258);
             dateTimeSat.Name = "dateTimeSat";
+            dateTimeSat.ShowUpDown = true;
             dateTimeSat.Size = new Size(250, 27);
             dateTimeSat.TabIndex = 6;
             // 
@@ -179,6 +184,7 @@
             dateTimeSun.Format = DateTimePickerFormat.Time;
             dateTimeSun.Location = new Point(3, 309);
             dateTimeSun.Name = "dateTimeSun";
+            dateTimeSun.ShowUpDown = true;
             dateTimeSun.Size = new Size(250, 27);
             dateTimeSun.TabIndex = 7;
             // 
@@ -278,6 +284,7 @@
             dateTimeMonClosed.Format = DateTimePickerFormat.Time;
             dateTimeMonClosed.Location = new Point(284, 3);
             dateTimeMonClosed.Name = "dateTimeMonClosed";
+            dateTimeMonClosed.ShowUpDown = true;
             dateTimeMonClosed.Size = new Size(250, 27);
             dateTimeMonClosed.TabIndex = 15;
             // 
@@ -286,6 +293,7 @@
             dateTimeTueClosed.Format = DateTimePickerFormat.Time;
             dateTimeTueClosed.Location = new Point(284, 54);
             dateTimeTueClosed.Name = "dateTimeTueClosed";
+            dateTimeTueClosed.ShowUpDown = true;
             dateTimeTueClosed.Size = new Size(250, 27);
             dateTimeTueClosed.TabIndex = 16;
             // 
@@ -294,6 +302,7 @@
             dateTimeWedClosed.Format = DateTimePickerFormat.Time;
             dateTimeWedClosed.Location = new Point(284, 105);
             dateTimeWedClosed.Name = "dateTimeWedClosed";
+            dateTimeWedClosed.ShowUpDown = true;
             dateTimeWedClosed.Size = new Size(250, 27);
             dateTimeWedClosed.TabIndex = 17;
             // 
@@ -302,6 +311,7 @@
             dateTimeThuClosed.Format = DateTimePickerFormat.Time;
             dateTimeThuClosed.Location = new Point(284, 156);
             dateTimeThuClosed.Name = "dateTimeThuClosed";
+            dateTimeThuClosed.ShowUpDown = true;
             dateTimeThuClosed.Size = new Size(250, 27);
             dateTimeThuClosed.TabIndex = 18;
             // 
@@ -310,6 +320,7 @@
             dateTimeSatClosed.Format = DateTimePickerFormat.Time;
             dateTimeSatClosed.Location = new Point(284, 258);
             dateTimeSatClosed.Name = "dateTimeSatClosed";
+            dateTimeSatClosed.ShowUpDown = true;
             dateTimeSatClosed.Size = new Size(250, 27);
             dateTimeSatClosed.TabIndex = 19;
             // 
@@ -318,6 +329,7 @@
             dateTimeFriClosed.Format = DateTimePickerFormat.Time;
             dateTimeFriClosed.Location = new Point(284, 207);
             dateTimeFriClosed.Name = "dateTimeFriClosed";
+            dateTimeFriClosed.ShowUpDown = true;
             dateTimeFriClosed.Size = new Size(250, 27);
             dateTimeFriClosed.TabIndex = 20;
             // 
@@ -326,6 +338,7 @@
             dateTimeSunClosed.Format = DateTimePickerFormat.Time;
             dateTimeSunClosed.Location = new Point(284, 309);
             dateTimeSunClosed.Name = "dateTimeSunClosed";
+            dateTimeSunClosed.ShowUpDown = true;
             dateTimeSunClosed.Size = new Size(250, 27);
             dateTimeSunClosed.TabIndex = 21;
             // 
@@ -437,7 +450,6 @@
             Controls.Add(pnlTabOpeningTimesLayout);
             Name = "userCtrlAdminOpeningTimes";
             Size = new Size(1182, 493);
-            Load += userCtrlAdminOpeningTimes_Load;
             pnlTabOpeningTimesLayout.ResumeLayout(false);
             pnlTabOpeningTimes.ResumeLayout(false);
             pnlTabOpeningTimes.PerformLayout();
