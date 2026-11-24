@@ -65,5 +65,10 @@ namespace RentACar
             this.Hide();
             user.Show();
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
