@@ -30,7 +30,7 @@
         {
             tabAdminEmployees = new TabControl();
             tabAdminAllEmployees = new TabPage();
-            pnlTabGioIsEenTeringlijer = new TableLayoutPanel();
+            pnlTabLayout = new TableLayoutPanel();
             pnlTabAdminSearchEmployee = new TableLayoutPanel();
             txtSearchEmployeeByLastName = new TextBox();
             lblLastName = new Label();
@@ -60,7 +60,7 @@
             txtPassConfirm = new TextBox();
             tabAdminEmployees.SuspendLayout();
             tabAdminAllEmployees.SuspendLayout();
-            pnlTabGioIsEenTeringlijer.SuspendLayout();
+            pnlTabLayout.SuspendLayout();
             pnlTabAdminSearchEmployee.SuspendLayout();
             tabAdminMakeEmployee.SuspendLayout();
             pnlTabCreateEmployee.SuspendLayout();
@@ -81,7 +81,7 @@
             // tabAdminAllEmployees
             // 
             tabAdminAllEmployees.BackColor = SystemColors.ControlLight;
-            tabAdminAllEmployees.Controls.Add(pnlTabGioIsEenTeringlijer);
+            tabAdminAllEmployees.Controls.Add(pnlTabLayout);
             tabAdminAllEmployees.Location = new Point(4, 29);
             tabAdminAllEmployees.Name = "tabAdminAllEmployees";
             tabAdminAllEmployees.Padding = new Padding(3);
@@ -89,21 +89,21 @@
             tabAdminAllEmployees.TabIndex = 0;
             tabAdminAllEmployees.Text = "Alle medewerkers";
             // 
-            // pnlTabGioIsEenTeringlijer
+            // pnlTabLayout
             // 
-            pnlTabGioIsEenTeringlijer.ColumnCount = 1;
-            pnlTabGioIsEenTeringlijer.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            pnlTabGioIsEenTeringlijer.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            pnlTabGioIsEenTeringlijer.Controls.Add(pnlTabAdminSearchEmployee, 0, 0);
-            pnlTabGioIsEenTeringlijer.Controls.Add(pnlTabAdminEmployeesLayout, 0, 1);
-            pnlTabGioIsEenTeringlijer.Dock = DockStyle.Fill;
-            pnlTabGioIsEenTeringlijer.Location = new Point(3, 3);
-            pnlTabGioIsEenTeringlijer.Name = "pnlTabGioIsEenTeringlijer";
-            pnlTabGioIsEenTeringlijer.RowCount = 2;
-            pnlTabGioIsEenTeringlijer.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            pnlTabGioIsEenTeringlijer.RowStyles.Add(new RowStyle(SizeType.Percent, 80F));
-            pnlTabGioIsEenTeringlijer.Size = new Size(1198, 473);
-            pnlTabGioIsEenTeringlijer.TabIndex = 1;
+            pnlTabLayout.ColumnCount = 1;
+            pnlTabLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            pnlTabLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            pnlTabLayout.Controls.Add(pnlTabAdminSearchEmployee, 0, 0);
+            pnlTabLayout.Controls.Add(pnlTabAdminEmployeesLayout, 0, 1);
+            pnlTabLayout.Dock = DockStyle.Fill;
+            pnlTabLayout.Location = new Point(3, 3);
+            pnlTabLayout.Name = "pnlTabLayout";
+            pnlTabLayout.RowCount = 2;
+            pnlTabLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            pnlTabLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 80F));
+            pnlTabLayout.Size = new Size(1198, 473);
+            pnlTabLayout.TabIndex = 1;
             // 
             // pnlTabAdminSearchEmployee
             // 
@@ -464,7 +464,7 @@
             Size = new Size(1212, 512);
             tabAdminEmployees.ResumeLayout(false);
             tabAdminAllEmployees.ResumeLayout(false);
-            pnlTabGioIsEenTeringlijer.ResumeLayout(false);
+            pnlTabLayout.ResumeLayout(false);
             pnlTabAdminSearchEmployee.ResumeLayout(false);
             pnlTabAdminSearchEmployee.PerformLayout();
             tabAdminMakeEmployee.ResumeLayout(false);
@@ -479,7 +479,7 @@
 
         private TabControl tabAdminEmployees;
         private TabPage tabAdminAllEmployees;
-        private TableLayoutPanel pnlTabGioIsEenTeringlijer;
+        private TableLayoutPanel pnlTabLayout;
         private TableLayoutPanel pnlTabAdminSearchEmployee;
         private TextBox txtSearchEmployeeByLastName;
         private Label lblLastName;
