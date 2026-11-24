@@ -102,6 +102,7 @@ namespace RentACar
                     {
                         Dock = DockStyle.Fill,
                         Text = $"{DateOnly.FromDateTime(pl.date)} vanaf {pl.starttime} tot {pl.endtime}",
+                        AutoSize = true
                     };
                     pnlTabPlanningTemp.Controls.Add(lbl);
                 }
