@@ -25,7 +25,10 @@ namespace RentACar
             pnlTabPlanningTemp.RowStyles.Clear();
             pnlTabPlanningTemp.RowCount = 0;
 
+            cmbWhoToPlanIn.DropDownStyle = ComboBoxStyle.DropDownList;
+
             FetchEmployeesAndPlanning();
+            RenderEmployeesForMakingPlanning();
         }
 
         internal void FetchEmployeesAndPlanning()
@@ -94,19 +97,34 @@ namespace RentACar
 
             pnlTabPlanningTemp.Controls.Clear();
 
-            if (filteredPlanning.Count > 0)
+            //if (filteredPlanning.Count > 0)
+            //{
+            foreach (var pl in filteredPlanning)
             {
-                foreach (var pl in filteredPlanning)
+                Label lbl = new()
                 {
-                    Label lbl = new()
-                    {
-                        Dock = DockStyle.Fill,
-                        Text = $"{DateOnly.FromDateTime(pl.date)} vanaf {pl.starttime} tot {pl.endtime}",
-                        AutoSize = true
-                    };
-                    pnlTabPlanningTemp.Controls.Add(lbl);
-                }
+                    Dock = DockStyle.Fill,
+                    Text = $"{DateOnly.FromDateTime(pl.date)} vanaf {pl.starttime} tot {pl.endtime}",
+                    AutoSize = true
+                };
+                pnlTabPlanningTemp.Controls.Add(lbl);
+                //}
             }
+        }
+
+        private void RenderEmployeesForMakingPlanning()
+        {
+            var Items = employees
+                .Select(emp => new KeyValuePair<int, string>(emp.id, $"{emp.fname} {emp.lname}"))
+                .ToList();
+            cmbWhoToPlanIn.DisplayMember = "Value";
+            cmbWhoToPlanIn.ValueMember = "Key";
+            cmbWhoToPlanIn.DataSource = Items;
+        }
+
+        private void btnSavePlanning_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($"{cmbWhoToPlanIn.SelectedValue ?? "test"}");
         }
     }
 }
