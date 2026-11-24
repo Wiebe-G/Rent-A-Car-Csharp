@@ -21,6 +21,9 @@ namespace RentACar
             InitializeComponent();
 
             cmbSelectEmployee.DropDownStyle = ComboBoxStyle.DropDownList;
+            pnlTabPlanningTemp.AutoScroll = true;
+            pnlTabPlanningTemp.RowStyles.Clear();
+            pnlTabPlanningTemp.RowCount = 0;
 
             FetchEmployeesAndPlanning();
         }
@@ -88,6 +91,21 @@ namespace RentACar
             List<Planning> filteredPlanning = planning
                 .Where(p => p.employee_id == employeeId)
                 .ToList();
+
+            pnlTabPlanningTemp.Controls.Clear();
+
+            if (filteredPlanning.Count > 0)
+            {
+                foreach (var pl in filteredPlanning)
+                {
+                    Label lbl = new()
+                    {
+                        Dock = DockStyle.Fill,
+                        Text = $"{DateOnly.FromDateTime(pl.date)} vanaf {pl.starttime} tot {pl.endtime}",
+                    };
+                    pnlTabPlanningTemp.Controls.Add(lbl);
+                }
+            }
         }
     }
 }

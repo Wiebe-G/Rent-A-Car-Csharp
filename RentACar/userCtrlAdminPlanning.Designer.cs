@@ -43,6 +43,7 @@
             pnlTabSelectEmployee = new TableLayoutPanel();
             lblSelectEmp = new Label();
             cmbSelectEmployee = new ComboBox();
+            pnlTabPlanningTemp = new TableLayoutPanel();
             pnlTabAdminPlanningLayout.SuspendLayout();
             pnlTabSelectWeekLayout.SuspendLayout();
             pnlTabAdminPlanningLayout2.SuspendLayout();
@@ -220,16 +221,14 @@
             pnlTabSelectEmployee.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             pnlTabSelectEmployee.Controls.Add(lblSelectEmp, 0, 0);
             pnlTabSelectEmployee.Controls.Add(cmbSelectEmployee, 0, 1);
+            pnlTabSelectEmployee.Controls.Add(pnlTabPlanningTemp, 0, 2);
             pnlTabSelectEmployee.Dock = DockStyle.Fill;
             pnlTabSelectEmployee.Location = new Point(3, 3);
             pnlTabSelectEmployee.Name = "pnlTabSelectEmployee";
-            pnlTabSelectEmployee.RowCount = 2;
+            pnlTabSelectEmployee.RowCount = 3;
             pnlTabSelectEmployee.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
-            pnlTabSelectEmployee.RowStyles.Add(new RowStyle(SizeType.Percent, 85F));
-            pnlTabSelectEmployee.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            pnlTabSelectEmployee.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            pnlTabSelectEmployee.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            pnlTabSelectEmployee.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            pnlTabSelectEmployee.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
+            pnlTabSelectEmployee.RowStyles.Add(new RowStyle(SizeType.Percent, 70F));
             pnlTabSelectEmployee.Size = new Size(187, 449);
             pnlTabSelectEmployee.TabIndex = 3;
             // 
@@ -253,6 +252,18 @@
             cmbSelectEmployee.Size = new Size(181, 28);
             cmbSelectEmployee.TabIndex = 1;
             cmbSelectEmployee.SelectedIndexChanged += cmbSelectEmployee_SelectedIndexChanged;
+            // 
+            // pnlTabPlanningTemp
+            // 
+            pnlTabPlanningTemp.ColumnCount = 1;
+            pnlTabPlanningTemp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            pnlTabPlanningTemp.Dock = DockStyle.Fill;
+            pnlTabPlanningTemp.Location = new Point(3, 137);
+            pnlTabPlanningTemp.Name = "pnlTabPlanningTemp";
+            pnlTabPlanningTemp.RowCount = 1;
+            pnlTabPlanningTemp.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            pnlTabPlanningTemp.Size = new Size(181, 309);
+            pnlTabPlanningTemp.TabIndex = 2;
             // 
             // userCtrlAdminPlanning
             // 
@@ -289,5 +300,6 @@
         private TableLayoutPanel pnlTabSelectEmployee;
         private Label lblSelectEmp;
         private ComboBox cmbSelectEmployee;
+        private TableLayoutPanel pnlTabPlanningTemp;
     }
 }
