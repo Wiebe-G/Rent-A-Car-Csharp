@@ -319,6 +319,22 @@ namespace RentACar
                 return false;
             }
 
+            if (txtFirstName.Text.Trim().Length > 255
+                || txtLastName.Text.Trim().Length > 255
+                || txtEmail.Text.Trim().Length > 255
+                || txtStreetname.Text.Trim().Length > 255
+                || txtZipcode.Text.Trim().Length > 255
+                || txtCity.Text.Trim().Length > 255)
+            {
+                MessageBox.Show(
+                    "Een of meer velden bevatten meer dan 255 tekens.",
+                    "Ongeldige invoer",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return false;
+            }
+
             return true;
         }
 
