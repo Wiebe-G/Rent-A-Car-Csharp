@@ -32,7 +32,7 @@
             pnlTabTopBarMain = new TableLayoutPanel();
             btnOpenProfileForm = new Button();
             btnOpenEmployeePanel = new Button();
-            panel1 = new Panel();
+            pnlCustomer = new Panel();
             pnlTabLayoutMainForm.SuspendLayout();
             pnlTabTopBarMain.SuspendLayout();
             SuspendLayout();
@@ -43,7 +43,7 @@
             pnlTabLayoutMainForm.ColumnCount = 1;
             pnlTabLayoutMainForm.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             pnlTabLayoutMainForm.Controls.Add(pnlTabTopBarMain, 0, 0);
-            pnlTabLayoutMainForm.Controls.Add(panel1, 0, 1);
+            pnlTabLayoutMainForm.Controls.Add(pnlCustomer, 0, 1);
             pnlTabLayoutMainForm.Dock = DockStyle.Fill;
             pnlTabLayoutMainForm.Location = new Point(0, 0);
             pnlTabLayoutMainForm.Name = "pnlTabLayoutMainForm";
@@ -93,14 +93,13 @@
             btnOpenEmployeePanel.UseVisualStyleBackColor = false;
             btnOpenEmployeePanel.Click += btnOpenEmployeePanel_Click;
             // 
-            // panel1
+            // pnlCustomer
             // 
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(3, 73);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1128, 391);
-            panel1.TabIndex = 1;
-            panel1.Paint += panel1_Paint;
+            pnlCustomer.Dock = DockStyle.Fill;
+            pnlCustomer.Location = new Point(3, 73);
+            pnlCustomer.Name = "pnlCustomer";
+            pnlCustomer.Size = new Size(1128, 391);
+            pnlCustomer.TabIndex = 1;
             // 
             // frmMain
             // 
@@ -121,6 +120,6 @@
         private TableLayoutPanel pnlTabTopBarMain;
         private Button btnOpenProfileForm;
         private Button btnOpenEmployeePanel;
-        private Panel panel1;
+        private Panel pnlCustomer;
     }
 }

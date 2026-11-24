@@ -24,6 +24,7 @@ namespace RentACar
             btnOpenProfileForm.Text = $"{_user.fname} {_user.lname}";
             btnOpenEmployeePanel.Enabled = _user.role == "customer" ? false : true;
             btnOpenEmployeePanel.Visible = _user.role == "customer" ? false : true;
+            ShowCustomerForm();
         }
 
         internal void GetCorrectRole()
@@ -66,9 +67,20 @@ namespace RentACar
             user.Show();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void ShowCustomerForm()
         {
+            frmCustomer customer = new(_user)
+            {
+                TopLevel = false,
+                FormBorderStyle = FormBorderStyle.None,
+                Dock = DockStyle.Fill
+            };
 
+            pnlCustomer.Controls.Clear();
+            pnlCustomer.Controls.Add(customer);
+            pnlCustomer.Visible = true;
+            pnlCustomer.BringToFront();
+            customer.Show();
         }
     }
 }
