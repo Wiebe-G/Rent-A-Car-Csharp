@@ -59,10 +59,13 @@ namespace RentACar
                     MessageBox.Show($"Inloggevens kloppen. Welkom, {reader.GetString("Fname")} {reader.GetString("Lname")}");
                     CurrentUser.LoggedInUser = new User
                     {
+                        id = reader.GetInt32("user_id"),
                         fname = reader.GetString("fname"),
                         lname = reader.GetString("lname"),
                         email = reader.GetString("email"),
-                        role = reader.GetInt32("role_id").ToString()
+                        role = reader.GetInt32("role_id").ToString(),
+                        status = reader.GetInt32("status"),
+                        user_address_id = reader.GetInt32("user_address_id")
                     };
 
                     frmMain main = new(CurrentUser.LoggedInUser);

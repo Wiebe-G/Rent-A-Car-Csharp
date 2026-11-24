@@ -1,14 +1,13 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace RentACar
 {
     public partial class frmUserProfile : Form
     {
-        Passwords _passwords = new Passwords();
-
-        User _user;
+        readonly User _user;
+        Passwords passwords = new();
         bool _editing;
 
         internal frmUserProfile(User user)
@@ -16,8 +15,38 @@ namespace RentACar
             InitializeComponent();
             _user = user;
 
+            FetchAddressData();
             LoadUser();
             SetEditMode(false);
+        }
+
+        private void FetchAddressData()
+        {
+            try
+            {
+                using MySqlConnection conn = new(passwords.ConnStr);
+                conn.Open();
+
+                string query = @"SELECT a.streetname, a.zipcode, a.city
+                                 FROM user_address a
+                                 JOIN user u ON u.user_address_id = a.id
+                                 WHERE u.user_id=@id";
+                using MySqlCommand cmd = new(query, conn);
+                cmd.Parameters.AddWithValue("@id", _user.id);
+
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    _user.street = reader.GetString("streetname");
+                    _user.zipcode = reader.GetString("zipcode");
+                    _user.city = reader.GetString("city");
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Adresgegevens laden mislukt:\n" + ex.Message, "Databasefout",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void LoadUser()
@@ -60,89 +89,104 @@ namespace RentACar
 
         private void SaveProfile()
         {
-            if (string.IsNullOrWhiteSpace(txtFname.Text) ||
-                string.IsNullOrWhiteSpace(txtLname.Text) ||
-                string.IsNullOrWhiteSpace(txtEmail.Text) ||
-                string.IsNullOrWhiteSpace(txtStreetname.Text) ||
-                string.IsNullOrWhiteSpace(txtZipCode.Text) ||
-                string.IsNullOrWhiteSpace(txtCity.Text))
+            string Fname = txtFname.Text.Trim();
+            string Lname = txtLname.Text.Trim();
+            string City = txtCity.Text.Trim();
+            string Zipcode = txtZipCode.Text.Trim();
+            string Street = txtStreetname.Text.Trim();
+            string Email = txtEmail.Text.Trim();
+            string Password = txtPassword.Text;
+
+            if (Fname.Length < 1
+                || Lname.Length < 1
+                || City.Length < 1
+                || Zipcode.Length < 1
+                || Street.Length < 1
+                || Email.Length < 1)
             {
                 MessageBox.Show("Vul alle gegevens in.", "Ontbrekende gegevens",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            bool changePassword = !string.IsNullOrEmpty(txtPassword.Text);
-            if (changePassword && txtPassword.Text != txtPasswordConfirm.Text)
+            bool ChangePassword = !string.IsNullOrEmpty(Password);
+            if (ChangePassword && Password != txtPasswordConfirm.Text)
             {
                 MessageBox.Show("De wachtwoorden komen niet overeen.", "Wachtwoord",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            if (!UpdateUser(Fname, Lname, City, Zipcode, Street, Email, Password, ChangePassword)) return;
+
+            _user.fname = Fname;
+            _user.lname = Lname;
+            _user.email = Email;
+            _user.street = Street;
+            _user.zipcode = Zipcode;
+            _user.city = City;
+
+            LoadUser();
+            SetEditMode(false);
+            MessageBox.Show("Profiel bijgewerkt!");
+        }
+
+        private bool UpdateUser(string Fname, string Lname, string City, string Zipcode, string Street, string Email, string Password, bool ChangePassword)
+        {
             try
             {
-                using (var conn = new MySqlConnection(_passwords.ConnStr))
+                using MySqlConnection conn = new(passwords.ConnStr);
+                conn.Open();
+
+                using MySqlTransaction transaction = conn.BeginTransaction();
+
+                string query = "UPDATE user SET fname=@fname, lname=@lname, email=@email, updated_at=NOW(6) WHERE user_id=@id";
+                using MySqlCommand cmd = new(query, conn, transaction);
+
+                cmd.Parameters.AddWithValue("@fname", Fname);
+                cmd.Parameters.AddWithValue("@lname", Lname);
+                cmd.Parameters.AddWithValue("@email", Email);
+                cmd.Parameters.AddWithValue("@id", _user.id);
+
+                int RowsAffected = cmd.ExecuteNonQuery();
+                if (RowsAffected <= 0)
                 {
-                    conn.Open();
-                    using (var tx = conn.BeginTransaction())
-                    {
-                        using (var cmd = new MySqlCommand(
-                            @"UPDATE user_address
-                              SET streetname = @street, zipcode = @zip, city = @city
-                              WHERE id = @addressId", conn, tx))
-                        {
-                            cmd.Parameters.AddWithValue("@street", txtStreetname.Text.Trim());
-                            cmd.Parameters.AddWithValue("@zip", txtZipCode.Text.Trim());
-                            cmd.Parameters.AddWithValue("@city", txtCity.Text.Trim());
-                            cmd.Parameters.AddWithValue("@addressId", _user.user_address_id);
-                            cmd.ExecuteNonQuery();
-                        }
-
-                        using (var cmd = new MySqlCommand(
-                            @"UPDATE user
-                              SET fname = @fname, lname = @lname, email = @email,
-                                  updated_at = NOW(6)
-                              WHERE user_id = @userId", conn, tx))
-                        {
-                            cmd.Parameters.AddWithValue("@fname", txtFname.Text.Trim());
-                            cmd.Parameters.AddWithValue("@lname", txtLname.Text.Trim());
-                            cmd.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
-                            cmd.Parameters.AddWithValue("@userId", _user.user_id);
-                            cmd.ExecuteNonQuery();
-                        }
-
-                        if (changePassword)
-                        {
-                            using (var cmd = new MySqlCommand(
-                                "UPDATE user SET password = @pw WHERE user_id = @userId", conn, tx))
-                            {
-                                cmd.Parameters.AddWithValue("@pw", txtPassword.Text);
-                                cmd.Parameters.AddWithValue("@userId", _user.user_id);
-                                cmd.ExecuteNonQuery();
-                            }
-                        }
-
-                        tx.Commit();
-                    }
+                    MessageBox.Show("Er was een fout bij het updaten van de gebruiker. Probeer het later opnieuw.");
+                    return false;
                 }
+
+                query = "UPDATE user_address SET streetname=@streetname, zipcode=@zipcode, city=@city WHERE id=@address_id";
+                using MySqlCommand NewCMD = new(query, conn, transaction);
+                NewCMD.Parameters.AddWithValue("@streetname", Street);
+                NewCMD.Parameters.AddWithValue("@zipcode", Zipcode);
+                NewCMD.Parameters.AddWithValue("@city", City);
+                NewCMD.Parameters.AddWithValue("@address_id", _user.user_address_id);
+
+                int AddressRowsAffected = NewCMD.ExecuteNonQuery();
+                if (AddressRowsAffected <= 0)
+                {
+                    MessageBox.Show("Adresgegevens konden niet worden bijgewerkt. Probeer het later opnieuw");
+                    return false;
+                }
+
+                if (ChangePassword)
+                {
+                    query = "UPDATE user SET password=@password WHERE user_id=@id";
+                    using MySqlCommand PasswordCMD = new(query, conn, transaction);
+                    PasswordCMD.Parameters.AddWithValue("@password", Password);
+                    PasswordCMD.Parameters.AddWithValue("@id", _user.id);
+                    PasswordCMD.ExecuteNonQuery();
+                }
+
+                transaction.Commit();
+                return true;
             }
             catch (MySqlException ex)
             {
                 MessageBox.Show("Opslaan mislukt:\n" + ex.Message, "Databasefout",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return false;
             }
-
-            _user.fname = txtFname.Text.Trim();
-            _user.lname = txtLname.Text.Trim();
-            _user.email = txtEmail.Text.Trim();
-            _user.street = txtStreetname.Text.Trim();
-            _user.zipcode = txtZipCode.Text.Trim();
-            _user.city = txtCity.Text.Trim();
-
-            LoadUser();
-            SetEditMode(false);
         }
     }
 }
