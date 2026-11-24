@@ -147,6 +147,13 @@
         {
             MessageBox.Show("Nog niet af ");
             spltAdminLayout.Panel2.Controls.Clear();
+
+            userCtrlAdminPlanning planning = new()
+            {
+                Dock = DockStyle.Fill
+            };
+
+            spltAdminLayout.Panel2.Controls.Add(planning);
         }
 
         private void RenderDashboardMenu()
